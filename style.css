@@ -1,0 +1,637 @@
+/* --- GLOBAL COLOR VARIABLES --- */
+:root {
+    --primary-red: #b60000;
+    --dark-bg: #1a1a1a;
+    --text-dark: #101010;
+    --text-light: #f5f5f5;
+    --card-background: #ffffff;
+    --accent-gold: #d4af37;
+}
+
+/* --- GLOBAL RESET & BASE STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0a0a;
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+/* ---------------------------------- */
+/* 1. PREMIUM RED & BLACK HEADER */
+/* ---------------------------------- */
+
+.dark-header-container {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #2a0000 50%, var(--primary-red) 100%);
+    color: var(--text-light);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 35px 60px;
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 8px 30px rgba(182, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.dark-header-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(182, 0, 0, 0.3) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-image {
+    width: auto;
+    height: 80px;
+    display: block;
+}
+
+.logo-image img {
+    height: 100%;
+    width: auto;
+    display: block;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(182, 0, 0, 0.5);
+}
+
+.tagline {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    margin-top: 4px;
+    white-space: nowrap;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------------------------------- */
+/* 2. PREMIUM WHITE NAVIGATION BAR */
+/* ---------------------------------- */
+
+.main-nav-wrapper {
+    width: 92%;
+    max-width: 1405px;
+    margin: -19px auto 0 auto;
+    background: linear-gradient(135deg, var(--card-background) 0%, #f8f8f8 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(182, 0, 0, 0.1);
+    overflow: visible;
+    z-index: 10;
+    position: relative;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 50px;
+    width: 100%;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 45px;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 12px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.menu-item:hover {
+    color: var(--primary-red);
+}
+
+.menu-item i.fa-chevron-down {
+    font-size: 10px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.menu-item:hover i.fa-chevron-down {
+    color: var(--primary-red);
+}
+
+.menu-item.active {
+    color: var(--primary-red);
+}
+
+.menu-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, var(--primary-red) 50%, transparent 100%);
+    border-radius: 2px;
+}
+
+/* --- Right Side Social Icons --- */
+
+.navbar-icons-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-circle {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.social-circle:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(182, 0, 0, 0.3);
+}
+
+/* Hero/Content Section - REMOVED */
+/* Hero/Content Section - REMOVED */
+
+/* ---------------------------------- */
+/* 3. SLIDER SECTION */
+/* ---------------------------------- */
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+    box-sizing: border-box;
+    transition: 0.5s ease-in-out;
+}
+
+.content {
+    /* Darker overlay for text contrast on the slider */
+    background: rgba(0, 0, 0, 0.65); 
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 450px;
+}
+
+.content h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.content h2 {
+    color: var(--accent-red); /* Jam Red Highlight */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 18px;
+    color: #eee;
+}
+
+/* ---------------------------------- */
+/* 4. SERVICES CAROUSEL SECTION */
+/* ---------------------------------- */
+
+.services-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* Light background */
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.services-subtitle {
+    display: inline-block;
+    color: var(--accent-red); /* Jam Red Subtitle */
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.services-subtitle::before,
+.services-subtitle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-red));
+}
+
+.services-subtitle::before {
+    right: calc(100% + 15px);
+}
+
+.services-subtitle::after {
+    left: calc(100% + 15px);
+    background: linear-gradient(90deg, var(--accent-red), transparent);
+}
+
+.services-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.3;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 60px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+.service-card {
+    min-width: calc(33.333% - 20px);
+    background: var(--card-background); /* White Card Base */
+    border-radius: 16px;
+    /* Initial subtle shadow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-10px); /* Lifts higher for premium feel */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.card-icon-wrapper {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 64px;
+    height: 64px;
+    /* Light Red Icon Background Accent */
+    background: linear-gradient(135deg, #FFC0CB 0%, #FF9999 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(96, 16, 11, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .card-icon-wrapper {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.card-icon-wrapper svg {
+    width: 32px;
+    height: 32px;
+    color: var(--accent-red); /* Jam Red Icon */
+}
+
+.card-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.service-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.card-content {
+    padding: 32px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.card-description {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-red); /* Jam Red Link */
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-red);
+    transition: width 0.3s ease;
+}
+
+.card-link:hover::after {
+    width: calc(100% - 28px);
+}
+
+.card-link svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover svg {
+    transform: translateX(5px);
+}
+
+.carousel-nav {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: var(--card-background);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 100;
+    touch-action: manipulation;
+}
+
+.carousel-nav:hover {
+    background: var(--accent-red);
+    box-shadow: 0 8px 24px rgba(96, 16, 11, 0.4);
+}
+
+.carousel-nav:hover svg {
+    color: var(--text-light);
+}
+
+.carousel-nav svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.carousel-nav.prev {
+    left: 0;
+}
+
+.carousel-nav.next {
+    right: 0;
+}
+
+.carousel-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-nav:disabled:hover {
+    background: var(--card-background);
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 32px;
+    border-radius: 6px;
+    background: var(--accent-red);
+}
+
+/* ---------------------------------- */
+/* 5. RESPONSIVE DESIGN */
+/* ---------------------------------- */
+
+@media (max-width: 1200px) {
+    .service-card {
+        min-width: calc(50% - 15px);
+    }
+}
+@media (max-width: 768px) {
+    .dark-header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        justify-content: center;
+    }
+    .header-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .navbar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .logo-text {
+        font-size: 20px;
+    }
+    .tagline {
+        font-size: 11px;
+    }
+    .services-title {
+        font-size: 36px;
+    }
+    .carousel-container {
+        padding: 20px 50px;
+    }
+    .service-card {
+        min-width: 100%;
+    }
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+    .carousel-nav svg {
+        width: 20px;
+        height: 20px;
+    }
+    .slider {
+        height: 60vh;
+    }
+    .content h1 {
+        font-size: 28px;
+    }
+    .content h2 {
+        font-size: 20px;
+    }
+    .content p {
+        font-size: 14px;
+    }
+}
+@media (max-width: 480px) {
+    .services-title {
+        font-size: 28px;
+    }
+    .services-subtitle::before,
+    .services-subtitle::after {
+        width: 20px;
+    }
+    .card-content {
+        padding: 24px;
+    }
+    .card-title {
+        font-size: 20px;
+    }
+    .carousel-container {
+        padding: 20px 40px;
+    }
+    .main-nav-wrapper {
+        width: 95%;
+        margin: -5px auto 15px auto;
+    }
+}
