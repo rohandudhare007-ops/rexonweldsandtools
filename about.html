@@ -397,28 +397,3 @@
             </div>
         </nav>
     </div>
-
-    <!-- Demo Content Area -->
-    <div class="demo-content">
-        <h1>Header Matches Your Design!</h1>
-        <p>This header now perfectly matches your screenshot with the dark red gradient background, rounded navigation bar, and exact styling. It's fully responsive for both desktop and mobile devices!</p>
-    </div>
-
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navbarMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navbarMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
-</body>
-</html>
