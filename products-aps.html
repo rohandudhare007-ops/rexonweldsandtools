@@ -326,38 +326,41 @@
     </style>
 </head>
 <body>
-    <header class="dark-header-container">
-        <div class="header-left">
-            <div class="logo">
-                <div class="logo-image">
-                    <img src="https://i.imgur.com/6RqX9YH.png" alt="Rexon Logo">
-                </div>
-                <div class="logo-text-group">
-                    <span class="logo-text">Rexon Welds And Tools</span>
-                </div>
+   <header class="dark-header-container">
+    <div class="header-left">
+        <div class="logo">
+            <div class="logo-image">
+                <img src="https://i.imgur.com/6RqX9YH.png" alt="Rexon Logo">
+            </div>
+            <div class="logo-text-group">
+                <span class="logo-text">REXON WELDS AND TOOLS</span>
             </div>
         </div>
-    </header>
-
-    <div class="main-nav-wrapper">
-        <nav class="navbar-container">
-            <div class="navbar-menu">
-          <a href="index.html" class="menu-item active">HOME <i class="fas fa-chevron-down"></i></a>
-                <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
-                <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
-            </div>
-
-            <div class="navbar-icons-group">
-                <div class="social-icons">
-                    <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </nav>
     </div>
+</header>
 
+<div class="main-nav-wrapper">
+    <nav class="navbar-container">
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="navbar-menu" id="navbarMenu">
+            <a href="index.html" class="menu-item">HOME <i class="fas fa-chevron-down"></i></a>
+            <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
+            <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="navbar-icons-group">
+            <div class="social-icons">
+                <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
     <div class="page-header">
         <h1>APS PRODUCTS</h1>
         <p>Browse our Premium Industrial Equipment</p>
@@ -555,4 +558,19 @@
         }
     </script>
 </body>
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('navbarMenu');
+        menu.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('navbarMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    });
+</script>
 </html>
