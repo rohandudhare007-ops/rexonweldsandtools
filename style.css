@@ -635,3 +635,298 @@ body {
         margin: -5px auto 15px auto;
     }
 }
+/* ---------------------------------- */
+/* MOBILE MENU TOGGLE */
+/* ---------------------------------- */
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* ---------------------------------- */
+/* ENHANCED MOBILE RESPONSIVE (480px and below) */
+/* ---------------------------------- */
+
+@media (max-width: 768px) {
+    .dark-header-container {
+        padding: 18px 25px;
+    }
+
+    .logo {
+        gap: 15px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+        letter-spacing: 1.5px;
+    }
+
+    .tagline {
+        font-size: 12px;
+    }
+
+    .logo-image {
+        height: 50px;
+    }
+
+    .main-nav-wrapper {
+        width: 94%;
+        margin: -20px auto 0 auto;
+        border-radius: 18px;
+    }
+
+    .navbar-container {
+        padding: 0 25px;
+        min-height: 60px;
+        flex-direction: row;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        order: -1;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: 130px;
+        left: -100%;
+        width: calc(100% - 50px);
+        margin: 0 25px;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        transition: left 0.3s ease;
+        border-radius: 20px;
+        justify-content: flex-start;
+    }
+
+    .navbar-menu.active {
+        left: 0;
+    }
+
+    .menu-item {
+        padding: 15px 25px;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        justify-content: flex-start;
+    }
+
+    .menu-item.active::after {
+        bottom: 10px;
+        left: 25px;
+        right: 25px;
+    }
+
+    .navbar-icons-group {
+        margin-left: auto;
+    }
+
+    .social-icons {
+        gap: 10px;
+    }
+
+    .social-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .slider {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .slide {
+        padding: 0 30px;
+        justify-content: center;
+    }
+
+    .content {
+        padding: 20px 25px;
+        max-width: 100%;
+    }
+
+    .content h1 {
+        font-size: 28px;
+    }
+
+    .content h2 {
+        font-size: 20px;
+    }
+
+    .content p {
+        font-size: 15px;
+    }
+
+    .services-section {
+        padding: 60px 20px;
+    }
+
+    .services-title {
+        font-size: 32px;
+    }
+
+    .carousel-container {
+        padding: 20px 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dark-header-container {
+        padding: 10px 12px;
+    }
+
+    .dark-header-container::before {
+        display: none;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo-text {
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+    }
+
+    .tagline {
+        font-size: 8px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+
+    .logo-image {
+        height: 30px;
+    }
+
+    .main-nav-wrapper {
+        width: 95%;
+        margin: -12px auto 0 auto;
+        border-radius: 15px;
+    }
+
+    .navbar-container {
+        padding: 0 12px;
+        min-height: 45px;
+    }
+
+    .navbar-menu {
+        top: 95px;
+        width: calc(100% - 24px);
+        margin: 0 12px;
+        border-radius: 15px;
+    }
+
+    .menu-item {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+
+    .social-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+
+    .slider {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .slide {
+        padding: 0 15px;
+    }
+
+    .content {
+        padding: 18px 20px;
+    }
+
+    .content h1 {
+        font-size: 20px;
+    }
+
+    .content h2 {
+        font-size: 16px;
+    }
+
+    .content p {
+        font-size: 13px;
+    }
+
+    .services-section {
+        padding: 40px 15px;
+    }
+
+    .services-subtitle {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .services-subtitle::before,
+    .services-subtitle::after {
+        width: 20px;
+    }
+
+    .services-title {
+        font-size: 22px;
+    }
+
+    .carousel-container {
+        padding: 20px 40px;
+    }
+
+    .service-card {
+        min-width: 100%;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-description {
+        font-size: 14px;
+    }
+
+    .card-icon-wrapper {
+        width: 50px;
+        height: 50px;
+        top: 18px;
+        right: 18px;
+    }
+
+    .card-icon-wrapper svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .card-image {
+        height: 220px;
+    }
+
+    .carousel-nav {
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-nav svg {
+        width: 18px;
+        height: 18px;
+    }
+}
