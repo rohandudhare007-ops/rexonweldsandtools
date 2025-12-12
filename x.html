@@ -888,19 +888,4 @@
         const modal = document.getElementById('inquiryModal');
         
         function openModal(title, imageSrc, description) {
-            document.getElementById('modalTitle').innerText = 'Inquire About: ' + title;
-document.getElementById('modalProductImage').src = imageSrc;
-document.getElementById('modalProductDescription').innerText = description;
-document.getElementById('inquiryProductName').value = title;
-modal.style.display = 'block';
-}
-function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-</script>
+            document.getElementById('
