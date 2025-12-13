@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPT Products - Rexon Welds And Tools</title>
+    <title>APS Products - Rexon Welds And Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -273,10 +273,11 @@
         /* PRODUCT GRID STYLES */
         /* ---------------------------------- */
         .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
             margin-bottom: 3rem;
+            align-items: stretch; /* Ensure equal height */
         }
 
         .product-card {
@@ -285,6 +286,11 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Take full height from container */
+            flex-basis: 300px; /* Minimum width like minmax(300px, 1fr) */
+            flex-grow: 1;
         }
 
         .product-card:hover {
@@ -316,6 +322,7 @@
 
         .product-content {
             padding: 1.5rem;
+            flex-grow: 1; /* Allow content to expand and push actions to bottom */
         }
 
         .product-category {
@@ -349,6 +356,7 @@
         .product-actions {
             display: flex;
             gap: 0.75rem;
+            padding-top: 15px; /* Maintain spacing */
         }
 
         .btn {
@@ -554,7 +562,6 @@
             }
 
             .products-grid {
-                grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
             }
 
@@ -632,28 +639,86 @@
                 font-size: 0.85rem;
             }
 
-            .container {
-                padding: 1rem;
-            }
+           .container {
+    padding: 0.75rem;          /* Reduced padding */
+    max-width: 100%;           /* Ensure no overflow */
+}
+.search-bar-wrapper {
+    padding: 0;
+    margin-bottom: 1rem;       /* ADD THIS */
+}
 
+#productSearch {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;         /* Changed from 1rem */
+    border-radius: 6px;        /* ADD THIS */
+}
             .products-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+        gap: 1rem;                    /* Reduced from 1.5rem */
+    }
+    
+    .product-card {
+        max-width: 100%;              /* ADD THIS */
+    }
+    
+    .product-image-wrapper {
+        height: 180px;                /* Reduced from 250px */
+    }
+    
+    .product-image {
+        padding: 1rem;                /* Reduced from 1.5rem */
+    }
+    
+    .product-content {
+        padding: 1rem;                /* Reduced from 1.5rem */
+    }
+    
+    .product-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    min-height: 42px;         /* ADD THIS */
+}
+    
+    .product-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    min-height: 48px;         /* ADD THIS */
+    -webkit-line-clamp: 2;    /* CHANGE from 3 to 2 lines on mobile */
+}
+    
+    .product-category {
+        font-size: 0.7rem;            /* Reduced from 0.75rem */
+    }
+    
+    .btn {
+        padding: 0.6rem 1rem;         /* Reduced from 0.75rem 1.5rem */
+        font-size: 0.85rem;           /* Reduced from 0.95rem */
+    }
+}
+.modal-content {
+    width: 95%;                /* Reduced from 90% */
+    margin: 10% auto;          /* More top margin on mobile */
+    padding: 20px;             /* Reduced from 30px */
+}
 
-            .product-actions {
-                flex-direction: column;
-            }
+.modal-product-detail {
+    flex-direction: column;    /* Stack vertically on mobile */
+    text-align: center;
+}
 
-            .search-bar-wrapper {
-                padding: 0;
-            }
+#modalProductImage {
+    width: 80px;               /* Smaller image on mobile */
+    height: 80px;
+}
+.product-actions {
+    flex-direction: column;
+    gap: 0.5rem;               /* Reduced gap */
+}
 
-            #productSearch {
-                padding: 0.75rem 1rem;
-                font-size: 1rem;
-            }
-        }
+.btn {
+    width: 100%;               /* Full width buttons */
+}
     </style>
 </head>
 <body>
@@ -713,7 +778,7 @@
         </div>
 
         <div id="productsGrid" class="products-grid">
-<div class="product-card" data-title="KPT7DHN Demolition Hammer" data-category="Hammer" data-description="INTRODUCING 7Kg">
+            <div class="product-card" data-title="KPT7DHN Demolition Hammer" data-category="Hammer" data-description="INTRODUCING 7Kg">
                 <div class="product-image-wrapper">
                     <img src="images/KPT/KPT7DHN.png" alt="KPT7DHN Demolition Hammer" class="product-image">
                 </div>
@@ -727,10 +792,175 @@
                     </div>
                 </div>
             </div>
+            <div class="product-card" data-title="KC09L 9L Air Compressor" data-category="Air Compressors" data-description="Oil-free 9L air compressor with 1100W motor.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KC09L.png" alt="KPT 9L Air Compressor" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Air Compressors</div>
+                    <h3 class="product-title">9L Air Compressor (KC09L)</h3>
+                    <p class="product-description">Oil-free operation. Power: 1100W. Max Pressure: 8 bar. Tank Capacity: 9L. 100% copper motor.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KC09L.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KC09L 9L Air Compressor', 'images/KPT/KC09L.png', 'Oil-free 9L Air Compressor, 1100W')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
 
+
+            <div class="product-card" data-title="KHG2K 2000W Heat Gun" data-category="Heating" data-description="Variable temperature setting, 2000W motor.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KHG2K.png" alt="KPT 2000W Heat Gun" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Heating / Repair</div>
+                    <h3 class="product-title">2000W Heat Gun (KHG2K)</h3>
+                    <p class="product-description">2000W Power Input, Temp range 50-650°C. Features variable temperature control and ergonomic design.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KHG2K.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KHG2K 2000W Heat Gun', 'images/KPT/KHG2K.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-title="KPTSDHN 5kg Demolition Hammer" data-category="Demolition Tools" data-description="5kg demolition hammer with 900W motor.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KPTSDHN.png" alt="KPT 5kg Demolition Hammer" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Demolition Tools</div>
+                    <h3 class="product-title">5kg Demolition Hammer (KPTSDHN)</h3>
+                    <p class="product-description">Power Input: 900W. Impact Rate: 3700 BPM. Tool Holder: 17mm Hex. Heavy-duty performance.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KPTSDHN.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KPTSDHN 5kg Demolition Hammer', 'images/KPT/KPTSDHN.png', '900W Heavy Duty Demolition Hammer')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card" data-title="KTR6 6/6.35mm Trimmer" data-category="Trimming / Routing" data-description="600W Power Input, No Load Speed 30000 rpm.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KTR6.png" alt="KPT 6/6.35mm Trimmer" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Trimming / Routing</div>
+                    <h3 class="product-title">6/6.35mm Trimmer (KTR6)</h3>
+                    <p class="product-description">600W Power Input, No Load Speed: 30000 rpm, Trim Diameter: 6/6.35 mm.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KTR6.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KTR6 6/6.35mm Trimmer', 'images/KPT/KTR6.png', '600W Trimmer with 30000 rpm no load speed')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-title="KK4 110mm Marble Cutter" data-category="Cutting Tools" data-description="110mm marble cutter with 1100W motor.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KK4.png" alt="KPT 110mm Marble Cutter" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Cutting Tools</div>
+                    <h3 class="product-title">110mm Marble Cutter (KK4)</h3>
+                    <p class="product-description">Powerful 1100W motor. Max Cutting Depth: 34mm. No Load Speed: 13000 RPM. Fixed base plate.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KK4.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KK4 110mm Marble Cutter', 'images/KPT/KK4.png', '1100W Marble Cutter, 110mm')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card" data-title="KBLWOV 450W Electric Blower" data-category="Blowing" data-description="450W Powerful motor, ergonomic design.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KBLWOV.png" alt="KPT 450W Electric Blower" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Cleaning / Maintenance</div>
+                    <h3 class="product-title">450W Electric Blower (KBLWOV)</h3>
+                    <p class="product-description">450W Power Input, 16000 RPM. Features a powerful motor and ergonomic design for ease of use.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KBLWOV.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KBLWOV Electric Blower', 'images/KPT/KBLWOV.png', '450W Electric Blower for quick cleanup')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="KPTRH22 22mm Rotary Hammer" data-category="Rotary Hammers" data-description="22mm rotary hammer with 800W motor.">
+    <div class="product-image-wrapper">
+        <img src="images/KPT/KPTRH22.png" alt="KPT 22mm Rotary Hammer" class="product-image">
+    </div>
+    <div class="product-content">
+        <div class="product-category">Rotary Hammers</div>
+        <h3 class="product-title">22mm Rotary Hammer (KPTRH22)</h3>
+        <p class="product-description">Power Input: 800W. No Load Speed: 900 RPM. Ideal for drilling concrete and masonry.</p>
+        <div class="product-actions">
+            <a href="product-kpt-KPTRH22.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('KPTRH22 22mm Rotary Hammer', 'images/KPT/KPTRH22.png', '800W Rotary Hammer, 22mm')">Inquire Now</button>
+        </div>
+    </div>
+</div>
+
+
+            <div class="product-card" data-title="KB500NVR 550W Electric Blower" data-category="Blowing" data-description="550W Powerful motor, variable speed function.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KB500NVR.png" alt="KPT 550W Electric Blower" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Cleaning / Maintenance</div>
+                    <h3 class="product-title">550W Electric Blower (KB500NVR)</h3>
+                    <p class="product-description">550W Power Input, 13000 RPM. Features a powerful motor and variable speed function.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KB500NVR.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KB500NVR Electric Blower', 'images/KPT/KB500NVR.png', '550W Blower with Variable Speed')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-title="GD25N 13mm Pistol Drill" data-category="Drilling" data-description="850W motor with durable Alu housing.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/GD25N.png" alt="KPT 13mm Pistol Drill" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Drilling / Pistol Grip</div>
+                    <h3 class="product-title">13mm Pistol Drill (GD25N)</h3>
+                    <p class="product-description">850W Power Input, 850 RPM No Load Speed. Features durable Alu housing and 360° rotatable D-handle.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-GD25N.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('GD25N 13mm Pistol Drill', 'images/KPT/GD25N.png', '850W Pistol Drill with 360° Handle')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="HD16N 16mm Pistol Drill" data-category="Drilling" data-description="16mm Metal Chuck, Durable Alu Motor Housing.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/HD16N.png" alt="KPT 16mm Pistol Drill" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Drilling / Heavy Duty</div>
+                    <h3 class="product-title">16mm Pistol Drill (HD16N)</h3>
+                    <p class="product-description">850W Power Input, Max Wood capacity: 40mm. Features a 16mm metal chuck and durable Alu housing.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-HD16N.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('HD16N 16mm Pistol Drill', 'images/KPT/HD16N.png', '850W Pistol Drill with 16mm Metal Chuck')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-title="KPW1400 130Bar Pressure Washer" data-category="Cleaning" data-description="1600W Brushless motor with Auto Stop function.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KPW1400.png" alt="KPT 130Bar Pressure Washer" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Cleaning / Maintenance</div>
+                    <h3 class="product-title">130Bar Pressure Washer (KPW1400)</h3>
+                    <p class="product-description">1600W Power Input, 130 Bar Max Pressure. Features a brushless motor and auto stop when water supply stops.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KPW1400.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KPW1400 Pressure Washer', 'images/KPT/KPW1400.png', '130Bar Pressure Washer with 1600W Brushless motor')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
             <div class="product-card" data-title="KAG900-4FRT 100mm Angle Grinder" data-category="Grinding" data-description="900W motor, light weight and superior grinding output.">
                 <div class="product-image-wrapper">
-                    <img src="images/KPT/KAG900-4FRT.jpg" alt="KPT 100mm Angle Grinder" class="product-image">
+                    <img src="images/KPT/KAG900-4FRT.png" alt="KPT 100mm Angle Grinder" class="product-image">
                 </div>
                 <div class="product-content">
                     <div class="product-category">Grinding / Cutting</div>
@@ -738,217 +968,26 @@
                     <p class="product-description">900W Power Input, 11000 RPM No Load Speed. Ergonomic and lightweight with a service window for easy brush replacement.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KAG900-4FRT.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KAG900-4FRT Angle Grinder', 'images/KPT/KAG900-4FRT.jpg', '900W, 100mm Angle Grinder, 11000 RPM')">Inquire Now</button>
+                        <button class="btn btn-primary" onclick="openModal('KAG900-4FRT Angle Grinder', 'images/KPT/KAG900-4FRT.png', '900W, 100mm Angle Grinder, 11000 RPM')">Inquire Now</button>
                     </div>
                 </div>
             </div>
 
-           <div class="product-card" data-title="KHG2K 2000W Heat Gun" data-category="Heating" data-description="Variable temperature setting, 2000W motor.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KHG2K.png" alt="KPT 2000W Heat Gun" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Heating / Repair</div>
-        <h3 class="product-title">2000W Heat Gun (KHG2K)</h3>
-        <p class="product-description">2000W Power Input, Temp range 50-650°C. Features variable temperature control and ergonomic design.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KHG2K.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KHG2K 2000W Heat Gun', 'images/KPT/KHG2K.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-
-            <div class="product-card" data-title="KVC15L 15L Vacuum Cleaner" data-category="Cleaning" data-description="15L Dry / Wet Vacuum Cleaner.">
+            <div class="product-card" data-title="KVC20L 20L Vacuum Cleaner" data-category="Cleaning" data-description="20L Dry / Wet Vacuum Cleaner.">
                 <div class="product-image-wrapper">
-                    <img src="images/KPT/KVC15L.jpg" alt="KPT 15L Dry/Wet Vacuum Cleaner" class="product-image">
+                    <img src="images/KPT/KVC20L.png" alt="KPT 20L Dry/Wet Vacuum Cleaner" class="product-image">
                 </div>
                 <div class="product-content">
                     <div class="product-category">Cleaning / Maintenance</div>
-                    <h3 class="product-title">15L Dry / Wet Vacuum (KVC15L)</h3>
-                    <p class="product-description">1200W power input, 17 KPa vacuum pressure, 15L capacity. Complete with accessories.</p>
+                    <h3 class="product-title">20L Dry / Wet Vacuum (KVC20L)</h3>
+                    <p class="product-description">1200W power input, 17 KPa vacuum pressure, 20L capacity. Heavy-duty cleaning.</p>
                     <div class="product-actions">
-                        <a href="product-kpt-KVC15L.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KVC15L Vacuum Cleaner', 'images/KPT/KVC15L.jpg', '1200W, 15L Dry/Wet Vacuum Cleaner')">Inquire Now</button>
+                        <a href="product-kpt-KVC20L.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KVC20L Vacuum Cleaner', 'images/KPT/KVC20L.png', '1200W, 20L Dry/Wet Vacuum Cleaner')">Inquire Now</button>
                     </div>
                 </div>
             </div>
-
-           <div class="product-card" 
-     data-title="KVC30L 30L Vacuum Cleaner" 
-     data-category="Cleaning" 
-     data-description="30L Dry / Wet Vacuum Cleaner.">
-
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KVC30L.png" 
-             alt="KPT 30L Dry/Wet Vacuum Cleaner" 
-             class="product-image">
-    </div>
-
-    <div class="product-content">
-        <div class="product-category">Cleaning / Maintenance</div>
-
-        <h3 class="product-title">30L Dry / Wet Vacuum (KVC30L)</h3>
-
-        <p class="product-description">
-            1400W power input, 18 KPa vacuum pressure, 30L capacity. Heavy-duty cleaning.
-        </p>
-
-        <div class="product-actions">
-            <a href="product-kpt-KVC30L.html" class="btn btn-outline">View Specs</a>
-
-            <button class="btn btn-primary"
-                onclick="openModal(
-                    'KVC30L Vacuum Cleaner',
-                    'images/KPT/KVC30L.png',
-                    '1400W, 30L Dry/Wet Vacuum Cleaner'
-                )">
-                Inquire Now
-            </button>
-        </div>
-    </div>
-</div>
-
-            <div class="product-card" data-title="KSD10 10mm Electric Screwdriver" data-category="Screwdriving" data-description="350W motor with variable and reversing function.">
-                <div class="product-image-wrapper">
-                    <img src="images/KPT/KSD10.jpg" alt="KPT 10mm Electric Screwdriver" class="product-image">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Drilling / Assembly</div>
-                    <h3 class="product-title">10mm Electric Screwdriver (KSD10)</h3>
-                    <p class="product-description">350W Power Input, 750 RPM No Load Speed. Durable gearbox and variable/reversing function.</p>
-                    <div class="product-actions">
-                        <a href="product-kpt-KSD10.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KSD10 Screwdriver', 'images/KPT/KSD10.jpg', '350W Electric Screwdriver with Reversing Function')">Inquire Now</button>
-                    </div>
-                </div>
-            </div>
-
-           <div class="product-card" data-title="KBLWOV 450W Electric Blower" data-category="Blowing" data-description="450W Powerful motor, ergonomic design.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KBLWOV.png" alt="KPT 450W Electric Blower" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Cleaning / Maintenance</div>
-        <h3 class="product-title">450W Electric Blower (KBLWOV)</h3>
-        <p class="product-description">450W Power Input, 16000 RPM. Features a powerful motor and ergonomic design for ease of use.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KBLWOV.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KBLWOV Electric Blower', 'images/KPT/KBLWOV.png', '450W Electric Blower for quick cleanup')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-            <div class="product-card" data-title="KVC3MN 35mm Concrete Vibrator" data-category="Construction" data-description="1200W motor, soft grip design.">
-                <div class="product-image-wrapper">
-                    <img src="images/KPT/KVC3MN.jpg" alt="KPT 35mm Concrete Vibrator" class="product-image">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Construction / Vibrating</div>
-                    <h3 class="product-title">35mm Concrete Vibrator (KVC3MN)</h3>
-                    <p class="product-description">Powerful 1200W motor, 4300 RPM No Load Speed. Features sturdy aluminum gear box and soft grip design.</p>
-                    <div class="product-actions">
-                        <a href="product-kpt-KVC3MN.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KVC3MN Concrete Vibrator', 'images/KPT/KVC3MN.jpg', '1200W, 35mm Concrete Vibrator')">Inquire Now</button>
-                    </div>
-                </div>
-            </div>
-
-           <div class="product-card" data-title="KB500NVR 550W Electric Blower" data-category="Blowing" data-description="550W Powerful motor, variable speed function.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KB500NVR.png" alt="KPT 550W Electric Blower" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Cleaning / Maintenance</div>
-        <h3 class="product-title">550W Electric Blower (KB500NVR)</h3>
-        <p class="product-description">550W Power Input, 13000 RPM. Features a powerful motor and variable speed function.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KB500NVR.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KB500NVR Electric Blower', 'images/KPT/KB500NVR.png', '550W Blower with Variable Speed')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-
-  <div class="product-card" data-title="GD25N 13mm Pistol Drill" data-category="Drilling" data-description="850W motor with durable Alu housing.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/GD25N.png" alt="KPT 13mm Pistol Drill" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Drilling / Pistol Grip</div>
-        <h3 class="product-title">13mm Pistol Drill (GD25N)</h3>
-        <p class="product-description">850W Power Input, 850 RPM No Load Speed. Features durable Alu housing and 360° rotatable D-handle.</p>
-        <div class="product-actions">
-            <a href="product-kpt-GD25N.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('GD25N 13mm Pistol Drill', 'images/KPT/GD25N.png', '850W Pistol Drill with 360° Handle')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-<div class="product-card" data-title="HD16N 16mm Pistol Drill" data-category="Drilling" data-description="16mm Metal Chuck, Durable Alu Motor Housing.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/HD16N.png" alt="KPT 16mm Pistol Drill" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Drilling / Heavy Duty</div>
-        <h3 class="product-title">16mm Pistol Drill (HD16N)</h3>
-        <p class="product-description">850W Power Input, Max Wood capacity: 40mm. Features a 16mm metal chuck and durable Alu housing.</p>
-        <div class="product-actions">
-            <a href="product-kpt-HD16N.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('HD16N 16mm Pistol Drill', 'images/KPT/HD16N.png', '850W Pistol Drill with 16mm Metal Chuck')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-
-<div class="product-card" data-title="KPW1400 130Bar Pressure Washer" data-category="Cleaning" data-description="1600W Brushless motor with Auto Stop function.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KPW1400.png" alt="KPT 130Bar Pressure Washer" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Cleaning / Maintenance</div>
-        <h3 class="product-title">130Bar Pressure Washer (KPW1400)</h3>
-        <p class="product-description">1600W Power Input, 130 Bar Max Pressure. Features a brushless motor and auto stop when water supply stops.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KPW1400.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPW1400 Pressure Washer', 'images/KPT/KPW1400.png', '130Bar Pressure Washer with 1600W Brushless motor')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-
-
-<div class="product-card" 
-     data-title="KVC20L 20L Vacuum Cleaner" 
-     data-category="Cleaning" 
-     data-description="20L Dry / Wet Vacuum Cleaner.">
-
-    <div class="product-image-wrapper">
-        <!-- Updated image file name -->
-        <img src="images/KPT/KVC20L.png" 
-             alt="KPT 20L Dry/Wet Vacuum Cleaner" 
-             class="product-image">
-    </div>
-
-    <div class="product-content">
-        <div class="product-category">Cleaning / Maintenance</div>
-
-        <h3 class="product-title">20L Dry / Wet Vacuum (KVC20L)</h3>
-
-        <p class="product-description">
-            1200W power input, 17 KPa vacuum pressure, 20L capacity. Heavy-duty cleaning.
-        </p>
-
-        <div class="product-actions">
-            <a href="product-kpt-KVC20L.html" class="btn btn-outline">View Specs</a>
-
-            <!-- Updated image reference inside modal function -->
-            <button class="btn btn-primary"
-                onclick="openModal(
-                    'KVC20L Vacuum Cleaner', 
-                    'images/KPT/KVC20L.png', 
-                    '1200W, 20L Dry/Wet Vacuum Cleaner'
-                )">
-                Inquire Now
-            </button>
-        </div>
-    </div>
-</div>
-<div class="product-card" data-title="KPCS58 Petrol Chain Saw" data-category="Cutting / Gardening" data-description="58cc Petrol Chain Saw with 2.5/2.7 KW power.">
+            <div class="product-card" data-title="KPCS58 Petrol Chain Saw" data-category="Cutting / Gardening" data-description="58cc Petrol Chain Saw with 2.5/2.7 KW power.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KPCS58.png" alt="KPT 58CC Petrol Chain Saw" class="product-image">
     </div>
@@ -963,52 +1002,66 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KIW30C 300N.m Impact Wrench" data-category="Wrench" data-description="430W Power with 300 N.m max torque.">
+            <div class="product-card" data-title="KIW30C 300N.m Impact Wrench" data-category="Wrench" data-description="430W Power with 300 N.m max torque.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KIW30C.png" alt="KPT 300N.m Impact Wrench" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Fastening / Wrench</div>
+                    <h3 class="product-title">300N.m Impact Wrench (KIW30C)</h3>
+                    <p class="product-description">430W Power Input, 2600 RPM No Load Speed. Delivers 300 N.m maximum torque. Supplied in a carry case.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KIW30C.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KIW30C Impact Wrench', 'images/KPT/KIW30C.png', '300N.m Impact Wrench with 430W power')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-title="KSD10 10mm Electric Screwdriver" data-category="Screwdriving" data-description="350W motor with variable and reversing function.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KSD10.png" alt="KPT 10mm Electric Screwdriver" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Drilling / Assembly</div>
+                    <h3 class="product-title">10mm Electric Screwdriver (KSD10)</h3>
+                    <p class="product-description">350W Power Input, 750 RPM No Load Speed. Durable gearbox and variable/reversing function.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KSD10.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KSD10 Screwdriver', 'images/KPT/KSD10.png', '350W Electric Screwdriver with Reversing Function')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="KHG2KD 2000W Heat Gun" data-category="Heating" data-description="Variable temperature setting, 2000W motor.">
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KHG2KD.png" alt="KPT 2000W Heat Gun" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Heating / Repair</div>
+                    <h3 class="product-title">2000W Heat Gun (KHG2KD)</h3>
+                    <p class="product-description">2000W Power Input, Temp range 50-650°C. Features variable temperature control and ergonomic design.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KHG2KD.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary" onclick="openModal('KHG2KD 2000W Heat Gun', 'images/KPT/KHG2KD.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="KC050L-OF 50L Air Compressor" data-category="Air Compressors" data-description="Oil-free 50L air compressor with 2000W motor.">
     <div class="product-image-wrapper">
-        <img src="images/KPT/KIW30C.png" alt="KPT 300N.m Impact Wrench" class="product-image">
+        <img src="images/KPT/KC050L-OF.png" alt="KPT 50L Air Compressor" class="product-image">
     </div>
     <div class="product-content">
-        <div class="product-category">Fastening / Wrench</div>
-        <h3 class="product-title">300N.m Impact Wrench (KIW30C)</h3>
-        <p class="product-description">430W Power Input, 2600 RPM No Load Speed. Delivers 300 N.m maximum torque. Supplied in a carry case.</p>
+        <div class="product-category">Air Compressors</div>
+        <h3 class="product-title">50L Air Compressor (KC050L-OF)</h3>
+        <p class="product-description">Oil-free compressor. Power: 2000W. Max Pressure: 8 bar. Tank Capacity: 50L.</p>
         <div class="product-actions">
-            <a href="product-kpt-KIW30C.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KIW30C Impact Wrench', 'images/KPT/KIW30C.png', '300N.m Impact Wrench with 430W power')">Inquire Now</button>
+            <a href="product-kpt-KC050L-OF.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('KC050L-OF 50L Air Compressor', 'images/KPT/KC050L-OF.png', 'Oil-free 50L Air Compressor, 2000W')">Inquire Now</button>
         </div>
     </div>
 </div>
 
 
-<div class="product-card" data-title="KHG2KD 2000W Heat Gun" data-category="Heating" data-description="Variable temperature setting, 2000W motor.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KHG2KD.png" alt="KPT 2000W Heat Gun" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Heating / Repair</div>
-        <h3 class="product-title">2000W Heat Gun (KHG2KD)</h3>
-        <p class="product-description">2000W Power Input, Temp range 50-650°C. Features variable temperature control and ergonomic design.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KHG2KD.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KHG2KD 2000W Heat Gun', 'images/KPT/KHG2KD.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-<div class="product-card" data-title="KBC38N 38mm Broach Cutter" data-category="Cutting / Drilling" data-description="38mm Broach Cutter with Variable Speed Function.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KBC38N.jpg" alt="KPT 38mm Broach Cutter" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Magnetic Drilling</div>
-        <h3 class="product-title">38mm Broach Cutter (KBC38N)</h3>
-        <p class="product-description">Variable speed function. Cutter Capacity: 12-38mm. Magnetic Adhesion: 12000 N. Ideal for precision steel drilling.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KBC38N.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KBC38N 38mm Broach Cutter', 'images/KPT/KBC38N.jpg', 'Variable Speed 38mm Magnetic Broach Cutter')">Inquire Now</button>
-        </div>
-    </div>
-</div>
-
-<div class="product-card" data-title="KAG30-7 180mm Angle Grinder" data-category="Grinding" data-description="Powerful 3000W motor for superior cutting/grinding.">
+            <div class="product-card" data-title="KAG30-7 180mm Angle Grinder" data-category="Grinding" data-description="Powerful 3000W motor for superior cutting/grinding.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KAG30-7.png" alt="KPT 180mm Angle Grinder" class="product-image">
     </div>
@@ -1023,7 +1076,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KAG10-100 100mm Angle Grinder" data-category="Grinding" data-description="1000W motor, superior cutting, grinding, and sanding.">
+            <div class="product-card" data-title="KAG10-100 100mm Angle Grinder" data-category="Grinding" data-description="1000W motor, superior cutting, grinding, and sanding.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KAG10-100.png" alt="KPT 100mm Angle Grinder" class="product-image">
     </div>
@@ -1038,7 +1091,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KPW1000 100 Bar Pressure Washer" data-category="Cleaning" data-description="1200W motor with built-in detergent bottle.">
+            <div class="product-card" data-title="KPW1000 100 Bar Pressure Washer" data-category="Cleaning" data-description="1200W motor with built-in detergent bottle.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KPW1000.png" alt="KPT 100 Bar Pressure Washer" class="product-image">
     </div>
@@ -1054,7 +1107,7 @@
 </div>
 
 
-<div class="product-card" data-title="KAG750-100 100mm Angle Grinder" data-category="Grinding" data-description="750W motor, lightweight with easy brush replacement.">
+            <div class="product-card" data-title="KAG750-100 100mm Angle Grinder" data-category="Grinding" data-description="750W motor, lightweight with easy brush replacement.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KAG750-100.png" alt="KPT 100mm Angle Grinder" class="product-image">
     </div>
@@ -1069,22 +1122,23 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KAG800-100 100mm Angle Grinder" data-category="Grinding" data-description="800W motor, light weight and superior grinding output.">
+            <div class="product-card" data-title="KAG800-100 100mm Angle Grinder" data-category="Grinding Tools" data-description="100mm angle grinder with 800W motor.">
     <div class="product-image-wrapper">
-        <img src="images/KPT/KAG800-100.jpg" alt="KPT 100mm Angle Grinder" class="product-image">
+        <img src="images/KPT/KAG800-100.png" alt="KPT 100mm Angle Grinder" class="product-image">
     </div>
     <div class="product-content">
-        <div class="product-category">Grinding / Cutting</div>
+        <div class="product-category">Grinding Tools</div>
         <h3 class="product-title">100mm Angle Grinder (KAG800-100)</h3>
-        <p class="product-description">Powerful 800W motor. No Load Speed: 11000 RPM. Ergonomic and light weight for superior cutting, grinding, and sanding.</p>
+        <p class="product-description">800W motor. No Load Speed: 11000 RPM. Superior cutting and grinding performance.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG800-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG800-100 100mm Angle Grinder', 'images/KPT/KAG800-100.jpg', '800W Angle Grinder with Superior Output')">Inquire Now</button>
+            <button class="btn btn-primary" onclick="openModal('KAG800-100 Angle Grinder', 'images/KPT/KAG800-100.png', '800W 100mm Angle Grinder')">Inquire Now</button>
         </div>
     </div>
 </div>
 
-<div class="product-card" data-title="KAG30-9 230mm Angle Grinder" data-category="Grinding" data-description="Powerful 3000W motor for 230mm discs.">
+
+            <div class="product-card" data-title="KAG30-9 230mm Angle Grinder" data-category="Grinding" data-description="Powerful 3000W motor for 230mm discs.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KAG30-9.png" alt="KPT 230mm Angle Grinder" class="product-image">
     </div>
@@ -1098,7 +1152,7 @@
         </div>
     </div>
 </div>
-<div class="product-card" data-title="KHGWOVD 2000W Heat Gun" data-category="Heating" data-description="Variable temperature setting, 2000W motor.">
+            <div class="product-card" data-title="KHGWOVD 2000W Heat Gun" data-category="Heating" data-description="Variable temperature setting, 2000W motor.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KHGWOVD.png" alt="KPT 2000W Heat Gun" class="product-image">
     </div>
@@ -1113,7 +1167,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KSPG8 Electric Spray Gun" data-category="Painting" data-description="Electric Spray Gun, 180ml/min flow rate.">
+            <div class="product-card" data-title="KSPG8 Electric Spray Gun" data-category="Painting" data-description="Electric Spray Gun, 180ml/min flow rate.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KSPG8.png" alt="KPT Electric Spray Gun" class="product-image">
     </div>
@@ -1128,7 +1182,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KBC50NVS 50mm Broach Cutter" data-category="Cutting / Drilling" data-description="50mm Broach Cutter with 1700W motor and Variable Speed.">
+            <div class="product-card" data-title="KBC50NVS 50mm Broach Cutter" data-category="Cutting / Drilling" data-description="50mm Broach Cutter with 1700W motor and Variable Speed.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KBC50NVS.png" alt="KPT 50mm Broach Cutter" class="product-image">
     </div>
@@ -1143,7 +1197,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KPTTCS 125mm Marble Cutter" data-category="Cutting" data-description="125mm Marble Cutter with powerful 1400W motor.">
+            <div class="product-card" data-title="KPTTCS 125mm Marble Cutter" data-category="Cutting" data-description="125mm Marble Cutter with powerful 1400W motor.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KPTTCS.png" alt="KPT 125mm Marble Cutter" class="product-image">
     </div>
@@ -1158,7 +1212,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KCS14DH 355mm Cut-Off-Saw" data-category="Cutting" data-description="2400W Cut Off Saw with Soft Start function.">
+            <div class="product-card" data-title="KCS14DH 355mm Cut-Off-Saw" data-category="Cutting" data-description="2400W Cut Off Saw with Soft Start function.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KCS14DH.png" alt="KPT 355mm Cut-Off-Saw Soft Start" class="product-image">
     </div>
@@ -1173,52 +1227,53 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KPW1400 130Bar Pressure Washer" data-category="Cleaning" data-description="1600W Brushless motor with Auto Stop function.">
+            <div class="product-card" data-title="KIW21V Brushless Impact Wrench" data-category="Cordless Tools" data-description="21V brushless impact wrench with 380Nm torque.">
     <div class="product-image-wrapper">
-        <img src="images/KPT/KPW1400.jpg" alt="KPT 130Bar Pressure Washer" class="product-image">
+        <img src="images/KPT/KIW21V.png" alt="KPT Brushless Impact Wrench" class="product-image">
     </div>
     <div class="product-content">
-        <div class="product-category">Cleaning / Maintenance</div>
-        <h3 class="product-title">130Bar Pressure Washer (KPW1400)</h3>
-        <p class="product-description">1600W Power Input, 130 Bar Max Pressure. Features a brushless motor and auto stop when water stops.</p>
+        <div class="product-category">Cordless Tools</div>
+        <h3 class="product-title">Brushless Impact Wrench Kit (KIW21V)</h3>
+        <p class="product-description">21V Li-ion battery. Max Torque: 380Nm. Brushless motor. Includes 2 batteries & kit box.</p>
         <div class="product-actions">
-            <a href="product-kpt-KPW1400.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPW1400 Pressure Washer', 'images/KPT/KPW1400.jpg', '130Bar Pressure Washer with 1600W Brushless motor')">Inquire Now</button>
+            <a href="product-kpt-KIW21V.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('KIW21V Impact Wrench', 'images/KPT/KIW21V.png', '21V Brushless Impact Wrench Kit')">Inquire Now</button>
         </div>
     </div>
 </div>
 
-<div class="product-card" data-title="KAG10-100 100mm Angle Grinder" data-category="Grinding" data-description="1000W motor, high efficiency, and superior output.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KAG10-100.jpg" alt="KPT 100mm Angle Grinder" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Grinding / Cutting (High Efficiency)</div>
-        <h3 class="product-title">100mm Angle Grinder (KAG10-100)</h3>
-        <p class="product-description">Powerful and high efficient 1000W motor. No Load Speed: 11000 RPM. Slim body design for comfortable use.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KAG10-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG10-100 100mm Angle Grinder', 'images/KPT/KAG10-100.jpg', '1000W High Efficiency 100mm Angle Grinder')">Inquire Now</button>
-        </div>
-    </div>
+
+            <div class="product-card" data-title="KCV3MN 35mm Concrete Vibrator" data-category="Vibration" data-description="Powerful 1200W motor, sturdy aluminium gear box.">
+    <div class="product-image-wrapper">
+        <img src="images/KPT/KCV3MN.png" alt="KPT 35mm Concrete Vibrator" class="product-image">
+    </div>
+    <div class="product-content">
+        <div class="product-category">Concrete Vibration</div>
+        <h3 class="product-title">35mm Concrete Vibrator (KCV3MN)</h3>
+        <p class="product-description">Powerful 1200W motor, Sturdy aluminium gear box, Soft grip and comfortable handle. No Load Speed: 4300 rpm.</p>
+        <div class="product-actions">
+            <a href="product-kpt-KCV3MN.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('KCV3MN 35mm Concrete Vibrator', 'images/KPT/KCV3MN.png', 'Powerful 1200W concrete vibrator with soft grip')">Inquire Now</button>
+        </div>
+    </div>
 </div>
 
-<div class="product-card" data-title="KAG750-100 100mm Angle Grinder" data-category="Grinding" data-description="750W motor, lightweight with easy brush replacement.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KAG750-100.jpg" alt="KPT 100mm Angle Grinder" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Grinding / Cutting</div>
-        <h3 class="product-title">100mm Angle Grinder (KAG750-100)</h3>
-        <p class="product-description">Powerful 750W motor. No Load Speed: 11000 RPM. Service window for easy brush replacement. Ergonomic and lightweight.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KAG750-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG750-100 100mm Angle Grinder', 'images/KPT/KAG750-100.jpg', '750W Angle Grinder with Easy Brush Replacement')">Inquire Now</button>
-        </div>
-    </div>
+            <div class="product-card" data-title="KPTRH22N 22mm Rotary Hammer" data-category="Drilling / Hammering" data-description="3 Functions, 900W motor, 2.2J impact energy.">
+    <div class="product-image-wrapper">
+        <img src="images/KPT/KPTRH22N.png" alt="KPT 22mm Rotary Hammer" class="product-image">
+    </div>
+    <div class="product-content">
+        <div class="product-category">Drilling / Hammering (3 Functions)</div>
+        <h3 class="product-title">22mm Rotary Hammer (KPTRH22N)</h3>
+        <p class="product-description">900W Power Input, No Load Speed: 0-870 rpm, Impact Rate: 0-4800 bpm, Impact Energy: 2.2 J.</p>
+        <div class="product-actions">
+            <a href="product-kpt-KPTRH22N.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('KPTRH22N 22mm Rotary Hammer', 'images/KPT/KPTRH22N.png', '900W Rotary Hammer with 2.2J impact energy')">Inquire Now</button>
+        </div>
+    </div>
 </div>
 
-<div class="product-card" data-title="KAG600-100 100mm Angle Grinder" data-category="Grinding" data-description="600W motor, light weight and high efficiency.">
+            <div class="product-card" data-title="KAG600-100 100mm Angle Grinder" data-category="Grinding" data-description="600W motor, light weight and high efficiency.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KAG600-100.png" alt="KPT 100mm Angle Grinder" class="product-image">
     </div>
@@ -1233,7 +1288,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KVC15L 15L Vacuum Cleaner" data-category="Cleaning" data-description="15L Dry / Wet Vacuum Cleaner.">
+            <div class="product-card" data-title="KVC15L 15L Vacuum Cleaner" data-category="Cleaning" data-description="15L Dry / Wet Vacuum Cleaner.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KVC15L.png" alt="KPT 15L Dry/Wet Vacuum Cleaner" class="product-image">
     </div>
@@ -1247,7 +1302,7 @@
         </div>
     </div>
 </div>
-<div class="product-card" data-title="KCS14L 355mm Cut-Off-Saw" data-category="Cutting" data-description="Powerful 2300W motor with long lasting gears">
+            <div class="product-card" data-title="KCS14L 355mm Cut-Off-Saw" data-category="Cutting" data-description="Powerful 2300W motor with long lasting gears">
     <div class="product-image-wrapper">
         <img src="images/KPT/KCS14L.png" alt="KPT 355mm Cut-Off-Saw" class="product-image">
     </div>
@@ -1261,7 +1316,7 @@
         </div>
     </div>
 </div>
-<div class="product-card" data-title="KBC38N 38mm Broach Cutter" data-category="Cutting / Drilling" data-description="38mm Broach Cutter with Variable Speed Function.">
+            <div class="product-card" data-title="KBC38N 38mm Broach Cutter" data-category="Cutting / Drilling" data-description="38mm Broach Cutter with Variable Speed Function.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KBC38N.png" alt="KPT 38mm Broach Cutter" class="product-image">
     </div>
@@ -1275,7 +1330,7 @@
         </div>
     </div>
 </div>
-<div class="product-card" data-title="KDD18V 10mm Cordless Drill" data-category="Cordless Drilling" data-description="18V Li-ion battery, 15+1 Torque Settings.">
+            <div class="product-card" data-title="KDD18V 10mm Cordless Drill" data-category="Cordless Drilling" data-description="18V Li-ion battery, 15+1 Torque Settings.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KDD18V.png" alt="KPT 10mm Cordless Drill" class="product-image">
     </div>
@@ -1290,7 +1345,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KPT11DHN 11Kg Demolition Hammer" data-category="Demolition" data-description="1500W Powerful motor, lightweight strokes.">
+            <div class="product-card" data-title="KPT11DHN 11Kg Demolition Hammer" data-category="Demolition" data-description="1500W Powerful motor, lightweight strokes.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KPT11DHN.png" alt="KPT 11Kg Demolition Hammer" class="product-image">
     </div>
@@ -1305,7 +1360,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KID13 13mm Impact Drill" data-category="Drilling" data-description="600W motor with variable and reverse switch.">
+            <div class="product-card" data-title="KID13 13mm Impact Drill" data-category="Drilling" data-description="600W motor with variable and reverse switch.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KID13.png" alt="KPT 13mm Impact Drill" class="product-image">
     </div>
@@ -1320,7 +1375,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KID10 10mm Impact Drill" data-category="Drilling" data-description="500W motor with improved switch design.">
+            <div class="product-card" data-title="KID10 10mm Impact Drill" data-category="Drilling" data-description="500W motor with improved switch design.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KID10.png" alt="KPT 10mm Impact Drill" class="product-image">
     </div>
@@ -1335,7 +1390,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KAG10-5 125mm Angle Grinder" data-category="Grinding" data-description="1000W motor with Anti-Vibration Back Handle.">
+            <div class="product-card" data-title="KAG10-5 125mm Angle Grinder" data-category="Grinding" data-description="1000W motor with Anti-Vibration Back Handle.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KAG10-5.png" alt="KPT 125mm Angle Grinder" class="product-image">
     </div>
@@ -1350,52 +1405,52 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KHGWVD 1600W Heat Gun" data-category="Heating" data-description="1600W Powerful motor with variable temperature setting.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KHGWVD.jpg" alt="KPT 1600W Heat Gun" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Heating / Repair</div>
-        <h3 class="product-title">1600W Heat Gun (KHGWVD)</h3>
-        <p class="product-description">1600W powerful motor. Variable temperature setting. Temperature Range 200-650°C. Ergonomic design.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KHGWVD.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KHGWVD 1600W Heat Gun', 'images/KPT/KHGWVD.jpg', '1600W Heat Gun with Variable Temperature')">Inquire Now</button>
-        </div>
-    </div>
+            <div class="product-card" data-title="STC4 110mm Marble Cutter" data-category="Cutting" data-description="Powerful 1200W motor, Ergonomic design.">
+    <div class="product-image-wrapper">
+        <img src="images/KPT/STC4.png" alt="KPT 110mm Marble Cutter" class="product-image">
+    </div>
+    <div class="product-content">
+        <div class="product-category">Cutting (Marble)</div>
+        <h3 class="product-title">110mm Marble Cutter (STC4)</h3>
+        <p class="product-description">Powerful 1200W motor, Max. Cutting Depth: 34 mm, No Load Speed: 13000 rpm. Strong and durable gears.</p>
+        <div class="product-actions">
+            <a href="product-kpt-STC4.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('STC4 110mm Marble Cutter', 'images/KPT/STC4.png', '1200W Marble Cutter with 34mm max cutting depth')">Inquire Now</button>
+        </div>
+    </div>
 </div>
 
-<div class="product-card" data-title="KC09L 9L Air Compressor" data-category="Air Compressors" data-description="9L Oil-Free Air Compressor with 100% Copper winding.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KC09L.jpg" alt="KPT 9L Air Compressor" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Air / Pneumatic Tools</div>
-        <h3 class="product-title">9L Air Compressor (KC09L)</h3>
-        <p class="product-description">Rated power 1100W. 9L Tank Capacity. Oil-free and 100% Copper winding. Max Pressure: 8 bar.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KC09L.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KC09L 9L Air Compressor', 'images/KPT/KC09L.jpg', '1100W, 9L Oil-Free Air Compressor')">Inquire Now</button>
-        </div>
-    </div>
+            <div class="product-card" data-title="KPT16DHN 16kg Demolition Hammer" data-category="Demolition" data-description="Heavy duty 1400W motor, 42J impact energy.">
+    <div class="product-image-wrapper">
+        <img src="images/KPT/KPT16DHN.png" alt="KPT 16kg Demolition Hammer" class="product-image">
+    </div>
+    <div class="product-content">
+        <div class="product-category">Demolition (Heavy Duty)</div>
+        <h3 class="product-title">16kg Demolition Hammer (KPT16DHN)</h3>
+        <p class="product-description">Heavy duty 1400W motor, Impact Rating: 1800 BPM, Impact Energy: 42 J. Features 360° swivel auxiliary and soft grip handle.</p>
+        <div class="product-actions">
+            <a href="product-kpt-KPT16DHN.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('KPT16DHN 16kg Demolition Hammer', 'images/KPT/KPT16DHN.png', '1400W Heavy Duty Demolition Hammer with 42J energy')">Inquire Now</button>
+        </div>
+    </div>
 </div>
 
-<div class="product-card" data-title="KC050L-OF 50L Air Compressor" data-category="Air Compressors" data-description="50L Oil-Free Air Compressor with 100% Copper winding.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KC050L-OF.jpg" alt="KPT 50L Air Compressor" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Air / Pneumatic Tools</div>
-        <h3 class="product-title">50L Air Compressor (KC050L-OF)</h3>
-        <p class="product-description">Rated power 2000W. 50L Tank Capacity. Oil-free and 100% Copper winding. Max Pressure: 8 bar.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KC050L-OF.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KC050L-OF 50L Air Compressor', 'images/KPT/KC050L-OF.jpg', '2000W, 50L Oil-Free Air Compressor')">Inquire Now</button>
-        </div>
-    </div>
+            <div class="product-card" data-title="SID13 13mm Impact Drill" data-category="Drilling / Impact" data-description="Powerful 600W motor, variable and reversible function.">
+    <div class="product-image-wrapper">
+        <img src="images/KPT/SID13.png" alt="SHAKTI 13mm Impact Drill" class="product-image">
+    </div>
+    <div class="product-content">
+        <div class="product-category">Drilling / Impact (SHAKTI)</div>
+        <h3 class="product-title">13mm Impact Drill (SID13)</h3>
+        <p class="product-description">Powerful 600W motor with more impacts, No Load Speed: 0-1800 rpm. Drilling Capacity: 13mm Concrete, 25mm Wood, 10mm Steel.</p>
+        <div class="product-actions">
+            <a href="product-shakti-SID13.html" class="btn btn-outline">View Specs</a>
+            <button class="btn btn-primary" onclick="openModal('SID13 13mm Impact Drill', 'images/KPT/SID13.png', '600W Impact Drill with variable and reversible function')">Inquire Now</button>
+        </div>
+    </div>
 </div>
 
-<div class="product-card" data-title="KPTRH26 26mm Rotary Hammer" data-category="Drilling" data-description="26mm Rotary Hammer with light weight and powerful strokes.">
+            <div class="product-card" data-title="KPTRH26 26mm Rotary Hammer" data-category="Drilling" data-description="26mm Rotary Hammer with light weight and powerful strokes.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KPTRH26.png" alt="KPT 26mm Rotary Hammer" class="product-image">
     </div>
@@ -1410,7 +1465,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KBC35N 35mm Broach Cutter" data-category="Cutting / Drilling" data-description="35mm Broach Cutter with 1100W motor.">
+            <div class="product-card" data-title="KBC35N 35mm Broach Cutter" data-category="Cutting / Drilling" data-description="35mm Broach Cutter with 1100W motor.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KBC35N.png" alt="KPT 35mm Broach Cutter" class="product-image">
     </div>
@@ -1424,7 +1479,7 @@
         </div>
     </div>
 </div>
-<div class="product-card" data-title="KOSN 110x210mm Orbital Sander" data-category="Sanding" data-description="110x210mm Orbital Sander with 200W motor.">
+            <div class="product-card" data-title="KOSN 110x210mm Orbital Sander" data-category="Sanding" data-description="110x210mm Orbital Sander with 200W motor.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KOSN.png" alt="KPT Orbital Sander" class="product-image">
     </div>
@@ -1439,7 +1494,7 @@
     </div>
 </div>
 
-<div class="product-card" data-title="KB650 650W Electric Blower" data-category="Blowing" data-description="650W Powerful motor, variable speed function.">
+            <div class="product-card" data-title="KB650 650W Electric Blower" data-category="Blowing" data-description="650W Powerful motor, variable speed function.">
     <div class="product-image-wrapper">
         <img src="images/KPT/KB650.png" alt="KPT 650W Electric Blower" class="product-image">
     </div>
@@ -1453,6 +1508,7 @@
         </div>
     </div>
         </div>
+    </div>
 
     <div id="inquiryModal" class="modal">
         <div class="modal-content">
@@ -1553,25 +1609,6 @@
                 menu.classList.remove('active');
             }
         });
-
-        // --- PRODUCT SEARCH FUNCTION ---
-        function filterProducts() {
-            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
-            const productCards = document.getElementById('productsGrid').getElementsByClassName('product-card');
-
-            for (let i = 0; i < productCards.length; i++) {
-                const card = productCards[i];
-                const title = card.getAttribute('data-title') ? card.getAttribute('data-title').toLowerCase() : '';
-                const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
-                const description = card.getAttribute('data-description') ? card.getAttribute('data-description').toLowerCase() : '';
-                
-                if (title.includes(searchTerm) || category.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = ''; 
-                } else {
-                    card.style.display = 'none'; 
-                }
-            }
-        }
 
         // --- MODAL FUNCTIONS (Inquiry Lightbox) ---
         const modal = document.getElementById('inquiryModal');
