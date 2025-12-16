@@ -456,6 +456,48 @@
             font-size: 1rem;
         }
 
+        /* --- CATEGORY FILTER STYLES (BOX LAYOUT) --- */
+        .category-filter-wrapper {
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            max-width: 1400px; 
+            margin-left: auto;
+            margin-right: auto;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            padding-bottom: 0;
+        }
+
+        .category-btn {
+            flex-shrink: 0;
+            background: #f8f9fa;
+            color: #101010;
+            border: 1px solid #ced4da;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: #b60000; 
+            color: #ffffff;
+            border-color: #b60000;
+        }
+
         /* === RESPONSIVE STYLES === */
         
         /* Tablet styles (768px and below) */
@@ -570,7 +612,7 @@
             }
 
             .logo {
-                gap: 8px;
+                gap: 15px;
             }
 
             .logo-text {
@@ -654,6 +696,85 @@
                 font-size: 1rem;
             }
         }
+
+        /* --- INQUIRE OPTIONS STYLES (Dual Button Popover) --- */
+        
+        .inquire-options {
+            display: none; 
+            position: fixed;
+            /* Center on screen */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            min-height: 250px; /* Big square box */
+            z-index: 1000; 
+            padding: 30px;
+            background: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            
+            /* Vertical Layout */
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .inquire-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .inquire-options a {
+            flex: 1; 
+            white-space: nowrap;
+            font-size: 1rem;
+            padding: 1rem 0.75rem;
+            text-shadow: none;
+            transition: transform 0.2s, background 0.3s;
+        }
+        
+        .inquire-options .btn-whatsapp {
+            background: #25D366 !important; 
+            color: white !important;
+            border: 2px solid #25D366;
+        }
+
+        /* Email Button Styling */
+        .inquire-options .btn-email {
+            background: var(--card-background) !important;
+            color: var(--text-dark) !important;
+            border: 2px solid var(--primary-red) !important;
+        }
+        
+        .inquire-options .btn-email:hover {
+            background: var(--primary-red-hover) !important;
+            color: white !important;
+        }
+        
+        .inquire-options a:hover {
+            transform: translateY(-2px);
+        }
+
+        .inquire-options a i {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -662,11 +783,10 @@
         <div class="header-left">
             <div class="logo">
                 <div class="logo-image">
-                    <img src="https://i.imgur.com/6RqX9YH.png" alt="Rexon Logo">
+                 <img src="images/LOGO.png" alt="Rexon Logo">
                 </div>
                 <div class="logo-text-group">
                     <span class="logo-text">REXON WELDS AND TOOLS</span>
-                    <span class="tagline">We are creative and ready for challenger!</span>
                 </div>
             </div>
         </div>
@@ -708,6 +828,11 @@
 
     <div class="container">
         
+        <div class="category-filter-wrapper">
+            <div class="category-buttons" id="categoryFilterButtons">
+                </div>
+        </div>
+        
         <div class="search-bar-wrapper">
             <input type="text" id="productSearch" placeholder="Search APS products by name or model..." onkeyup="filterProducts()">
         </div>
@@ -739,14 +864,7 @@
                     <div class="product-actions">
                         <a href="product-aps-magnus-600.html" class="btn btn-outline">View Specs</a>
                         
-                        <button class="btn btn-primary" 
-                                onclick="openModal(
-                                    'MAGNUS 600 CC/CV', 
-                                    'images/APS/MAGNUS600.webp',
-                                    'Industrial Heavy Duty MIG/MAG/ARC Welder'
-                                )">
-                            Inquire Now
-                        </button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="MAGNUS 600 CC/CV">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -765,7 +883,7 @@
                     <div class="product-price">₹45,000</div>
                     <div class="product-actions">
                         <a href="product-aps-tig-200p.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('TIG-200P DC Inverter', 'image/APS/tig-200p-1.jpg', 'Professional DC TIG inverter')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="TIG-200P DC Inverter">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -784,7 +902,7 @@
                     <div class="product-price">₹65,000</div>
                     <div class="product-actions">
                         <a href="product-aps-mig-250.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('MIG 250 Inverter', 'image/APS/mig-250-1.jpg', 'Heavy-duty MIG/MAG welding inverter')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="MIG 250 Inverter">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -803,7 +921,7 @@
                     <div class="product-price">₹12,50,000</div>
                     <div class="product-actions">
                         <a href="product-aps-plasma-cnc.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('Plasma Cutting CNC', 'image/APS/plasma-cnc-1.jpg', 'CNC plasma cutting system for precision metal fabrication')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="Plasma Cutting CNC">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -822,30 +940,11 @@
                     <div class="product-price">₹3,50,000</div>
                     <div class="product-actions">
                         <a href="product-aps-positioner-500kg.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('Welding Positioner 500KG', 'image/APS/positioner-500kg-1.jpg', 'Heavy-duty welding positioner for automated production lines')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="Welding Positioner 500KG">Inquire Now</button>
                     </div>
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <div id="inquiryModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Inquire About Product</h2>
-            <div class="modal-product-detail">
-                <img id="modalProductImage" src="" alt="Product Image">
-                <p id="modalProductDescription"></p>
-            </div>
-            
-            <form id="inquiryForm" action="mailto:sales@rexonweldsandtools.in" method="POST" enctype="text/plain">
-                <input type="hidden" id="inquiryProductName" name="Product_Name">
-                <input type="text" name="Name" placeholder="Your Full Name" required>
-                <input type="email" name="Email" placeholder="Business Email" required>
-                <textarea name="Message" placeholder="Specific questions or required quantity..." rows="4"></textarea>
-                <button type="submit" class="btn btn-primary">Submit Inquiry</button>
-            </form>
         </div>
     </div>
 
@@ -865,44 +964,134 @@
             }
         });
 
-        // --- PRODUCT SEARCH FUNCTION ---
-        function filterProducts() {
-            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
-            const productCards = document.getElementById('productsGrid').getElementsByClassName('product-card');
+        // --- APS CATEGORY FILTERING & SEARCH FUNCTIONS ---
 
-            for (let i = 0; i < productCards.length; i++) {
-                const card = productCards[i];
-                const title = card.getAttribute('data-title') ? card.getAttribute('data-title').toLowerCase() : '';
-                const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
-                const description = card.getAttribute('data-description') ? card.getAttribute('data-description').toLowerCase() : '';
+        function generateCategoryFilters() {
+            const products = document.querySelectorAll('#productsGrid .product-card');
+            const categories = new Set();
+            
+            products.forEach(card => {
+                categories.add(card.getAttribute('data-category'));
+            });
+
+            const categoryArray = ['All', ...Array.from(categories).sort()];
+            const filterContainer = document.getElementById('categoryFilterButtons');
+            
+            filterContainer.innerHTML = ''; 
+
+            categoryArray.forEach(category => {
+                const button = document.createElement('button');
+                button.classList.add('btn', 'category-btn');
+                button.textContent = category.toUpperCase();
+                button.setAttribute('data-filter', category);
                 
-                if (title.includes(searchTerm) || category.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = ''; 
-                } else {
-                    card.style.display = 'none'; 
+                if (category === 'All') {
+                    button.classList.add('active');
                 }
+                
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    filterByCategory(category);
+                });
+                
+                filterContainer.appendChild(button);
+            });
+        }
+
+        function filterByCategory(selectedCategory) {
+            const products = document.querySelectorAll('#productsGrid .product-card');
+            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+            
+            products.forEach(card => {
+                const productCategory = card.getAttribute('data-category');
+                const title = card.getAttribute('data-title').toLowerCase();
+                const description = card.getAttribute('data-description').toLowerCase();
+                
+                const categoryMatch = selectedCategory === 'All' || productCategory === selectedCategory;
+                const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
+                
+                card.style.display = categoryMatch && searchMatch ? '' : 'none';
+            });
+        }
+
+        // Function to handle search filtering (combined with category)
+        function filterProducts() {
+            // Determine the currently active category filter
+            const activeCategoryButton = document.querySelector('.category-btn.active');
+            const selectedCategory = activeCategoryButton ? activeCategoryButton.getAttribute('data-filter') : 'All';
+            filterByCategory(selectedCategory);
+        }
+
+        // --- INQUIRY FUNCTIONS ---
+
+        function closeInquiryOptions() {
+            const options = document.querySelector('.inquire-options');
+            if (options) {
+                options.style.display = 'none';
             }
         }
 
-        // --- MODAL FUNCTIONS (Inquiry Lightbox) ---
-        const modal = document.getElementById('inquiryModal');
-        
-        function openModal(title, imageSrc, description) {
-            document.getElementById('modalTitle').innerText = 'Inquire About: ' + title;
-document.getElementById('modalProductImage').src = imageSrc;
-document.getElementById('modalProductDescription').innerText = description;
-document.getElementById('inquiryProductName').value = title;
-modal.style.display = 'block';
-}
-function closeModal() {
-        modal.style.display = 'none';
-    }
+        function setupInquiryButtons() {
+            // Create the global inquiry modal if it doesn't exist
+            if (!document.querySelector('.inquire-options')) {
+                const modalHtml = `
+                    <div class="inquire-options">
+                        <button class="close-btn" onclick="closeInquiryOptions()">&times;</button>
+                        <div class="inquire-header">Choose Inquiry Method</div>
+                        <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                        <a id="email-link" href="#" class="btn btn-email">
+                            <i class="fas fa-envelope"></i> Email Inquiry
+                        </a>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+            }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
+            const inquireButtons = document.querySelectorAll('.inquire-btn');
+
+            inquireButtons.forEach(button => {
+                const productName = button.getAttribute('data-product-name');
+                
+                // Define URLs
+                const whatsappLink = `https://wa.me/91XXXXXXXXXX?text=Hello, I am interested in APS product: ${productName}`;
+                const emailLink = `mailto:sales@rexonweldsandtools.in?subject=Inquiry for APS Product: ${productName}&body=I am interested in learning more about the APS ${productName}. Please provide price and availability.`;
+
+                // Add event listener to show the modal and update links
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const options = document.querySelector('.inquire-options');
+                    const whatsappBtn = document.getElementById('whatsapp-link');
+                    const emailBtn = document.getElementById('email-link');
+                    
+                    whatsappBtn.href = whatsappLink;
+                    emailBtn.href = emailLink;
+                    
+                    // Show the modal
+                    options.style.display = 'flex';
+                });
+            });
+
+            // Ensure modal disappears if clicking elsewhere on the window
+            document.addEventListener('click', (e) => {
+                const options = document.querySelector('.inquire-options');
+                const modal = e.target.closest('.inquire-options');
+                if (options && options.style.display === 'flex' && !modal) {
+                    options.style.display = 'none';
+                }
+            });
         }
-    }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCategoryFilters();
+            setupInquiryButtons();
+            filterProducts();
+        });
 </script>
 </body>
 <!DOCTYPE html>

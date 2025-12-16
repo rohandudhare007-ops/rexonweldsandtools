@@ -1407,12 +1407,12 @@
 
         .footer-left {
             width: 40%;
-            background: linear-gradient(135deg, #050404 0%, #020101 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
             padding: 50px 70px 50px 90px;
             display: flex;
             flex-direction: column;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .brand-logo {
@@ -1427,7 +1427,7 @@
         }
 
         .brand-logo span {
-            color: #4e0505;
+            color: #ff6b2c;
         }
 
         .footer-content {
@@ -1515,7 +1515,7 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
-            accent-color: #3b0404;
+            accent-color: #ff6b2c;
         }
 
         .email-input-group {
@@ -1540,7 +1540,7 @@
         }
 
         .email-input-group input:focus {
-            border-color: #410505;
+            border-color: #ff6b2c;
         }
 
         .subscribe-btn {
@@ -1556,7 +1556,7 @@
         }
 
         .subscribe-btn:hover {
-            background: #450303;
+            background: #ff6b2c;
             color: #fff;
         }
 
@@ -1580,7 +1580,7 @@
         }
 
         .social-icon:hover {
-            background: #3f0404;
+            background: #ff6b2c;
             color: #fff;
         }
 
@@ -3029,30 +3029,40 @@
 
     <!-- FOOTER SECTION -->
     <footer class="footer-container">
+        <!-- Left Section - Content -->
         <div class="footer-left">
-                 <div class="logo">
-                <div class="logo-image">
-                 <img src="images/LOGO.png" alt="Rexon Logo">
-                </div>
+            <div class="brand-logo">
+                <h2>INDUSTRIAL<span>.</span>GROUP</h2>
             </div>
 
             <div class="footer-content">
+                <!-- Column 1 -->
                 <div class="footer-column">
-                    <h3>Who we are:</h3>
+                    <h3>Who we are</h3>
                     <ul>
                         <li><a href="#about">About Us</a></li>
+                        <li><a href="#blog">Blog & News</a></li>
+                        <li><a href="#sustainability">Sustainability</a></li>
                         <li><a href="#references">References</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
 
+                <!-- Column 2 -->
                 <div class="footer-column">
-                    <h3>Quick links:</h3>
+                    <h3>Quick links</h3>
                     <ul>
-<li><a href="#account">My Account</a></li>
+                        <li><a href="#account">My Account</a></li>
+                        <li><a href="#invoicing">Invoicing Instructions</a></li>
+                        <li><a href="#partner">Go to partner website <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                        <li><a href="#positions">Open positions <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                        <li><a href="#group">Group companies <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                        <li><a href="#accessories">Accessories <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                    </ul>
                 </div>
             </div>
 
+            <!-- Newsletter Section -->
             <div class="newsletter-section">
                 <h3>Stay up to date</h3>
                 <p>Subscribe to our newsletter and receive the latest news and updates about our products and services.</p>
@@ -3078,14 +3088,16 @@
                 </div>
             </div>
 
+            <!-- Social Media -->
             <div class="social-media">
-                <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
-                </div>
+                <a href="#facebook" class="social-icon">f</a>
+                <a href="#linkedin" class="social-icon">in</a>
+                <a href="#youtube" class="social-icon">▶</a>
+                <a href="#instagram" class="social-icon">📷</a>
+            </div>
         </div>
 
+        <!-- Right Section - Image -->
         <div class="footer-right">
             <div class="footer-image">
                 <img src="images/FOOTER.jpg" alt="Industrial Welding Worker">
@@ -3095,6 +3107,7 @@
     </footer>
 
     <script>
+        // Zoom animation when footer comes into view
         const footer = document.querySelector('.footer-container');
         
         const observer = new IntersectionObserver((entries) => {

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APS Products - Rexon Welds And Tools</title>
+    <title>KPT PRODUCTS - Rexon Welds And Tools</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +16,28 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f5f7fa;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- GLOBAL COLOR VARIABLES --- */
+        :root {
+            --primary-red: #b60000;
+            --primary-red-hover: #e60000;
+            --dark-bg: #1a1a1a;
+            --text-dark: #101010;
+            --text-light: #f5f5f5;
+            --card-background: #ffffff;
+            --shadow-color: rgba(182, 0, 0, 0.4);
+            --KPT-yellow: #B60000;
         }
 
         /* === HEADER STYLES === */
@@ -182,17 +199,6 @@
             padding: 5px;
         }
 
-        /* --- GLOBAL COLOR VARIABLES --- */
-        :root {
-            --primary-red: #c46500;
-            --primary-red-hover: #e60000;
-            --dark-bg: #1a1a1a;
-            --text-dark: #101010;
-            --text-light: #f5f5f5;
-            --card-background: #ffffff;
-            --shadow-color: rgba(182, 0, 0, 0.4);
-        }
-
         /* ---------------------------------- */
         /* PAGE LAYOUT STYLES */
         /* ---------------------------------- */
@@ -201,14 +207,16 @@
             background: var(--dark-bg);
             padding: 1.5rem 2rem;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(54, 5, 5, 0.566);
+            box-shadow: 0 2px 10px rgba(141, 6, 6, 0.566);
             margin-top: 20px;
         }
 
         .page-header h1 {
             font-size: 2.5rem;
-            color: var(--primary-red);
+            color: var(--KPT-yellow); /* KPT */
             margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
         }
 
         .page-header p {
@@ -273,11 +281,10 @@
         /* PRODUCT GRID STYLES */
         /* ---------------------------------- */
         .products-grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
-            align-items: stretch; /* Ensure equal height */
         }
 
         .product-card {
@@ -286,11 +293,8 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Take full height from container */
-            flex-basis: 300px; /* Minimum width like minmax(300px, 1fr) */
-            flex-grow: 1;
+            position: relative; /* CRITICAL for inquire popover */
+            height: 550px;
         }
 
         .product-card:hover {
@@ -300,7 +304,7 @@
 
         .product-image-wrapper {
             width: 100%;
-            height: 250px;
+            height: 200px;
             background: #f8f9fa;
             display: flex;
             align-items: center;
@@ -322,11 +326,13 @@
 
         .product-content {
             padding: 1.5rem;
-            flex-grow: 1; /* Allow content to expand and push actions to bottom */
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 200px);
         }
 
         .product-category {
-            color: var(--primary-red);
+            color: var(--KPT-yellow); /* KPT */
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -347,6 +353,8 @@
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 1rem;
+            height: 6em;
+            overflow: hidden;
         }
 
         .product-price {
@@ -356,9 +364,12 @@
         .product-actions {
             display: flex;
             gap: 0.75rem;
-            padding-top: 15px; /* Maintain spacing */
+            /* CRITICAL for positioning options popover */
+            position: relative; 
+            z-index: 5;
+            margin-top: auto;
+            justify-content: center;
         }
-
         .btn {
             display: inline-flex;
             align-items: center;
@@ -383,7 +394,7 @@
         .btn-primary:hover {
             background: var(--primary-red-hover);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(163, 95, 5, 0.676);
+            box-shadow: 0 5px 15px rgba(182, 0, 0, 0.6);
         }
 
         .btn-outline {
@@ -397,76 +408,130 @@
             color: var(--primary-red);
         }
 
-        /* ---------------------------------- */
-        /* MODAL (LIGHTBOX) STYLES */
-        /* ---------------------------------- */
-        .modal {
-            display: none;
-            position: fixed; 
-            z-index: 1000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.7);
+        /* --- CATEGORY FILTER STYLES (BOX LAYOUT) --- */
+        .category-filter-wrapper {
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            max-width: 1400px; 
+            margin-left: auto;
+            margin-right: auto;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .modal-content {
-            background-color: var(--card-background);
-            margin: 5% auto; 
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            padding-bottom: 0;
+        }
+
+        .category-btn {
+            flex-shrink: 0;
+            background: #f8f9fa;
+            color: var(--text-dark);
+            border: 1px solid #ced4da;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--KPT-yellow); 
+            color: var(--text-dark);
+            border-color: var(--KPT-yellow);
+        }
+
+        /* --- INQUIRE OPTIONS STYLES (Dual Button Popover) --- */
+        
+        .inquire-options {
+            display: none; 
+            position: fixed;
+            /* Center on screen */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            min-height: 250px; /* Big square box */
+            z-index: 1000; 
             padding: 30px;
+            background: var(--card-background);
             border-radius: 12px;
-            width: 90%; 
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            
+            /* Vertical Layout */
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
         }
 
         .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
             cursor: pointer;
+            padding: 0;
         }
 
-        .close-btn:hover {
-            color: var(--primary-red);
+        .inquire-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
 
-        .modal-product-detail {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        #modalProductImage {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 5px;
-        }
-
-        #inquiryForm input,
-        #inquiryForm textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
+        .inquire-options a {
+            flex: 1; 
+            white-space: nowrap;
             font-size: 1rem;
+            padding: 1rem 0.75rem;
+            text-shadow: none;
+            transition: transform 0.2s, background 0.3s;
         }
+        
+        .inquire-options .btn-whatsapp {
+            background: #25D366 !important; 
+            color: white !important;
+            border: 2px solid #25D366;
+        }
+
+        /* Email Button Styling */
+        .inquire-options .btn-email {
+            background: var(--card-background) !important;
+            color: var(--text-dark) !important;
+            border: 2px solid var(--primary-red) !important;
+        }
+        
+        .inquire-options .btn-email:hover {
+            background: var(--primary-red-hover) !important;
+            color: white !important;
+        }
+        
+        .inquire-options a:hover {
+            transform: translateY(-2px);
+        }
+
+        .inquire-options a i {
+            margin-right: 5px;
+        }
+
 
         /* === RESPONSIVE STYLES === */
         
-        /* Tablet styles (768px and below) */
         @media (max-width: 768px) {
             .dark-header-container {
                 padding: 18px 25px;
@@ -549,176 +614,452 @@
                 font-size: 14px;
             }
 
-            .container {
-                padding: 1rem;
-            }
-
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .page-header {
-                padding: 1rem 1rem;
-            }
-
+            /* Collapse to 2 columns on tablet */
             .products-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
             }
 
             .product-actions {
                 flex-direction: column;
             }
+            
+            .category-filter-wrapper {
+                padding: 1rem; 
+            }
         }
 
-        /* Mobile styles (480px and below) */
         @media (max-width: 480px) {
-            .dark-header-container {
-                padding: 10px 12px;
+            /* Collapse to single column on mobile */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .search-bar-wrapper {
+                padding: 0;
+            }
+        }
+
+        /* ===== FOOTER SECTION STYLES ===== */
+        .footer-container {
+            display: flex;
+            width: 100%;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        /* Left Section - Dark Content Panel */
+        .footer-left {
+            width: 40%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
+            padding: 50px 70px 50px 90px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-logo {
+            margin-bottom: 50px;
+        }
+
+        .brand-logo h2 {
+            color: #fff;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo span {
+            color: #ff6b2c;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            flex-grow: 1;
+        }
+
+        .footer-column h3 {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul li a {
+            color: #b8b8b8;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .footer-column ul li a:hover {
+            color: #fff;
+        }
+
+        .external-icon {
+            width: 13px;
+            height: 13px;
+            opacity: 0.6;
+            stroke-width: 2;
+        }
+
+        .newsletter-section {
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .newsletter-section h3 {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-section p {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 18px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b8b8b8;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #ff6b2c;
+        }
+
+        .email-input-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .email-input-group input {
+            flex: 1;
+            padding: 14px 18px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input-group input::placeholder {
+            color: #666;
+        }
+
+        .email-input-group input:focus {
+            border-color: #ff6b2c;
+        }
+
+        .subscribe-btn {
+            padding: 14px 30px;
+            background: #fff;
+            color: #000;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .subscribe-btn:hover {
+            background: #ff6b2c;
+            color: #fff;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 16px;
+            margin-top: 35px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1f1f1f;
+            color: #b8b8b8;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #ff6b2c;
+            color: #fff;
+        }
+
+        /* Right Section - Image Panel */
+        .footer-right {
+            width: 60%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .footer-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .footer-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100%;
+            background: linear-gradient(to right, #0a0a0a 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .footer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(75%) brightness(0.7) contrast(1.15);
+            transform: scale(1.15);
+            transform-origin: center center;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .footer-container.in-view .footer-image img {
+            transform: scale(1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .image-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 44, 0.15) 0%, rgba(255, 107, 44, 0.05) 40%, transparent 70%);
+            mix-blend-mode: screen;
+        }
+
+        .image-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 35% 45%, rgba(255, 107, 44, 0.3) 0%, transparent 50%);
+            mix-blend-mode: overlay;
+        }
+
+        /* ===== RESPONSIVE FOOTER STYLES ===== */
+        @media (max-width: 1200px) {
+            .footer-left {
+                padding: 60px 70px;
             }
 
-            .logo {
-                gap: 8px;
+            .footer-content {
+                gap: 70px;
             }
 
-            .logo-text {
-                font-size: 11px;
-                letter-spacing: 0.5px;
-                line-height: 1.1;
+            .brand-logo h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .footer-container {
+                flex-direction: column;
+                min-height: auto;
             }
 
-            .tagline {
-                font-size: 8px;
-                display: block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 200px;
+            .footer-left,
+            .footer-right {
+                width: 100%;
             }
 
-            .logo-image img {
-                height: 30px;
+            .footer-left {
+                padding: 50px 40px;
             }
 
-            .main-nav-wrapper {
-                margin: -12px 12px 0 12px;
-                border-radius: 25px;
+            .footer-right {
+                min-height: 55vh;
             }
 
-            .navbar-container {
-                padding: 0 12px;
-                min-height: 45px;
+            .footer-image::before {
+                width: 100%;
+                height: 150px;
+                background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.5) 100%);
             }
 
-            .navbar-menu {
-                top: 95px;
-                width: calc(100% - 24px);
-                margin: 0 12px;
+            .brand-logo {
+                margin-bottom: 50px;
             }
 
-            .social-circle {
-                width: 32px;
-                height: 32px;
+            .brand-logo h2 {
+                font-size: 26px;
+            }
+
+            .newsletter-section {
+                margin-top: 45px;
+                padding-top: 45px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .footer-container {
+                min-height: auto;
+            }
+
+            .footer-left {
+                padding: 32px 22px;
+            }
+
+            .brand-logo {
+                margin-bottom: 32px;
+            }
+
+            .brand-logo h2 {
+                font-size: 20px;
+            }
+
+            .footer-content {
+                gap: 30px;
+            }
+
+            .footer-column h3 {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            .footer-column ul li {
+                margin-bottom: 11px;
+            }
+
+            .footer-column ul li a {
+                font-size: 13px;
+            }
+
+            .newsletter-section {
+                margin-top: 30px;
+                padding-top: 30px;
+            }
+
+            .newsletter-section h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-section p {
+                font-size: 12px;
+                margin-bottom: 18px;
+                line-height: 1.5;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .checkbox-label {
                 font-size: 12px;
             }
 
-            .page-header {
-                padding: 1rem;
-                margin-top: 10px;
+            .checkbox-label input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
             }
 
-            .page-header h1 {
-                font-size: 1.5rem;
+            .email-input-group {
+                flex-direction: column;
+                gap: 10px;
             }
 
-            .page-header p {
-                font-size: 0.9rem;
+            .email-input-group input {
+                padding: 12px 16px;
+                font-size: 13px;
             }
 
-            .breadcrumb {
-                padding: 1rem 5%;
-                font-size: 0.85rem;
+            .subscribe-btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 13px;
             }
 
-           .container {
-    padding: 0.75rem;          /* Reduced padding */
-    max-width: 100%;           /* Ensure no overflow */
-}
-.search-bar-wrapper {
-    padding: 0;
-    margin-bottom: 1rem;       /* ADD THIS */
-}
+            .social-media {
+                margin-top: 30px;
+                gap: 12px;
+            }
 
-#productSearch {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;         /* Changed from 1rem */
-    border-radius: 6px;        /* ADD THIS */
-}
-            .products-grid {
-        gap: 1rem;                    /* Reduced from 1.5rem */
-    }
-    
-    .product-card {
-        max-width: 100%;              /* ADD THIS */
-    }
-    
-    .product-image-wrapper {
-        height: 180px;                /* Reduced from 250px */
-    }
-    
-    .product-image {
-        padding: 1rem;                /* Reduced from 1.5rem */
-    }
-    
-    .product-content {
-        padding: 1rem;                /* Reduced from 1.5rem */
-    }
-    
-    .product-title {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    min-height: 42px;         /* ADD THIS */
-}
-    
-    .product-description {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 0.75rem;
-    min-height: 48px;         /* ADD THIS */
-    -webkit-line-clamp: 2;    /* CHANGE from 3 to 2 lines on mobile */
-}
-    
-    .product-category {
-        font-size: 0.7rem;            /* Reduced from 0.75rem */
-    }
-    
-    .btn {
-        padding: 0.6rem 1rem;         /* Reduced from 0.75rem 1.5rem */
-        font-size: 0.85rem;           /* Reduced from 0.95rem */
-    }
-}
-.modal-content {
-    width: 95%;                /* Reduced from 90% */
-    margin: 10% auto;          /* More top margin on mobile */
-    padding: 20px;             /* Reduced from 30px */
-}
+            .social-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 14px;
+            }
 
-.modal-product-detail {
-    flex-direction: column;    /* Stack vertically on mobile */
-    text-align: center;
-}
+            .footer-right {
+                min-height: 32vh;
+            }
 
-#modalProductImage {
-    width: 80px;               /* Smaller image on mobile */
-    height: 80px;
-}
-.product-actions {
-    flex-direction: column;
-    gap: 0.5rem;               /* Reduced gap */
-}
-
-.btn {
-    width: 100%;               /* Full width buttons */
-}
+            .external-icon {
+                width: 11px;
+                height: 11px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -727,11 +1068,10 @@
         <div class="header-left">
             <div class="logo">
                 <div class="logo-image">
-                    <img src="https://i.imgur.com/6RqX9YH.png" alt="Rexon Logo">
+                   <img src="images/LOGO.png" alt="Rexon Logo">
                 </div>
                 <div class="logo-text-group">
                     <span class="logo-text">REXON WELDS AND TOOLS</span>
-                    <span class="tagline">We are creative and ready for challenger!</span>
                 </div>
             </div>
         </div>
@@ -759,10 +1099,9 @@
             </div>
         </nav>
     </div>
-
     <div class="page-header">
         <h1>KPT PRODUCTS</h1>
-        <p>Browse our Premium Industrial Equipment</p>
+        <p>Browse Premium KPT Industrial & Cordless Power Tools</p>
     </div>
 
     <nav class="breadcrumb">
@@ -772,6 +1111,11 @@
     </nav>
 
     <div class="container">
+        
+        <div class="category-filter-wrapper">
+            <div class="category-buttons" id="categoryFilterButtons">
+                </div>
+        </div>
         
         <div class="search-bar-wrapper">
             <input type="text" id="productSearch" placeholder="Search KPT products by name or model..." onkeyup="filterProducts()">
@@ -788,7 +1132,7 @@
                     <p class="product-description">Power input  1400,INTRODUCING 7Kg.Sturdy base and long-lasting.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KPT7DHN.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KPT7DHN Demolition Hammer', 'images/KPT/KPT7DHN.png', '1400W, Demolition Hammer')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KPT7DHN Demolition Hammer">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -802,7 +1146,7 @@
                     <p class="product-description">Oil-free operation. Power: 1100W. Max Pressure: 8 bar. Tank Capacity: 9L. 100% copper motor.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KC09L.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KC09L 9L Air Compressor', 'images/KPT/KC09L.png', 'Oil-free 9L Air Compressor, 1100W')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KC09L 9L Air Compressor">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -818,7 +1162,7 @@
                     <p class="product-description">2000W Power Input, Temp range 50-650°C. Features variable temperature control and ergonomic design.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KHG2K.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KHG2K 2000W Heat Gun', 'images/KPT/KHG2K.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KHG2K 2000W Heat Gun">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -833,7 +1177,7 @@
                     <p class="product-description">Power Input: 900W. Impact Rate: 3700 BPM. Tool Holder: 17mm Hex. Heavy-duty performance.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KPTSDHN.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KPTSDHN 5kg Demolition Hammer', 'images/KPT/KPTSDHN.png', '900W Heavy Duty Demolition Hammer')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KPTSDHN 5kg Demolition Hammer">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -849,7 +1193,7 @@
                     <p class="product-description">600W Power Input, No Load Speed: 30000 rpm, Trim Diameter: 6/6.35 mm.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KTR6.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KTR6 6/6.35mm Trimmer', 'images/KPT/KTR6.png', '600W Trimmer with 30000 rpm no load speed')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KTR6 6/6.35mm Trimmer">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -864,7 +1208,7 @@
                     <p class="product-description">Powerful 1100W motor. Max Cutting Depth: 34mm. No Load Speed: 13000 RPM. Fixed base plate.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KK4.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KK4 110mm Marble Cutter', 'images/KPT/KK4.png', '1100W Marble Cutter, 110mm')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KK4 110mm Marble Cutter">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -880,7 +1224,7 @@
                     <p class="product-description">450W Power Input, 16000 RPM. Features a powerful motor and ergonomic design for ease of use.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KBLWOV.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KBLWOV Electric Blower', 'images/KPT/KBLWOV.png', '450W Electric Blower for quick cleanup')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KBLWOV Electric Blower">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -894,7 +1238,7 @@
         <p class="product-description">Power Input: 800W. No Load Speed: 900 RPM. Ideal for drilling concrete and masonry.</p>
         <div class="product-actions">
             <a href="product-kpt-KPTRH22.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPTRH22 22mm Rotary Hammer', 'images/KPT/KPTRH22.png', '800W Rotary Hammer, 22mm')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KPTRH22 22mm Rotary Hammer">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -910,7 +1254,7 @@
                     <p class="product-description">550W Power Input, 13000 RPM. Features a powerful motor and variable speed function.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KB500NVR.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KB500NVR Electric Blower', 'images/KPT/KB500NVR.png', '550W Blower with Variable Speed')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KB500NVR Electric Blower">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -925,7 +1269,7 @@
                     <p class="product-description">850W Power Input, 850 RPM No Load Speed. Features durable Alu housing and 360° rotatable D-handle.</p>
                     <div class="product-actions">
                         <a href="product-kpt-GD25N.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('GD25N 13mm Pistol Drill', 'images/KPT/GD25N.png', '850W Pistol Drill with 360° Handle')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="GD25N 13mm Pistol Drill">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -939,7 +1283,7 @@
                     <p class="product-description">850W Power Input, Max Wood capacity: 40mm. Features a 16mm metal chuck and durable Alu housing.</p>
                     <div class="product-actions">
                         <a href="product-kpt-HD16N.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('HD16N 16mm Pistol Drill', 'images/KPT/HD16N.png', '850W Pistol Drill with 16mm Metal Chuck')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="HD16N 16mm Pistol Drill">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -954,7 +1298,7 @@
                     <p class="product-description">1600W Power Input, 130 Bar Max Pressure. Features a brushless motor and auto stop when water supply stops.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KPW1400.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KPW1400 Pressure Washer', 'images/KPT/KPW1400.png', '130Bar Pressure Washer with 1600W Brushless motor')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KPW1400 Pressure Washer">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -968,7 +1312,7 @@
                     <p class="product-description">900W Power Input, 11000 RPM No Load Speed. Ergonomic and lightweight with a service window for easy brush replacement.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KAG900-4FRT.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KAG900-4FRT Angle Grinder', 'images/KPT/KAG900-4FRT.png', '900W, 100mm Angle Grinder, 11000 RPM')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KAG900-4FRT Angle Grinder">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -983,7 +1327,7 @@
                     <p class="product-description">1200W power input, 17 KPa vacuum pressure, 20L capacity. Heavy-duty cleaning.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KVC20L.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KVC20L Vacuum Cleaner', 'images/KPT/KVC20L.png', '1200W, 20L Dry/Wet Vacuum Cleaner')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KVC20L Vacuum Cleaner">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -997,7 +1341,7 @@
         <p class="product-description">58CC Displacement, 2.5/2.7 KW Power. Available in 18" and 22" chain bar sizes. Easy start mechanism.</p>
         <div class="product-actions">
             <a href="product-kpt-KPCS58.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPCS58 Petrol Chain Saw', 'images/KPT/KPCS58.png', '58CC Petrol Chain Saw (18&quot;/22&quot;)')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KPCS58 Petrol Chain Saw">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1012,7 +1356,7 @@
                     <p class="product-description">430W Power Input, 2600 RPM No Load Speed. Delivers 300 N.m maximum torque. Supplied in a carry case.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KIW30C.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KIW30C Impact Wrench', 'images/KPT/KIW30C.png', '300N.m Impact Wrench with 430W power')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KIW30C Impact Wrench">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -1027,7 +1371,7 @@
                     <p class="product-description">350W Power Input, 750 RPM No Load Speed. Durable gearbox and variable/reversing function.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KSD10.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KSD10 Screwdriver', 'images/KPT/KSD10.png', '350W Electric Screwdriver with Reversing Function')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KSD10 Screwdriver">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -1041,7 +1385,7 @@
                     <p class="product-description">2000W Power Input, Temp range 50-650°C. Features variable temperature control and ergonomic design.</p>
                     <div class="product-actions">
                         <a href="product-kpt-KHG2KD.html" class="btn btn-outline">View Specs</a>
-                        <button class="btn btn-primary" onclick="openModal('KHG2KD 2000W Heat Gun', 'images/KPT/KHG2KD.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KHG2KD 2000W Heat Gun">Inquire Now</button>
                     </div>
                 </div>
             </div>
@@ -1055,7 +1399,7 @@
         <p class="product-description">Oil-free compressor. Power: 2000W. Max Pressure: 8 bar. Tank Capacity: 50L.</p>
         <div class="product-actions">
             <a href="product-kpt-KC050L-OF.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KC050L-OF 50L Air Compressor', 'images/KPT/KC050L-OF.png', 'Oil-free 50L Air Compressor, 2000W')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KC050L-OF 50L Air Compressor">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1071,7 +1415,7 @@
         <p class="product-description">Powerful 3000W motor. No Load Speed: 8500 RPM. Disc Size: 180mm. Excellent for heavy industrial use.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG30-7.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG30-7 180mm Angle Grinder', 'images/KPT/KAG30-7.png', '3000W Heavy Duty 180mm Angle Grinder')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG30-7 180mm Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1086,7 +1430,7 @@
         <p class="product-description">Powerful and high efficient 1000W motor. No Load Speed: 11000 RPM. Slim body design for comfortable use.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG10-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG10-100 100mm Angle Grinder', 'images/KPT/KAG10-100.png', '1000W High Efficiency 100mm Angle Grinder')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG10-100 100mm Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1101,7 +1445,7 @@
         <p class="product-description">Max Pressure: 100 Bar. 1200W Power Input. Comes with built-in Detergent bottle, copper gun, and high-quality hose.</p>
         <div class="product-actions">
             <a href="product-kpt-KPW1000.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPW1000 Pressure Washer', 'images/KPT/KPW1000.png', '100 Bar Pressure Washer with Detergent Bottle')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KPW1000 Pressure Washer">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1117,7 +1461,7 @@
         <p class="product-description">Powerful 750W motor. No Load Speed: 11000 RPM. Service window for easy brush replacement. Ergonomic and lightweight.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG750-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG750-100 100mm Angle Grinder', 'images/KPT/KAG750-100.png', '750W Angle Grinder with Easy Brush Replacement')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG750-100 100mm Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1132,7 +1476,7 @@
         <p class="product-description">800W motor. No Load Speed: 11000 RPM. Superior cutting and grinding performance.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG800-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG800-100 Angle Grinder', 'images/KPT/KAG800-100.png', '800W 100mm Angle Grinder')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG800-100 Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1148,7 +1492,7 @@
         <p class="product-description">Powerful 3000W motor. No Load Speed: 6500 RPM. Disc Size: 230mm. Ideal for heavy-duty fabrication.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG30-9.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG30-9 230mm Angle Grinder', 'images/KPT/KAG30-9.png', '3000W, 230mm Angle Grinder for heavy duty work')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG30-9 230mm Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1162,7 +1506,7 @@
         <p class="product-description">1600W powerful motor. Temperature Range 50-650°C. Features variable temperature setting and ergonomic design.</p>
         <div class="product-actions">
             <a href="product-kpt-KHGWOVD.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KHGWOVD 1600W Heat Gun', 'images/KPT/KHGWOVD.png', '2000W Heat Gun with Variable Temperature')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KHGWOVD 1600W Heat Gun">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1177,7 +1521,7 @@
         <p class="product-description">Max Flow: 180 ml/min. 700W Rated Power. Features multi-directional nozzle for horizontal and vertical sprays and adjustable spray output.</p>
         <div class="product-actions">
             <a href="product-kpt-KSPG8.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KSPG8 Electric Spray Gun', 'images/KPT/KSPG8.png', '700W Electric Spray Gun with Adjustable Nozzle')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KSPG8 Electric Spray Gun">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1192,7 +1536,7 @@
         <p class="product-description">Powerful 1700W motor. Constant Speed & Variable Speed. Cutter Capacity: 12-50mm. Supplied in BMC packing.</p>
         <div class="product-actions">
             <a href="product-kpt-KBC50NVS.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KBC50NVS 50mm Broach Cutter', 'images/KPT/KBC50NVS.png', '1700W, 50mm Magnetic Broach Cutter')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KBC50NVS 50mm Broach Cutter">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1207,7 +1551,7 @@
         <p class="product-description">Powerful 1400W motor, Max cutting depth: 34mm. Features sturdy structure and bevel base plate.</p>
         <div class="product-actions">
             <a href="product-kpt-KPTTCS.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPTTCS 125mm Marble Cutter', 'images/KPT/KPTTCS.png', '1400W, 125mm Marble Cutter with Bevel Base')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KPTTCS 125mm Marble Cutter">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1222,7 +1566,7 @@
         <p class="product-description">Powerful 2400W motor with Soft Start function. No Load Speed: 4000 RPM. Max Wheel Dia: 355mm.</p>
         <div class="product-actions">
             <a href="product-kpt-KCS14DH.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KCS14DH Cut-Off-Saw', 'images/KPT/KCS14DH.png', '2400W Cut-Off-Saw with Soft Start Function')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KCS14DH Cut-Off-Saw">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1237,41 +1581,41 @@
         <p class="product-description">21V Li-ion battery. Max Torque: 380Nm. Brushless motor. Includes 2 batteries & kit box.</p>
         <div class="product-actions">
             <a href="product-kpt-KIW21V.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KIW21V Impact Wrench', 'images/KPT/KIW21V.png', '21V Brushless Impact Wrench Kit')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KIW21V Impact Wrench">Inquire Now</button>
         </div>
     </div>
 </div>
 
 
             <div class="product-card" data-title="KCV3MN 35mm Concrete Vibrator" data-category="Vibration" data-description="Powerful 1200W motor, sturdy aluminium gear box.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KCV3MN.png" alt="KPT 35mm Concrete Vibrator" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Concrete Vibration</div>
-        <h3 class="product-title">35mm Concrete Vibrator (KCV3MN)</h3>
-        <p class="product-description">Powerful 1200W motor, Sturdy aluminium gear box, Soft grip and comfortable handle. No Load Speed: 4300 rpm.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KCV3MN.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KCV3MN 35mm Concrete Vibrator', 'images/KPT/KCV3MN.png', 'Powerful 1200W concrete vibrator with soft grip')">Inquire Now</button>
-        </div>
-    </div>
-</div>
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KCV3MN.png" alt="KPT 35mm Concrete Vibrator" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Concrete Vibration</div>
+                    <h3 class="product-title">35mm Concrete Vibrator (KCV3MN)</h3>
+                    <p class="product-description">Powerful 1200W motor, Sturdy aluminium gear box, Soft grip and comfortable handle. No Load Speed: 4300 rpm.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KCV3MN.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KCV3MN 35mm Concrete Vibrator">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="product-card" data-title="KPTRH22N 22mm Rotary Hammer" data-category="Drilling / Hammering" data-description="3 Functions, 900W motor, 2.2J impact energy.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KPTRH22N.png" alt="KPT 22mm Rotary Hammer" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Drilling / Hammering (3 Functions)</div>
-        <h3 class="product-title">22mm Rotary Hammer (KPTRH22N)</h3>
-        <p class="product-description">900W Power Input, No Load Speed: 0-870 rpm, Impact Rate: 0-4800 bpm, Impact Energy: 2.2 J.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KPTRH22N.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPTRH22N 22mm Rotary Hammer', 'images/KPT/KPTRH22N.png', '900W Rotary Hammer with 2.2J impact energy')">Inquire Now</button>
-        </div>
-    </div>
-</div>
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KPTRH22N.png" alt="KPT 22mm Rotary Hammer" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Drilling / Hammering (3 Functions)</div>
+                    <h3 class="product-title">22mm Rotary Hammer (KPTRH22N)</h3>
+                    <p class="product-description">900W Power Input, No Load Speed: 0-870 rpm, Impact Rate: 0-4800 bpm, Impact Energy: 2.2 J.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KPTRH22N.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KPTRH22N 22mm Rotary Hammer">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="product-card" data-title="KAG600-100 100mm Angle Grinder" data-category="Grinding" data-description="600W motor, light weight and high efficiency.">
     <div class="product-image-wrapper">
@@ -1283,7 +1627,7 @@
         <p class="product-description">Powerful and high efficient 710W motor. No Load Speed: 11000 RPM. Ergonomic and light weight design.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG600-100.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG600-100 100mm Angle Grinder', 'images/KPT/KAG600-100.png', '710W Angle Grinder for light/medium work')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG600-100 100mm Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1298,7 +1642,7 @@
         <p class="product-description">1200W power input, 17 KPa vacuum pressure, 15L capacity. Complete with accessories.</p>
         <div class="product-actions">
             <a href="product-kpt-KVC15L.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KVC15L Vacuum Cleaner', 'images/KPT/KVC15L.png', '1200W, 15L Dry/Wet Vacuum Cleaner')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KVC15L Vacuum Cleaner">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1312,7 +1656,7 @@
         <p class="product-description">Powerful 2300W motor, 3800 RPM. Max Wheel Dia: 355mm. Sturdy base and long-lasting gears.</p>
         <div class="product-actions">
             <a href="product-kpt-KCS14L.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KCS14L 355mm Cut-Off-Saw', 'images/KPT/KCS14L.png', '2300W, 355mm Cut-Off-Saw for Fabrication')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KCS14L 355mm Cut-Off-Saw">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1326,7 +1670,7 @@
         <p class="product-description">Variable speed function. Cutter Capacity: 12-38mm. Magnetic Adhesion: 12000 N. Ideal for precision steel drilling.</p>
         <div class="product-actions">
             <a href="product-kpt-KBC38N.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KBC38N 38mm Broach Cutter', 'images/KPT/KBC38N.png', 'Variable Speed 38mm Magnetic Broach Cutter')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KBC38N 38mm Broach Cutter">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1340,7 +1684,7 @@
         <p class="product-description">18V Li-ion battery, 15+1 Torque settings. No Load Speed: 0-350/0-1350 r/min. Supplied in a BMC carry case.</p>
         <div class="product-actions">
             <a href="product-kpt-KDD18V.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KDD18V Cordless Drill', 'images/KPT/KDD18V.png', '18V Li-ion 10mm Cordless Drill/Driver')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KDD18V Cordless Drill">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1355,7 +1699,7 @@
         <p class="product-description">Powerful 1500W motor. Impact Rate: 1000-2250 BPM. Impact Energy: 6-25 Joules. Lightweight with powerful strokes.</p>
         <div class="product-actions">
             <a href="product-kpt-KPT11DHN.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPT11DHN Demolition Hammer', 'images/KPT/KPT11DHN.png', '1500W, 11KG Demolition Hammer')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KPT11DHN Demolition Hammer">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1370,7 +1714,7 @@
         <p class="product-description">600W Power Input. Impact Rate: 0-45000 BPM. Max capacity: 13mm concrete. Variable speed and reverse/forward switch.</p>
         <div class="product-actions">
             <a href="product-kpt-KID13.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KID13 Impact Drill', 'images/KPT/KID13.png', '600W, 13mm Impact Drill with Reverse Function')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KID13 Impact Drill">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1385,7 +1729,7 @@
         <p class="product-description">500W Power Input. Impact Rate: 0-45000 BPM. Improved switch design and soft grip handle.</p>
         <div class="product-actions">
             <a href="product-kpt-KID10.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KID10 Impact Drill', 'images/KPT/KID10.png', '500W, 10mm Impact Drill with Soft Grip')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KID10 Impact Drill">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1400,55 +1744,55 @@
         <p class="product-description">Powerful 1000W motor. Auto Cutoff Carbon Brush. Anti-Vibration Back Handle for comfortable handling.</p>
         <div class="product-actions">
             <a href="product-kpt-KAG10-5.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KAG10-5 125mm Angle Grinder', 'images/KPT/KAG10-5.png', '1000W Angle Grinder with Anti-Vibration Handle')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KAG10-5 125mm Angle Grinder">Inquire Now</button>
         </div>
     </div>
 </div>
 
             <div class="product-card" data-title="STC4 110mm Marble Cutter" data-category="Cutting" data-description="Powerful 1200W motor, Ergonomic design.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/STC4.png" alt="KPT 110mm Marble Cutter" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Cutting (Marble)</div>
-        <h3 class="product-title">110mm Marble Cutter (STC4)</h3>
-        <p class="product-description">Powerful 1200W motor, Max. Cutting Depth: 34 mm, No Load Speed: 13000 rpm. Strong and durable gears.</p>
-        <div class="product-actions">
-            <a href="product-kpt-STC4.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('STC4 110mm Marble Cutter', 'images/KPT/STC4.png', '1200W Marble Cutter with 34mm max cutting depth')">Inquire Now</button>
-        </div>
-    </div>
-</div>
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/STC4.png" alt="KPT 110mm Marble Cutter" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Cutting (Marble)</div>
+                    <h3 class="product-title">110mm Marble Cutter (STC4)</h3>
+                    <p class="product-description">Powerful 1200W motor, Max. Cutting Depth: 34 mm, No Load Speed: 13000 rpm. Strong and durable gears.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-STC4.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary inquire-btn" data-product-name="STC4 110mm Marble Cutter">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="product-card" data-title="KPT16DHN 16kg Demolition Hammer" data-category="Demolition" data-description="Heavy duty 1400W motor, 42J impact energy.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/KPT16DHN.png" alt="KPT 16kg Demolition Hammer" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Demolition (Heavy Duty)</div>
-        <h3 class="product-title">16kg Demolition Hammer (KPT16DHN)</h3>
-        <p class="product-description">Heavy duty 1400W motor, Impact Rating: 1800 BPM, Impact Energy: 42 J. Features 360° swivel auxiliary and soft grip handle.</p>
-        <div class="product-actions">
-            <a href="product-kpt-KPT16DHN.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPT16DHN 16kg Demolition Hammer', 'images/KPT/KPT16DHN.png', '1400W Heavy Duty Demolition Hammer with 42J energy')">Inquire Now</button>
-        </div>
-    </div>
-</div>
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/KPT16DHN.png" alt="KPT 16kg Demolition Hammer" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Demolition (Heavy Duty)</div>
+                    <h3 class="product-title">16kg Demolition Hammer (KPT16DHN)</h3>
+                    <p class="product-description">Heavy duty 1400W motor, Impact Rating: 1800 BPM, Impact Energy: 42 J. Features 360° swivel auxiliary and soft grip handle.</p>
+                    <div class="product-actions">
+                        <a href="product-kpt-KPT16DHN.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary inquire-btn" data-product-name="KPT16DHN 16kg Demolition Hammer">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="product-card" data-title="SID13 13mm Impact Drill" data-category="Drilling / Impact" data-description="Powerful 600W motor, variable and reversible function.">
-    <div class="product-image-wrapper">
-        <img src="images/KPT/SID13.png" alt="SHAKTI 13mm Impact Drill" class="product-image">
-    </div>
-    <div class="product-content">
-        <div class="product-category">Drilling / Impact (SHAKTI)</div>
-        <h3 class="product-title">13mm Impact Drill (SID13)</h3>
-        <p class="product-description">Powerful 600W motor with more impacts, No Load Speed: 0-1800 rpm. Drilling Capacity: 13mm Concrete, 25mm Wood, 10mm Steel.</p>
-        <div class="product-actions">
-            <a href="product-shakti-SID13.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('SID13 13mm Impact Drill', 'images/KPT/SID13.png', '600W Impact Drill with variable and reversible function')">Inquire Now</button>
-        </div>
-    </div>
-</div>
+                <div class="product-image-wrapper">
+                    <img src="images/KPT/SID13.png" alt="SHAKTI 13mm Impact Drill" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Drilling / Impact (SHAKTI)</div>
+                    <h3 class="product-title">13mm Impact Drill (SID13)</h3>
+                    <p class="product-description">Powerful 600W motor with more impacts, No Load Speed: 0-1800 rpm. Drilling Capacity: 13mm Concrete, 25mm Wood, 10mm Steel.</p>
+                    <div class="product-actions">
+                        <a href="product-shakti-SID13.html" class="btn btn-outline">View Specs</a>
+                        <button class="btn btn-primary inquire-btn" data-product-name="SID13 13mm Impact Drill">Inquire Now</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="product-card" data-title="KPTRH26 26mm Rotary Hammer" data-category="Drilling" data-description="26mm Rotary Hammer with light weight and powerful strokes.">
     <div class="product-image-wrapper">
@@ -1460,7 +1804,7 @@
         <p class="product-description">Powerful 800W motor. Light weight and powerful strokes. Impact rate: 0-1300 BPM. Max Drilling Capacity: 26mm.</p>
         <div class="product-actions">
             <a href="product-kpt-KPTRH26.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KPTRH26 Rotary Hammer', 'images/KPT/KPTRH26.png', '800W, 26mm Rotary Hammer with powerful strokes')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KPTRH26 Rotary Hammer">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1475,7 +1819,7 @@
         <p class="product-description">Powerful 1100W motor. Cutter Depth: 40mm. Cutter Capacity: 12-35mm. Magnetic Adhesion: 10000 N.</p>
         <div class="product-actions">
             <a href="product-kpt-KBC35N.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KBC35N 35mm Broach Cutter', 'images/KPT/KBC35N.png', '1100W, 35mm Magnetic Broach Cutter')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KBC35N 35mm Broach Cutter">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1489,7 +1833,7 @@
         <p class="product-description">Powerful 200W motor. No Load Speed: 7200 RPM. Strong structure and ergonomic design. Pad Size: 110x210mm.</p>
         <div class="product-actions">
             <a href="product-kpt-KOSN.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KOSN Orbital Sander', 'images/KPT/KOSN.png', '200W Orbital Sander for finishing applications')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KOSN Orbital Sander">Inquire Now</button>
         </div>
     </div>
 </div>
@@ -1504,93 +1848,9 @@
         <p class="product-description">650W Power Input. No Load Speed: 0-16000 RPM. Features variable speed switch and powerful motor.</p>
         <div class="product-actions">
             <a href="product-kpt-KB650.html" class="btn btn-outline">View Specs</a>
-            <button class="btn btn-primary" onclick="openModal('KB650 Electric Blower', 'images/KPT/KB650.png', '650W Blower with Variable Speed Switch')">Inquire Now</button>
+            <button class="btn btn-primary inquire-btn" data-product-name="KB650 Electric Blower">Inquire Now</button>
         </div>
     </div>
-        </div>
-    </div>
-
-    <div id="inquiryModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Inquire About Product</h2>
-            <div class="modal-product-detail">
-                <img id="modalProductImage" src="" alt="Product Image">
-                <p id="modalProductDescription"></p>
-            </div>
-            
-            <form id="inquiryForm" action="mailto:sales@rexonweldsandtools.in" method="POST" enctype="text/plain">
-                <input type="hidden" id="inquiryProductName" name="Product_Name">
-                <input type="text" name="Name" placeholder="Your Full Name" required>
-                <input type="email" name="Email" placeholder="Business Email" required>
-                <textarea name="Message" placeholder="Specific questions or required quantity..." rows="4"></textarea>
-                <button type="submit" class="btn btn-primary">Submit Inquiry</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // --- PRODUCT SEARCH FUNCTION ---
-        function filterProducts() {
-            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
-            const productCards = document.getElementById('productsGrid').getElementsByClassName('product-card');
-
-            for (let i = 0; i < productCards.length; i++) {
-                const card = productCards[i];
-                // Check if card has the necessary data attributes before searching
-                const title = card.getAttribute('data-title') ? card.getAttribute('data-title').toLowerCase() : '';
-                const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
-                const description = card.getAttribute('data-description') ? card.getAttribute('data-description').toLowerCase() : '';
-                
-                if (title.includes(searchTerm) || category.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = ''; 
-                } else {
-                    card.style.display = 'none'; 
-                }
-            }
-        }
-
-        // --- MODAL FUNCTIONS (Inquiry Lightbox) ---
-        const modal = document.getElementById('inquiryModal');
-        
-        function openModal(title, imageSrc, description) {
-            document.getElementById('modalTitle').innerText = 'Inquire About: ' + title;
-            document.getElementById('modalProductImage').src = imageSrc;
-            document.getElementById('modalProductDescription').innerText = description;
-            document.getElementById('inquiryProductName').value = title; 
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Close the modal if the user clicks anywhere outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
-</body>
-</html>
-
-    <div id="inquiryModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Inquire About Product</h2>
-            <div class="modal-product-detail">
-                <img id="modalProductImage" src="" alt="Product Image">
-                <p id="modalProductDescription"></p>
-            </div>
-            
-            <form id="inquiryForm" action="mailto:sales@rexonweldsandtools.in" method="POST" enctype="text/plain">
-                <input type="hidden" id="inquiryProductName" name="Product_Name">
-                <input type="text" name="Name" placeholder="Your Full Name" required>
-                <input type="email" name="Email" placeholder="Business Email" required>
-                <textarea name="Message" placeholder="Specific questions or required quantity..." rows="4"></textarea>
-                <button type="submit" class="btn btn-primary">Submit Inquiry</button>
-            </form>
         </div>
     </div>
 
@@ -1610,23 +1870,233 @@
             }
         });
 
-        // --- MODAL FUNCTIONS (Inquiry Lightbox) ---
-        const modal = document.getElementById('inquiryModal');
-        
-        function openModal(title, imageSrc, description) {
-            document.getElementById('modalTitle').innerText = 'Inquire About: ' + title;
-document.getElementById('modalProductImage').src = imageSrc;
-document.getElementById('modalProductDescription').innerText = description;
-document.getElementById('inquiryProductName').value = title;
-modal.style.display = 'block';
-}
-function closeModal() {
-        modal.style.display = 'none';
-    }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
+        // --- KPT CATEGORY FILTERING & INQUIRY FUNCTIONS ---
+
+        function closeInquiryOptions() {
+            const options = document.querySelector('.inquire-options');
+            if (options) {
+                options.style.display = 'none';
+            }
         }
-    }
-</script>
+
+        function setupInquiryButtons() {
+            // Create the global inquiry modal if it doesn't exist
+            if (!document.querySelector('.inquire-options')) {
+                const modalHtml = `
+                    <div class="inquire-options">
+                        <button class="close-btn" onclick="closeInquiryOptions()">&times;</button>
+                        <div class="inquire-header">Choose Inquiry Method</div>
+                        <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                        <a id="email-link" href="#" class="btn btn-email">
+                            <i class="fas fa-envelope"></i> Email Inquiry
+                        </a>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+            }
+
+            const inquireButtons = document.querySelectorAll('.inquire-btn');
+
+            inquireButtons.forEach(button => {
+                const productName = button.getAttribute('data-product-name');
+                
+                // Define URLs
+                const whatsappLink = `https://wa.me/91XXXXXXXXXX?text=Hello, I am interested in KPT product: ${productName}`;
+                const emailLink = `mailto:sales@rexonweldsandtools.in?subject=Inquiry for KPT Product: ${productName}&body=I am interested in learning more about the KPT ${productName}. Please provide price and availability.`;
+
+                // Add event listener to show the modal and update links
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const options = document.querySelector('.inquire-options');
+                    const whatsappBtn = document.getElementById('whatsapp-link');
+                    const emailBtn = document.getElementById('email-link');
+                    
+                    whatsappBtn.href = whatsappLink;
+                    emailBtn.href = emailLink;
+                    
+                    // Show the modal
+                    options.style.display = 'flex';
+                });
+            });
+
+            // Ensure modal disappears if clicking elsewhere on the window
+            document.addEventListener('click', (e) => {
+                const options = document.querySelector('.inquire-options');
+                const modal = e.target.closest('.inquire-options');
+                if (options && options.style.display === 'flex' && !modal) {
+                    options.style.display = 'none';
+                }
+            });
+        }
+
+        function generateCategoryFilters() {
+            const products = document.querySelectorAll('#productsGrid .product-card');
+            const categories = new Set();
+            
+            products.forEach(card => {
+                categories.add(card.getAttribute('data-category'));
+            });
+
+            const categoryArray = ['All', ...Array.from(categories).sort()];
+            const filterContainer = document.getElementById('categoryFilterButtons');
+            
+            filterContainer.innerHTML = ''; 
+
+            categoryArray.forEach(category => {
+                const button = document.createElement('button');
+                button.classList.add('btn', 'category-btn');
+                button.textContent = category.toUpperCase();
+                button.setAttribute('data-filter', category);
+                
+                if (category === 'All') {
+                    button.classList.add('active');
+                }
+                
+                button.addEventListener('click', () => {
+                    filterByCategory(category);
+                    // Update active button state
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+                
+                filterContainer.appendChild(button);
+            });
+        }
+
+        function filterByCategory(selectedCategory) {
+            const products = document.querySelectorAll('#productsGrid .product-card');
+            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+            
+            products.forEach(card => {
+                const productCategory = card.getAttribute('data-category');
+                const title = card.getAttribute('data-title').toLowerCase();
+                const description = card.getAttribute('data-description').toLowerCase();
+                
+                const categoryMatch = selectedCategory === 'All' || productCategory === selectedCategory;
+                const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
+                
+                if (categoryMatch && searchMatch) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to handle search filtering (combined with category)
+        function filterProducts() {
+            // Determine the currently active category filter
+            const activeCategoryButton = document.querySelector('.category-btn.active');
+            const selectedCategory = activeCategoryButton ? activeCategoryButton.getAttribute('data-filter') : 'All';
+            filterByCategory(selectedCategory);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCategoryFilters();
+            setupInquiryButtons();
+            // Run filterProducts on load to ensure initial "All" is active and visible
+            filterProducts();
+        });
+    </script>
+
+    <!-- FOOTER SECTION -->
+    <footer class="footer-container">
+        <!-- Left Section - Content -->
+        <div class="footer-left">
+            <div class="brand-logo">
+                <h2>INDUSTRIAL<span>.</span>GROUP</h2>
+            </div>
+
+            <div class="footer-content">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3>Who we are</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#blog">Blog & News</a></li>
+                        <li><a href="#sustainability">Sustainability</a></li>
+                        <li><a href="#references">References</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3>Quick links</h3>
+                    <ul>
+                        <li><a href="#account">My Account</a></li>
+                        <li><a href="#invoicing">Invoicing Instructions</a></li>
+                        <li><a href="#partner">Go to partner website <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                        <li><a href="#positions">Open positions <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                        <li><a href="#group">Group companies <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                        <li><a href="#accessories">Accessories <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <h3>Stay up to date</h3>
+                <p>Subscribe to our newsletter and receive the latest news and updates about our products and services.</p>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="dealer">
+                        Dealer
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="integrator">
+                        Integrator
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="enduser">
+                        End user
+                    </label>
+                </div>
+
+                <div class="email-input-group">
+                    <input type="email" placeholder="Enter your email address">
+                    <button class="subscribe-btn">Subscribe</button>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-media">
+                <a href="#facebook" class="social-icon">f</a>
+                <a href="#linkedin" class="social-icon">in</a>
+                <a href="#youtube" class="social-icon">▶</a>
+                <a href="#instagram" class="social-icon">📷</a>
+            </div>
+        </div>
+
+        <!-- Right Section - Image -->
+        <div class="footer-right">
+            <div class="footer-image">
+                <img src="images/FOOTER.jpg" alt="Industrial Welding Worker">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Zoom animation when footer comes into view
+        const footer = document.querySelector('.footer-container');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('in-view');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        
+        observer.observe(footer);
+    </script>
+</body>
+</html>
