@@ -926,7 +926,8 @@
         <div class="header-left">
             <div class="logo">
                 <div class="logo-image">
-                  <img src="images/LOGO.png" alt="Rexon Logo">
+                 <img src="images/LOGO.png" alt="Rexon Logo">
+                </div>
                 <div class="logo-text-group">
                     <span class="logo-text">REXON WELDS AND TOOLS</span>
                 </div>
@@ -942,8 +943,8 @@
             
             <div class="navbar-menu" id="navbarMenu">
                 <a href="index.html" class="menu-item">HOME <i class="fas fa-chevron-down"></i></a>
-                <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
-                <a href="contact.html" class="menu-item active">CONTACT US <i class="fas fa-chevron-down"></i></a>
+                <a href="about.html" class="menu-item active">ABOUT <i class="fas fa-chevron-down"></i></a>
+                <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
             </div>
 
             <div class="navbar-icons-group">
@@ -956,9 +957,12 @@
             </div>
         </nav>
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>KPT KVC20L - 20L Dry/Wet Vacuum Cleaner</title>
     <style>
         * {
             margin: 0;
@@ -966,938 +970,275 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-red: #b60000;
-            --dark-red: #8b0000;
-            --light-red: #d32f2f;
-            --black: #1a1a1a;
-            --dark-gray: #2c2c2c;
-            --white: #ffffff;
-            --light-bg: #f5f5f5;
-            --text-gray: #666666;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--black);
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
         }
 
-        /* Header/Navigation */
-        .top-header {
-            background: var(--black);
-            padding: 15px 0;
+        .product-section {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--primary-red);
-        }
-
-        .contact-btn {
-            background: var(--primary-red);
-            color: var(--white);
-            padding: 10px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .contact-btn:hover {
-            background: var(--light-red);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section with Industrial Image */
-        .hero-section {
-            background: linear-gradient(rgba(26, 26, 26, 0.3), rgba(26, 26, 26, 0.3)), 
-                        url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: multiply;
-            padding: 100px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(182, 0, 0, 0.85) 0%, rgba(139, 0, 0, 0.75) 50%, rgba(182, 0, 0, 0.85) 100%);
-            mix-blend-mode: multiply;
-        }
-
-        .hero-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px),
-                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px);
-        }
-
-        /* Welding sparks effect */
-        .hero-sparks {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .spark {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #ffd700;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #ffd700, 0 0 15px #ff9800;
-            animation: sparkle 2.5s infinite;
-        }
-
-        .spark:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
-        .spark:nth-child(2) { top: 65%; left: 30%; animation-delay: 0.8s; }
-        .spark:nth-child(3) { top: 45%; left: 75%; animation-delay: 0.3s; }
-        .spark:nth-child(4) { top: 80%; left: 85%; animation-delay: 1.2s; }
-        .spark:nth-child(5) { top: 25%; left: 60%; animation-delay: 0.5s; }
-        .spark:nth-child(6) { top: 55%; left: 15%; animation-delay: 1.5s; }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.8); }
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            color: var(--white);
-            margin-bottom: 15px;
-        }
-
-        .hero-content h1 span {
-            color: var(--primary-red);
-            background: var(--white);
-            padding: 0 15px;
-            border-radius: 4px;
-        }
-
-        .breadcrumb {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
-        }
-
-        .breadcrumb a {
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        /* Contact Form Section */
-        .contact-section {
-            background: var(--light-bg);
-            padding: 80px 40px;
-        }
-
-        .contact-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .contact-info {
-            background: var(--white);
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .section-label {
-            color: var(--primary-red);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--black);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .section-title span {
-            color: var(--primary-red);
-        }
-
-        .info-text {
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .info-items {
-            display: grid;
-            gap: 25px;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .info-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            flex-shrink: 0;
-        }
-
-        .info-details h3 {
-            font-size: 1.1rem;
-            color: var(--black);
-            margin-bottom: 5px;
-        }
-
-        .info-details p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-red);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        .submit-button {
-            background: var(--primary-red);
-            color: var(--white);
-            padding: 15px 45px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-button:hover {
-            background: var(--light-red);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(182, 0, 0, 0.3);
-        }
-
-        /* Image Slider Section */
-        .slider-section {
-            background: var(--white);
-            padding: 80px 40px;
-        }
-
-        .slider-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .slider-header {
+        .image-container {
+            padding: 30px;
+            background: #f9f9f9;
             text-align: center;
-            margin-bottom: 50px;
         }
 
-        .slider-header h2 {
-            font-size: 2.5rem;
-            color: var(--black);
-            margin-bottom: 15px;
-        }
-
-        .slider-header h2 span {
-            color: var(--primary-red);
-        }
-
-        .slider-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 600px;
-            position: relative;
-        }
-
-        .slide img {
+        .product-image {
+            max-width: 500px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .slide-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 40px;
-            color: var(--white);
+        .product-content {
+            padding: 30px;
         }
 
-        .slide-overlay h3 {
-            font-size: 2rem;
+        h1 {
+            color: #b60000;
+            font-size: 28px;
             margin-bottom: 10px;
         }
 
-        .slide-overlay p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .model {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
         }
 
-        .slider-controls {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+        .features {
             display: flex;
             gap: 15px;
-            z-index: 10;
+            margin: 20px 0;
+            flex-wrap: wrap;
         }
 
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .slider-dot.active {
-            background: var(--primary-red);
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary-red);
-            color: var(--white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-
-        .slider-arrow:hover {
-            background: var(--light-red);
-        }
-
-        .slider-arrow.prev {
-            left: 20px;
-        }
-
-        .slider-arrow.next {
-            right: 20px;
-        }
-
-        /* Services Section with Industrial Images */
-        .services-section {
-            background: var(--black);
-            padding: 80px 40px;
-            position: relative;
-        }
-
-        .services-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .service-image {
-            text-align: center;
-        }
-
-        .service-img {
-            width: 100%;
-            max-width: 500px;
-            height: 500px;
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 10px 40px rgba(182, 0, 0, 0.3);
-        }
-
-        .service-content h2 {
-            font-size: 2.5rem;
-            color: var(--white);
-            margin-bottom: 25px;
-            line-height: 1.3;
-        }
-
-        .service-content h2 span {
-            color: var(--primary-red);
-        }
-
-        .service-text {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 35px;
-            line-height: 1.8;
-        }
-
-        .features-list {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 35px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--white);
-            font-size: 1.1rem;
-        }
-
-        .feature-item i {
-            color: var(--primary-red);
-            font-size: 1.2rem;
-        }
-
-        .service-btn {
-            background: var(--primary-red);
-            color: var(--white);
-            padding: 14px 40px;
-            border-radius: 6px;
-            text-decoration: none;
-            display: inline-block;
+        .feature-tag {
+            background: #b60000;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
             font-weight: 600;
-            transition: all 0.3s;
         }
 
-        .service-btn:hover {
-            background: var(--light-red);
-            transform: translateY(-2px);
+        .specs-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
         }
 
-        /* Offices Section */
-        .offices-section {
-            background: var(--light-bg);
-            padding: 80px 40px;
+        .specs-table th {
+            background: #b60000;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 15px;
         }
 
-        .offices-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .specs-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
         }
 
-        .offices-text h3 {
-            color: var(--primary-red);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+        .specs-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .accessories {
+            margin: 25px 0;
+        }
+
+        .accessories h3 {
+            color: #b60000;
+            font-size: 18px;
             margin-bottom: 15px;
         }
 
-        .offices-text h2 {
-            font-size: 2.5rem;
-            color: var(--black);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .offices-text h2 span {
-            color: var(--primary-red);
-        }
-
-        .offices-text p {
-            color: var(--text-gray);
-            margin-bottom: 35px;
-            line-height: 1.8;
-        }
-
-        .office-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .office-card {
-            background: var(--black);
-            padding: 35px 30px;
-            border-radius: 12px;
-            color: var(--white);
-            transition: all 0.3s;
-        }
-
-        .office-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(182, 0, 0, 0.3);
-        }
-
-        .office-card h4 {
-            color: var(--primary-red);
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-
-        .office-card .subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-        }
-
-        .office-detail {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-
-        .office-detail i {
-            color: var(--primary-red);
-            margin-top: 3px;
-        }
-
-        .office-detail span {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .offices-image {
-            width: 100%;
-            height: 600px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        }
-
-        .offices-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 60px 40px 30px;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .footer-logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .footer-about p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-icon:hover {
-            background: var(--light-red);
-            transform: translateY(-3px);
-        }
-
-        .footer h3 {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-        }
-
-        .footer-links {
+        .accessories ul {
             list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
-        .footer-links li {
-            margin-bottom: 12px;
+        .accessories li {
+            padding: 8px;
+            background: #f5f5f5;
+            border-left: 3px solid #b60000;
+            font-size: 14px;
         }
 
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-red);
-        }
-
-        .footer-links i {
-            font-size: 0.7rem;
-        }
-
-        .footer-contact p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .footer-contact i {
-            color: var(--primary-red);
-            margin-top: 4px;
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .cta-section {
+            background: #b60000;
+            padding: 25px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.5);
+            margin-top: 30px;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .contact-container,
-            .services-container,
-            .offices-content {
-                grid-template-columns: 1fr;
-            }
+        .cta-section h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
 
-            .office-cards {
-                grid-template-columns: 1fr;
-            }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
 
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
+        .btn {
+            padding: 12px 30px;
+            background: white;
+            color: #b60000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1a1a1a;
+            color: white;
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .product-content {
+                padding: 20px;
             }
 
-            .section-title {
-                font-size: 2rem;
+            h1 {
+                font-size: 22px;
             }
 
-            .form-row {
+            .features {
+                flex-direction: column;
+            }
+
+            .feature-tag {
+                text-align: center;
+            }
+
+            .specs-table {
+                font-size: 14px;
+            }
+
+            .specs-table th,
+            .specs-table td {
+                padding: 8px;
+            }
+
+            .accessories ul {
                 grid-template-columns: 1fr;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr;
+            .btn-group {
+                flex-direction: column;
             }
 
-            .slide {
-                height: 400px;
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-pattern"></div>
-        <div class="hero-sparks">
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
+    <div class="product-section">
+        <div class="image-container">
+          <img src="../images/KPT/KVC20L.png" alt="KPT KVC20L Vacuum Cleaner">
+
         </div>
-        <div class="hero-content">
-            <h1>Contact <span>Us</span></h1>
-            <div class="breadcrumb">
-                <a href="#">Home</a> / Contact Us
+        
+        <div class="product-content">
+            <h1>KPT 20L Dry / Wet Vacuum Cleaner</h1>
+            <p class="model">Model: KVC20L | Professional Power Tool</p>
+            
+            <div class="features">
+                <span class="feature-tag">Dry & Wet Cleaning</span>
+                <span class="feature-tag">20L Capacity</span>
+                <span class="feature-tag">1200W Power</span>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Form Section -->
-    <section class="contact-section">
-        <div class="contact-container">
-            <div class="contact-info">
-                <p class="section-label">CONTACT US</p>
-                <h2 class="section-title">Get In <span>Touch</span></h2>
-                <p class="info-text">We're here to help with all your welding equipment and industrial tool needs. Reach out to us for inquiries, quotes, or technical support.</p>
-                
-                <div class="info-items">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Phone Number</h3>
-                            <p>+91-XXXXXXXXXX</p>
-                        </div>
-                    </div>
+            <p style="line-height: 1.8; color: #555; margin: 20px 0;">
+                Professional industrial vacuum cleaner designed for workshops, warehouses, and industrial facilities. Powerful 1200W motor with 17 KPa suction handles both dry debris and wet spills efficiently.
+            </p>
 
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Email Address</h3>
-                            <p>sales@rexonweldsandtools.in</p>
-                        </div>
-                    </div>
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Model</td>
+                        <td>KVC20L</td>
+                    </tr>
+                    <tr>
+                        <td>Voltage</td>
+                        <td>230V</td>
+                    </tr>
+                    <tr>
+                        <td>Frequency</td>
+                        <td>50 Hz</td>
+                    </tr>
+                    <tr>
+                        <td>Power Input</td>
+                        <td>1200 W</td>
+                    </tr>
+                    <tr>
+                        <td>Vacuum Pressure</td>
+                        <td>17 KPa</td>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>20 Liters</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 13px; color: #999; font-style: italic;">* Other voltages available on request</p>
 
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Website</h3>
-                            <p>www.rexonweldsandtool.com</p>
-                        </div>
-                    </div>
+            <div class="accessories">
+                <h3>Accessories Included</h3>
+                <ul>
+                    <li>Flexible Suction Hose</li>
+                    <li>Extension Pipes</li>
+                    <li>Floor Brush</li>
+                    <li>Crevice Nozzle</li>
+                    <li>Dust Filter</li>
+                    <li>Foam Filter</li>
+                </ul>
+            </div>
 
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Address</h3>
-                            <p>89 Roving St, Big City, PKU 23565</p>
-                        </div>
-                    </div>
+            <div class="cta-section">
+                <h3>Request Product Information</h3>
+                <div class="btn-group">
+                    <a href="mailto:info@kpt.co.in?subject=KVC20L Inquiry" class="btn">Email Us</a>
+                    <a href="https://wa.me/?text=Inquiry about KPT KVC20L" class="btn">WhatsApp</a>
                 </div>
             </div>
-
-            <div class="contact-form">
-                <form>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Submit Message</button>
-                </form>
-            </div>
         </div>
-    </section>
-
-    <!-- Offices Section -->
-    <section class="offices-section">
-        <div class="offices-content">
-            <div class="offices-text">
-                <h3>OUR OFFICES</h3>
-                <h2>Our Offices <span>Located</span> All Over The Region</h2>
-                <p>With multiple locations across the country, we ensure quick service and support for all your industrial equipment needs. Visit our nearest office or contact us for assistance.</p>
-                
-                <div class="office-cards">
-                    <div class="office-card">
-                        <h4>Head Office</h4>
-                        <p class="subtitle">Main Branch</p>
-                        <div class="office-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>89 Roving St, Big City, PKU 23565</span>
-                        </div>
-                        <div class="office-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91-XXXXXXXXXX</span>
-                        </div>
-                        <div class="office-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>sales@rexonweldsandtools.in</span>
-                        </div>
-                    </div>
-
-                    <div class="office-card">
-                        <h4>Regional Office</h4>
-                        <p class="subtitle">North Branch</p>
-                        <div class="office-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>45 Industrial Avenue, Metro City, NCR 11001</span>
-                        </div>
-                        <div class="office-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91-YYYYYYYYYY</span>
-                        </div>
-                        <div class="office-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>north@rexonweldsandtools.in</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offices-image">
-                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80" alt="Industrial Workers">
-            </div>
-        </div>
-    </section>
-
-   <!DOCTYPE html>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="en">
-n<head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Industrial Footer</title>
@@ -2413,6 +1754,7 @@ n<head>
     </style>
 </head>
 <body>
+    <!-- FOOTER SECTION -->
     <footer class="footer-container">
         <!-- Left Section - Content -->
         <div class="footer-left">
