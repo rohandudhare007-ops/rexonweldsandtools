@@ -1445,174 +1445,167 @@
         </div>
     </div>
 
-<script>
-    // --- MOBILE MENU TOGGLE ---
-    function toggleMobileMenu() {
-        const menu = document.getElementById('navbarMenu');
-        menu.classList.toggle('active');
-    }
-
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('navbarMenu');
-        const toggle = document.querySelector('.mobile-menu-toggle');
-        
-        if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-            menu.classList.remove('active');
+    <script>
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navbarMenu');
+            menu.classList.toggle('active');
         }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('navbarMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // --- APS CATEGORY FILTERING & SEARCH FUNCTIONS ---
+
+        function generateCategoryFilters() {
+    // Define the exact order you want
+    const categoryOrder = [
+        'All',
+        'ARC Welders',
+        'TIG Welders',
+        'Digital Pulse TIG',
+        'ACDC TIG Welders',
+        'Pulse TIG Welders',
+        'MIG / ARC Welders',
+        'Multiprocess Welders',
+        'Submerged Arc Welders',
+        'Plasma Cutting',
+        'Gouging Equipment'
+    ];
+    
+    // Get all unique categories from products
+    const products = document.querySelectorAll('#productsGrid .product-card');
+    const existingCategories = new Set();
+    
+    products.forEach(card => {
+        existingCategories.add(card.getAttribute('data-category'));
     });
+    
+    // Filter to only show categories that exist in products
+    const categoriesToShow = categoryOrder.filter(cat => 
+        cat === 'All' || existingCategories.has(cat)
+    );
+    
+    const filterContainer = document.getElementById('categoryFilterButtons');
+    filterContainer.innerHTML = ''; 
 
-    // --- CATEGORY FILTERING & SEARCH FUNCTIONS ---
-
-    function generateCategoryFilters() {
-        // Define the exact order you want
-        const categoryOrder = [
-            'All',
-            'ARC Welders',
-            'TIG Welders',
-            'Digital Pulse TIG',
-            'ACDC TIG Welders',
-            'MIG / ARC Welders',
-            'Multiprocess Welders',
-            'Submerged Arc Welders',
-            'Plasma Cutting',
-            'Gouging Equipment'
-        ];
+    categoriesToShow.forEach(category => {
+        const button = document.createElement('button');
+        button.classList.add('btn', 'category-btn');
+        button.textContent = category.toUpperCase();
+        button.setAttribute('data-filter', category);
         
-        // Get all unique categories from products
-        const products = document.querySelectorAll('#productsGrid .product-card');
-        const existingCategories = new Set();
-        
-        products.forEach(card => {
-            const category = card.getAttribute('data-category');
-            if (category) {
-                existingCategories.add(category);
-            }
-        });
-        
-        // Filter to only show categories that exist in products
-        const categoriesToShow = categoryOrder.filter(cat => 
-            cat === 'All' || existingCategories.has(cat)
-        );
-        
-        const filterContainer = document.getElementById('categoryFilterButtons');
-        filterContainer.innerHTML = ''; 
-
-        categoriesToShow.forEach(category => {
-            const button = document.createElement('button');
-            button.classList.add('category-btn');
-            button.textContent = category.toUpperCase();
-            button.setAttribute('data-filter', category);
-            
-            if (category === 'All') {
-                button.classList.add('active');
-            }
-            
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                filterByCategory(category);
-            });
-            
-            filterContainer.appendChild(button);
-        });
-    }
-
-    function filterByCategory(selectedCategory) {
-        const products = document.querySelectorAll('#productsGrid .product-card');
-        const searchTerm = document.getElementById('productSearch').value.toLowerCase();
-        
-        let visibleCount = 0;
-        
-        products.forEach(card => {
-            const productCategory = card.getAttribute('data-category');
-            const title = card.getAttribute('data-title').toLowerCase();
-            const description = card.getAttribute('data-description').toLowerCase();
-            
-            // EXACT MATCH for category (this is the key fix!)
-            const categoryMatch = selectedCategory === 'All' || productCategory === selectedCategory;
-            const searchMatch = searchTerm === '' || title.includes(searchTerm) || description.includes(searchTerm);
-            
-            if (categoryMatch && searchMatch) {
-                card.style.display = '';
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        
-        // Debug: Log how many products are visible
-        console.log(`Category: ${selectedCategory}, Visible products: ${visibleCount}`);
-    }
-
-    // Function to handle search filtering (combined with category)
-    function filterProducts() {
-        const activeCategoryButton = document.querySelector('.category-btn.active');
-        const selectedCategory = activeCategoryButton ? activeCategoryButton.getAttribute('data-filter') : 'All';
-        filterByCategory(selectedCategory);
-    }
-
-    // --- INQUIRY FUNCTIONS ---
-
-    function closeInquiryOptions() {
-        const options = document.querySelector('.inquire-options');
-        if (options) {
-            options.style.display = 'none';
+        if (category === 'All') {
+            button.classList.add('active');
         }
-    }
+        
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            filterByCategory(category);
+        });
+        
+        filterContainer.appendChild(button);
+    });
+}
 
-    function setupInquiryButtons() {
-        if (!document.querySelector('.inquire-options')) {
-            const modalHtml = `
-                <div class="inquire-options">
-                    <button class="close-btn" onclick="closeInquiryOptions()">&times;</button>
-                    <div class="inquire-header">Choose Inquiry Method</div>
-                    <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
-                    </a>
-                    <a id="email-link" href="#" class="btn btn-email">
-                        <i class="fas fa-envelope"></i> Email Inquiry
-                    </a>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        function filterByCategory(selectedCategory) {
+            const products = document.querySelectorAll('#productsGrid .product-card');
+            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+            
+            products.forEach(card => {
+                const productCategory = card.getAttribute('data-category');
+                const title = card.getAttribute('data-title').toLowerCase();
+                const description = card.getAttribute('data-description').toLowerCase();
+                
+                const categoryMatch = selectedCategory === 'All' || productCategory === selectedCategory;
+                const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
+                
+                card.style.display = categoryMatch && searchMatch ? '' : 'none';
+            });
         }
 
-        const inquireButtons = document.querySelectorAll('.inquire-btn');
+        // Function to handle search filtering (combined with category)
+        function filterProducts() {
+            // Determine the currently active category filter
+            const activeCategoryButton = document.querySelector('.category-btn.active');
+            const selectedCategory = activeCategoryButton ? activeCategoryButton.getAttribute('data-filter') : 'All';
+            filterByCategory(selectedCategory);
+        }
 
-        inquireButtons.forEach(button => {
-            const productName = button.getAttribute('data-product-name');
-            
-            const whatsappLink = `https://wa.me/91XXXXXXXXXX?text=Hello, I am interested in APS product: ${productName}`;
-            const emailLink = `mailto:sales@rexonweldsandtools.in?subject=Inquiry for APS Product: ${productName}&body=I am interested in learning more about the APS ${productName}. Please provide price and availability.`;
+        // --- INQUIRY FUNCTIONS ---
 
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const options = document.querySelector('.inquire-options');
-                const whatsappBtn = document.getElementById('whatsapp-link');
-                const emailBtn = document.getElementById('email-link');
-                
-                whatsappBtn.href = whatsappLink;
-                emailBtn.href = emailLink;
-                
-                options.style.display = 'flex';
-            });
-        });
-
-        document.addEventListener('click', (e) => {
+        function closeInquiryOptions() {
             const options = document.querySelector('.inquire-options');
-            const modal = e.target.closest('.inquire-options');
-            if (options && options.style.display === 'flex' && !modal) {
+            if (options) {
                 options.style.display = 'none';
             }
-        });
-    }
+        }
 
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        generateCategoryFilters();
-        setupInquiryButtons();
-        filterProducts();
-    });
+        function setupInquiryButtons() {
+            // Create the global inquiry modal if it doesn't exist
+            if (!document.querySelector('.inquire-options')) {
+                const modalHtml = `
+                    <div class="inquire-options">
+                        <button class="close-btn" onclick="closeInquiryOptions()">&times;</button>
+                        <div class="inquire-header">Choose Inquiry Method</div>
+                        <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                        <a id="email-link" href="#" class="btn btn-email">
+                            <i class="fas fa-envelope"></i> Email Inquiry
+                        </a>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+            }
+
+            const inquireButtons = document.querySelectorAll('.inquire-btn');
+
+            inquireButtons.forEach(button => {
+                const productName = button.getAttribute('data-product-name');
+                
+                // Define URLs
+                const whatsappLink = `https://wa.me/91XXXXXXXXXX?text=Hello, I am interested in APS product: ${productName}`;
+                const emailLink = `mailto:sales@rexonweldsandtools.in?subject=Inquiry for APS Product: ${productName}&body=I am interested in learning more about the APS ${productName}. Please provide price and availability.`;
+
+                // Add event listener to show the modal and update links
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const options = document.querySelector('.inquire-options');
+                    const whatsappBtn = document.getElementById('whatsapp-link');
+                    const emailBtn = document.getElementById('email-link');
+                    
+                    whatsappBtn.href = whatsappLink;
+                    emailBtn.href = emailLink;
+                    
+                    // Show the modal
+                    options.style.display = 'flex';
+                });
+            });
+
+            // Ensure modal disappears if clicking elsewhere on the window
+            document.addEventListener('click', (e) => {
+                const options = document.querySelector('.inquire-options');
+                const modal = e.target.closest('.inquire-options');
+                if (options && options.style.display === 'flex' && !modal) {
+                    options.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCategoryFilters();
+            setupInquiryButtons();
+            filterProducts();
+        });
 </script>
 </body>
 <!DOCTYPE html>
