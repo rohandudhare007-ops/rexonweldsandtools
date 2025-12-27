@@ -522,6 +522,7 @@
 
         /* === RESPONSIVE STYLES === */
         
+        /* Tablet styles (768px and below) */
         @media (max-width: 768px) {
             .dark-header-container {
                 padding: 18px 25px;
@@ -604,7 +605,18 @@
                 font-size: 14px;
             }
 
-            /* Collapse to 2 columns on tablet */
+            .container {
+                padding: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header {
+                padding: 1rem 1rem;
+            }
+
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
@@ -613,21 +625,97 @@
             .product-actions {
                 flex-direction: column;
             }
-            
-            .category-filter-wrapper {
-                padding: 1rem; 
-            }
         }
 
+        /* Mobile styles (480px and below) */
         @media (max-width: 480px) {
-            /* Collapse to single column on mobile */
+            .dark-header-container {
+                padding: 10px 12px;
+            }
+
+            .logo {
+                gap: 15px;
+            }
+
+            .logo-text {
+                font-size: 11px;
+                letter-spacing: 0.5px;
+                line-height: 1.1;
+            }
+
+            .tagline {
+                font-size: 8px;
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 200px;
+            }
+
+            .logo-image img {
+                height: 30px;
+            }
+
+            .main-nav-wrapper {
+                margin: -12px 12px 0 12px;
+                border-radius: 25px;
+            }
+
+            .navbar-container {
+                padding: 0 12px;
+                min-height: 45px;
+            }
+
+            .navbar-menu {
+                top: 95px;
+                width: calc(100% - 24px);
+                margin: 0 12px;
+            }
+
+            .social-circle {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+
+            .page-header {
+                padding: 1rem;
+                margin-top: 10px;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .breadcrumb {
+                padding: 1rem 5%;
+                font-size: 0.85rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            
+
+            .product-actions {
+                flex-direction: column;
+            }
+
             .search-bar-wrapper {
                 padding: 0;
+            }
+
+            #productSearch {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
             }
         }
 

@@ -1,3 +1,18 @@
+<script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navbarMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('navbarMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
