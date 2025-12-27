@@ -1,18 +1,3 @@
-<script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navbarMenu');
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navbarMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* === HEADER STYLES === */
+       /* === HEADER STYLES === */
         .dark-header-container {
             background: linear-gradient(to bottom, #5a1a1a 0%, #3d0f0f 100%);
             padding: 25px 60px;
@@ -90,7 +75,7 @@
             letter-spacing: 0.5px;
             opacity: 0.9;
         }
-
+        
         /* === NAVIGATION STYLES === */
         .main-nav-wrapper {
             background: #ffffff;
