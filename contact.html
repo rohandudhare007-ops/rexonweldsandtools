@@ -950,7 +950,7 @@
 </head>
 <body>
 
-    <header class="dark-header-container">
+     <header class="dark-header-container">
         <div class="header-left">
             <div class="logo">
                 <div class="logo-image">
@@ -970,14 +970,173 @@
             </button>
             
             <div class="navbar-menu" id="navbarMenu">
-                <a href="index.html" class="menu-item">HOME <i class="fas fa-chevron-down"></i></a>
-                <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
-                <a href="contact.html" class="menu-item active">CONTACT US <i class="fas fa-chevron-down"></i></a>
-            </div>
+    <a href="index.html" class="menu-item active">HOME <i class="fas fa-chevron-down"></i></a>
+    <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
+    
+    <!-- Products Dropdown -->
+    <div class="dropdown">
+        <a href="#" class="menu-item" onclick="toggleDropdown(event)">PRODUCTS <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+            <a href="products-kpt.html" class="dropdown-item">KPT</a>
+            <a href="products-dewalt.html" class="dropdown-item">Dewalt</a>
+            <a href="products-bosch.html" class="dropdown-item">Bosch</a>
+            <a href="products-aps.html" class="dropdown-item">APS</a>
+            <a href="products-forte.html" class="dropdown-item">Forte</a>
+            <a href="products-leasercuttingcnc.html" class="dropdown-item">Laser Cutting CNC & Laser Welder Machine</a>
+        </div>
+    </div>
+    
+    <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
+</div>
+<script>
+    function toggleDropdown(event) {
+        if (window.innerWidth <= 768) {
+            event.preventDefault();
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+    }
 
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    });
+</script>
+<style>
+    /* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border-top: 3px solid #dc143c;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 14px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #561823;
+    color: #fff;
+    padding-left: 25px;
+}
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        order: -1;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: 130px;
+        left: -100%;
+        width: calc(100% - 50px);
+        margin: 0 25px;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        transition: left 0.3s ease;
+        border-radius: 20px;
+    }
+
+    .navbar-menu.active {
+        left: 0;
+    }
+
+    .menu-item {
+        padding: 15px 25px;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .menu-item.active::after {
+        bottom: 10px;
+    }
+
+    /* DROPDOWN MOBILE FIX */
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: #f5f5f5;
+        display: none;
+        border-top: none;
+        min-width: 100%;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-item {
+        color: #1a1a1a;
+        padding: 12px 25px 12px 45px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+        background-color: #561823;
+        color: #fff;
+        padding-left: 50px;
+    }
+</style>
             <div class="navbar-icons-group">
                 <div class="social-icons">
-                  <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle"><i class="fab fa-linkedin"></i></a>         
                     <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -1814,7 +1973,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Phone Number</h3>
-                            <p>+91-XXXXXXXXXX</p>
+                            <p>+917378852955</p>
                         </div>
                     </div>
 
@@ -1834,7 +1993,7 @@
                         </div>
                         <div class="info-details">
                             <h3>social-media</h3>
-                            <p>www.rexonweldsandtool.com</p>
+                            <p>www.rexonweldsandtool.in</p>
                         </div>
                     </div>
 
@@ -1844,12 +2003,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Address</h3>
-                            <p>Ground Floor, SR.NO 74/3/3, 02
-Shinde Niwas, Katraj Kondhwa Road
-Near Narayani Dham
-Chandri Spendan
-Pune, Pune District
-Maharashtra - 411046</p>
+                            <p>Plot No. 79/1/A, ‘S’ Block, N.A, R.I, Landewadi, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411026, India</p>
                         </div>
                     </div>
                 </div>
@@ -1871,11 +2025,11 @@ Maharashtra - 411046</p>
                         <p class="subtitle">Main Branch</p>
                         <div class="office-detail">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span> Ground Floor, SR.NO 74/3/3, 02 Shinde Niwas, Katraj Kondhwa Road Near Narayani Dham Chandri Spendan Pune, Pune District Maharashtra - 411046</span>
+                            <span>Plot No. 79/1/A, ‘S’ Block, N.A, R.I, Landewadi, Pimpri Colony, Pimpri-Chinchwad, Maharashtra 411026, India</span>
                         </div>
                         <div class="office-detail">
                             <i class="fas fa-phone"></i>
-                            <span>+91-XXXXXXXXXX</span>
+                            <span>+917378852955</span>
                         </div>
                         <div class="office-detail">
                             <i class="fas fa-envelope"></i>
