@@ -1,19 +1,5 @@
-<script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navbarMenu');
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navbarMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +33,21 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f5f7fa;
             overflow-x: hidden;
+        }
+
+        /* === HEADER STYLES === */
+        .dark-header-container {
+            background: linear-gradient(to bottom, #5a1a1a 0%, #3d0f0f 100%);
+            padding: 25px 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-left {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
         }
 
         /* === HEADER STYLES === */
