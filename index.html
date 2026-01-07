@@ -1550,40 +1550,7 @@
             menu.classList.toggle('active');
         }
 
-        // Slider functionality
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
 
-        function showSlide(index) {
-            if (index >= slides.length) currentSlideIndex = 0;
-            if (index < 0) currentSlideIndex = slides.length - 1;
-            
-            slides.forEach(slide => slide.style.display = 'none');
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[currentSlideIndex].style.display = 'flex';
-            dots[currentSlideIndex].classList.add('active');
-        }
-
-        function moveSlide(direction) {
-            currentSlideIndex += direction;
-            showSlide(currentSlideIndex);
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-        }
-
-        // Auto-advance slides
-        setInterval(() => {
-            currentSlideIndex++;
-            showSlide(currentSlideIndex);
-        }, 5000);
-
-        // Initialize
-        showSlide(currentSlideIndex);
     </script>
 
 
