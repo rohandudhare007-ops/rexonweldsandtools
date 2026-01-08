@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
+     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('navbarMenu');
             menu.classList.toggle('active');
@@ -625,7 +625,6 @@
             }
 
 }
-/* Mobile styles (480px and below) */
 @media (max-width: 480px) {
     .dark-header-container {
         padding: 12px 15px;
@@ -636,18 +635,24 @@
     }
 
     .logo-text {
-        font-size: 14px;
-        letter-spacing: 0.8px;
-        line-height: 1.2;
-    }
+                font-size: 18px;
+                letter-spacing: 0.7px;
+                line-height: 1.1;
+            }
 
-    .tagline {
-        font-size: 10px;
-    }
+            .tagline {
+                font-size: 8px;
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 200px;
+            }
 
-    .logo-image img {
-        height: 35px;
-    }
+            .logo-image img {
+                height: 34px;
+                margin-bottom: 21px;
+            }
 
     .main-nav-wrapper {
         margin: -15px 15px 0 15px;
@@ -778,10 +783,6 @@
     .brand-card p {
         font-size: 12px;
     }
-
-            .office-detail span {
-                font-size: 14px !important;
-            }
 }
     </style>
 </head>
