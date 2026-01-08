@@ -1,4 +1,4 @@
-/* --- GLOBAL COLOR VARIABLES --- */
+dthi/* --- GLOBAL COLOR VARIABLES --- */
 :root {
     --primary-red: #b60000;
     --dark-bg: #1a1a1a;
@@ -561,7 +561,7 @@ body {
     .dark-header-container {
         flex-direction: column;
         gap: 15px;
-        padding: 15px 20px;
+        padding: 25px 30px;
         justify-content: center;
     }
     .header-right {
@@ -578,10 +578,10 @@ body {
         gap: 10px;
     }
     .logo-text {
-        font-size: 20px;
+        font-size: 24px;
     }
     .tagline {
-        font-size: 11px;
+        font-size: 12px;
     }
     .services-title {
         font-size: 36px;
@@ -655,24 +655,24 @@ body {
 
 @media (max-width: 768px) {
     .dark-header-container {
-        padding: 18px 25px;
+        padding: 25px 30px;
     }
 
     .logo {
-        gap: 15px;
+        gap: 20px;
     }
 
     .logo-text {
-        font-size: 20px;
-        letter-spacing: 1.5px;
+        font-size: 24px;
+        letter-spacing: 2px;
     }
 
     .tagline {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .logo-image {
-        height: 50px;
+        height: 60px;
     }
 
     .main-nav-wrapper {
@@ -782,7 +782,7 @@ body {
 
 @media (max-width: 480px) {
     .dark-header-container {
-        padding: 10px 12px;
+        padding: 20px 25px;
     }
 
     .dark-header-container::before {
@@ -790,17 +790,17 @@ body {
     }
 
     .logo {
-        gap: 8px;
+        gap: 12px;
     }
 
     .logo-text {
-        font-size: 11px;
-        letter-spacing: 0.5px;
-        line-height: 1.1;
+        font-size: 16px;
+        letter-spacing: 1px;
+        line-height: 1.2;
     }
 
     .tagline {
-        font-size: 8px;
+        font-size: 10px;
         display: block;
         white-space: nowrap;
         overflow: hidden;
@@ -809,7 +809,7 @@ body {
     }
 
     .logo-image {
-        height: 30px;
+        height: 40px;
     }
 
     .main-nav-wrapper {
