@@ -54,10 +54,29 @@
                 <h3>Request Product Information</h3>
                 <div class="btn-group">
                     <a href="mailto:info@kpt.co.in?subject=KPT11DHN Inquiry" class="btn">Email Us</a>
-                    <a href="https://wa.me/?text=Inquiry about KPT KPT11DHN" class="btn">WhatsApp</a>
+                    <a id="whatsappBtn" href="#" target="_blank" class="btn">WhatsApp</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const whatsappNumber = "917378852955";
+        const productName = "KPT 11kg Demolition Hammer (Model: KPT11DHN)";
+        const pageUrl = window.location.href;
+
+        // WhatsApp Inquiry with product info and URL
+        const whatsappMessage = encodeURIComponent(
+            `Hello, I am interested in this product:\n\n` +
+            `${productName}\n\n` +
+            `Specifications:\n` +
+            `• Power: 1500W\n` +
+            `• Impact Energy: 6-25 Joule\n` +
+            `• Impact Rate: 1000-2250 bpm\n\n` +
+            `Product Link: ${pageUrl}\n\n`
+        );
+
+        document.getElementById('whatsappBtn').href = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+    </script>
 </body>
 </html>

@@ -2509,135 +2509,167 @@
         // --- KPT CATEGORY FILTERING & INQUIRY FUNCTIONS ---
 
         function closeInquiryOptions() {
+    const options = document.querySelector('.inquire-options');
+    if (options) {
+        options.style.display = 'none';
+    }
+}
+
+function setupInquiryButtons() {
+    // Create the global inquiry modal if it doesn't exist
+    if (!document.querySelector('.inquire-options')) {
+        const modalHtml = `
+            <div class="inquire-options">
+                <button class="close-btn" onclick="closeInquiryOptions()">&times;</button>
+                <div class="inquire-header">Choose Inquiry Method</div>
+                <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                </a>
+                <a id="email-link" href="#" class="btn btn-email">
+                    <i class="fas fa-envelope"></i> Email Inquiry
+                </a>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    const inquireButtons = document.querySelectorAll('.inquire-btn');
+
+    inquireButtons.forEach(button => {
+        const productName = button.getAttribute('data-product-name');
+        
+        // Find the parent product card
+        const productCard = button.closest('.product-card');
+        
+        // Extract product information from the card
+        let productCategory = '';
+        let productDescription = '';
+        
+        if (productCard) {
+            const categoryElement = productCard.querySelector('.product-category');
+            const descriptionElement = productCard.querySelector('.product-description');
+            
+            productCategory = categoryElement ? categoryElement.textContent.trim() : '';
+            productDescription = descriptionElement ? descriptionElement.textContent.trim() : '';
+        }
+        
+        // Get current page URL
+        const pageUrl = window.location.href;
+        
+        // Create enhanced WhatsApp message
+        let whatsappMessage = `Hello, I am interested in this product:\n\n${productName}`;
+        
+        if (productDescription) {
+            whatsappMessage += `\n\nSpecifications:\n${productDescription}`;
+        }
+        
+        if (productCategory) {
+            whatsappMessage += `\n\nCategory: ${productCategory}`;
+        }
+        
+        whatsappMessage += `\n\nProduct Link: ${pageUrl}\n\nPlease provide pricing and availability details.`;
+        
+        const whatsappLink = `https://wa.me/917378852955?text=${encodeURIComponent(whatsappMessage)}`;
+        
+        // Email link with enhanced details
+        const emailBody = `I am interested in learning more about the KPT ${productName}.\n\nProduct Details:\n${productDescription}\n\nCategory: ${productCategory}\n\nProduct Link: ${pageUrl}\n\nPlease provide price and availability.`;
+        const emailLink = `mailto:sales@rexonweldsandtools.in?subject=Inquiry for KPT Product: ${productName}&body=${encodeURIComponent(emailBody)}`;
+
+        // Add event listener to show the modal and update links
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
             const options = document.querySelector('.inquire-options');
-            if (options) {
-                options.style.display = 'none';
-            }
-        }
-
-        function setupInquiryButtons() {
-            // Create the global inquiry modal if it doesn't exist
-            if (!document.querySelector('.inquire-options')) {
-                const modalHtml = `
-                    <div class="inquire-options">
-                        <button class="close-btn" onclick="closeInquiryOptions()">&times;</button>
-                        <div class="inquire-header">Choose Inquiry Method</div>
-                        <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
-                        </a>
-                        <a id="email-link" href="#" class="btn btn-email">
-                            <i class="fas fa-envelope"></i> Email Inquiry
-                        </a>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', modalHtml);
-            }
-
-            const inquireButtons = document.querySelectorAll('.inquire-btn');
-
-            inquireButtons.forEach(button => {
-                const productName = button.getAttribute('data-product-name');
-                
-                // Define URLs
-                const whatsappLink = `https://wa.me/917378852955?text=Hello, I am interested in KPT product: ${productName}`;
-                const emailLink = `mailto:sales@rexonweldsandtools.in?subject=Inquiry for KPT Product: ${productName}&body=I am interested in learning more about the KPT ${productName}. Please provide price and availability.`;
-
-                // Add event listener to show the modal and update links
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const options = document.querySelector('.inquire-options');
-                    const whatsappBtn = document.getElementById('whatsapp-link');
-                    const emailBtn = document.getElementById('email-link');
-                    
-                    whatsappBtn.href = whatsappLink;
-                    emailBtn.href = emailLink;
-                    
-                    // Show the modal
-                    options.style.display = 'flex';
-                });
-            });
-
-            // Ensure modal disappears if clicking elsewhere on the window
-            document.addEventListener('click', (e) => {
-                const options = document.querySelector('.inquire-options');
-                const modal = e.target.closest('.inquire-options');
-                if (options && options.style.display === 'flex' && !modal) {
-                    options.style.display = 'none';
-                }
-            });
-        }
-
-        function generateCategoryFilters() {
-            const products = document.querySelectorAll('#productsGrid .product-card');
-            const categories = new Set();
+            const whatsappBtn = document.getElementById('whatsapp-link');
+            const emailBtn = document.getElementById('email-link');
             
-            products.forEach(card => {
-                categories.add(card.getAttribute('data-category'));
-            });
-
-            const categoryArray = ['All', ...Array.from(categories).sort()];
-            const filterContainer = document.getElementById('categoryFilterButtons');
+            whatsappBtn.href = whatsappLink;
+            emailBtn.href = emailLink;
             
-            filterContainer.innerHTML = ''; 
-
-            categoryArray.forEach(category => {
-                const button = document.createElement('button');
-                button.classList.add('btn', 'category-btn');
-                button.textContent = category.toUpperCase();
-                button.setAttribute('data-filter', category);
-                
-                if (category === 'All') {
-                    button.classList.add('active');
-                }
-                
-                button.addEventListener('click', () => {
-                    filterByCategory(category);
-                    // Update active button state
-                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                });
-                
-                filterContainer.appendChild(button);
-            });
-        }
-
-        function filterByCategory(selectedCategory) {
-            const products = document.querySelectorAll('#productsGrid .product-card');
-            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
-            
-            products.forEach(card => {
-                const productCategory = card.getAttribute('data-category');
-                const title = card.getAttribute('data-title').toLowerCase();
-                const description = card.getAttribute('data-description').toLowerCase();
-                
-                const categoryMatch = selectedCategory === 'All' || productCategory === selectedCategory;
-                const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
-                
-                if (categoryMatch && searchMatch) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Function to handle search filtering (combined with category)
-        function filterProducts() {
-            // Determine the currently active category filter
-            const activeCategoryButton = document.querySelector('.category-btn.active');
-            const selectedCategory = activeCategoryButton ? activeCategoryButton.getAttribute('data-filter') : 'All';
-            filterByCategory(selectedCategory);
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            generateCategoryFilters();
-            setupInquiryButtons();
-            // Run filterProducts on load to ensure initial "All" is active and visible
-            filterProducts();
+            // Show the modal
+            options.style.display = 'flex';
         });
-    </script>
+    });
 
+    // Ensure modal disappears if clicking elsewhere on the window
+    document.addEventListener('click', (e) => {
+        const options = document.querySelector('.inquire-options');
+        const modal = e.target.closest('.inquire-options');
+        if (options && options.style.display === 'flex' && !modal) {
+            options.style.display = 'none';
+        }
+    });
+}
+
+function generateCategoryFilters() {
+    const products = document.querySelectorAll('#productsGrid .product-card');
+    const categories = new Set();
+    
+    products.forEach(card => {
+        categories.add(card.getAttribute('data-category'));
+    });
+
+    const categoryArray = ['All', ...Array.from(categories).sort()];
+    const filterContainer = document.getElementById('categoryFilterButtons');
+    
+    filterContainer.innerHTML = ''; 
+
+    categoryArray.forEach(category => {
+        const button = document.createElement('button');
+        button.classList.add('btn', 'category-btn');
+        button.textContent = category.toUpperCase();
+        button.setAttribute('data-filter', category);
+        
+        if (category === 'All') {
+            button.classList.add('active');
+        }
+        
+        button.addEventListener('click', () => {
+            filterByCategory(category);
+            // Update active button state
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+        
+        filterContainer.appendChild(button);
+    });
+}
+
+function filterByCategory(selectedCategory) {
+    const products = document.querySelectorAll('#productsGrid .product-card');
+    const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+    
+    products.forEach(card => {
+        const productCategory = card.getAttribute('data-category');
+        const title = card.getAttribute('data-title').toLowerCase();
+        const description = card.getAttribute('data-description').toLowerCase();
+        
+        const categoryMatch = selectedCategory === 'All' || productCategory === selectedCategory;
+        const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
+        
+        if (categoryMatch && searchMatch) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Function to handle search filtering (combined with category)
+function filterProducts() {
+    // Determine the currently active category filter
+    const activeCategoryButton = document.querySelector('.category-btn.active');
+    const selectedCategory = activeCategoryButton ? activeCategoryButton.getAttribute('data-filter') : 'All';
+    filterByCategory(selectedCategory);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    generateCategoryFilters();
+    setupInquiryButtons();
+    // Run filterProducts on load to ensure initial "All" is active and visible
+    filterProducts();
+});
+    </script>
      <!-- FOOTER SECTION -->
     <footer class="footer-container">
         <!-- Left Section - Content -->
