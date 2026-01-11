@@ -1,28 +1,13 @@
-
-<script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navbarMenu');
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navbarMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rexon Welds And Tools - Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* === RESET & BASE === */
         * {
@@ -59,10 +44,10 @@
             flex-shrink: 0;
         }
 
-     .logo-image img {
+        .logo-image img {
             height: 65px;
             width: auto;
-             margin-bottom: 5px;
+            margin-bottom: 5px;
             display: block;
         }
 
@@ -93,17 +78,14 @@
             opacity: 0.9;
         }
 
-         /* === NAVIGATION STYLES === */
+        /* === NAVIGATION STYLES === */
         .main-nav-wrapper {
             background: #ffffff;
             border-bottom: none;
-            position: sticky;
-            top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             border-radius: 50px;
             margin: -15px 60px 0 60px;
-            position: relative;
         }
 
         .navbar-container {
@@ -196,7 +178,58 @@
             cursor: pointer;
             padding: 5px;
         }
-        
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 280px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border-top: 3px solid #dc143c;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 14px 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background-color: #561823;
+            color: #fff;
+            padding-left: 25px;
+        }
+
         /* ==== SLIDER SECTION ==== */
         .slider {
             position: relative;
@@ -460,720 +493,7 @@
             color: #4a5568;
         }
 
-/* === RESPONSIVE STYLES === */
-        
-        /* Tablet styles (768px and below) */
-        @media (max-width: 768px) {
-            .dark-header-container {
-                padding: 18px 25px;
-            }
-
-            .logo {
-                gap: 15px;
-            }
-
-            .logo-text {
-                font-size: 20px;
-                letter-spacing: 1.5px;
-                line-height: 1.2;
-            }
-
-            .tagline {
-                font-size: 12px;
-            }
-
-            .logo-image img {
-                height: 50px;
-            }
-
-            .main-nav-wrapper {
-                margin: -25px 25px 0 25px;
-                border-radius: 40px;
-            }
-
-            .navbar-container {
-                padding: 0 25px;
-                min-height: 60px;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-                order: -1;
-            }
-
-            .navbar-menu {
-                position: fixed;
-                top: 130px;
-                left: -100%;
-                width: calc(100% - 50px);
-                margin: 0 25px;
-                background: white;
-                flex-direction: column;
-                gap: 0;
-                padding: 20px 0;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-                transition: left 0.3s ease;
-                border-radius: 20px;
-            }
-
-            .navbar-menu.active {
-                left: 0;
-            }
-
-            .menu-item {
-                padding: 15px 25px;
-                width: 100%;
-                text-align: left;
-                font-size: 14px;
-            }
-
-            .menu-item.active::after {
-                bottom: 10px;
-            }
-
-            .navbar-icons-group {
-                margin-left: auto;
-            }
-
-            .social-icons {
-                gap: 10px;
-            }
-
-            .social-circle {
-                width: 36px;
-                height: 36px;
-                font-size: 14px;
-            }
-
-            .slide {
-                padding: 0 30px;
-                justify-content: center;
-            }
-
-            .content-box {
-                padding: 35px 25px;
-                max-width: 100%;
-            }
-
-            .content-box h1 {
-                font-size: 28px;
-            }
-
-            .content-box h2 {
-                font-size: 20px;
-            }
-
-            .content-box p {
-                font-size: 15px;
-            }
-
-            .slider-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .slider-nav.prev { left: 15px; }
-            .slider-nav.next { right: 15px; }
-
-            .services-section {
-                padding: 60px 30px 20px 30px;
-            }
-
-            .services-title {
-                font-size: 32px;
-            }
-
-            .brand-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-                width: 95%;
-            }
-
-            .brand-card:nth-child(1),
-            .brand-card:nth-child(2),
-            .brand-card:nth-child(3),
-            .brand-card:nth-child(4),
-            .brand-card:nth-child(5) {
-                grid-column: auto;
-                grid-row: auto;
-            }
-
-            .brand-card {
-                padding: 30px 20px;
-            }
-
-            .brand-card img {
-                width: 100px;
-            }
-        }
-
-        /* Mobile styles (480px and below) */
-        
-@media (max-width: 480px) {
-   .dark-header-container {
-    padding: 25px 60px;
-}
-.header-left {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-.logo {
-    gap: 8px;
-}
-
- .logo-text {
-                font-size: 18px;
-                letter-spacing: 0.7px;
-                line-height: 1.1;
-            }
-
-            .tagline {
-                font-size: 8px;
-                display: block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 200px;
-            }
-
-            .logo-image img {
-                height: 34px;
-                margin-bottom: 21px;
-            }
-
-.main-nav-wrapper {
-    margin: -12px 12px 0 12px;
-    border-radius: 25px;
-}
-
-.navbar-container {
-    padding: 0 12px;
-    min-height: 45px;
-}
-
-    .navbar-menu {
-        top: 105px;
-        width: calc(100% - 30px);
-        margin: 0 15px;
-    }
-
-    .social-circle {
-        width: 32px;
-        height: 32px;
-        font-size: 12px;
-    }
-
-    .slider {
-        height: 60vh;
-        min-height: 350px;
-    }
-
-    .slide {
-        padding: 0 15px;
-    }
-
-    .content-box {
-        padding: 20px 18px;
-        max-width: 90%;
-    }
-
-    .content-box h1 {
-        font-size: 20px;
-    }
-
-    .content-box h2 {
-        font-size: 16px;
-        margin-bottom: 12px;
-    }
-
-    .content-box p {
-        font-size: 13px;
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-
-    .slider-nav {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-
-    .slider-nav.prev { left: 8px; }
-    .slider-nav.next { right: 8px; }
-
-    .slider-dots {
-        bottom: 15px;
-        gap: 6px;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-    }
-
-    .dot.active {
-        width: 24px;
-    }
-
-    .services-section {
-        padding: 40px 15px 15px 15px;
-    }
-
-    .services-subtitle {
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
-
-    .services-title {
-        font-size: 22px;
-    }
-
-    .brand-section {
-        padding: 15px 0 35px 0;
-    }
-
-    .brand-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    width: 92%;
-}
-
-.brand-card:nth-child(1) {
-    grid-column: 1 / 3;
-}
-
-.brand-card:nth-child(2) {
-    grid-column: 3 / 5;
-}
-
-.brand-card:nth-child(3) {
-    grid-column: 1 / 3;
-}
-
-.brand-card:nth-child(4) {
-    grid-column: 3 / 5;
-}
-
-.brand-card:nth-child(5) {
-    grid-column: 2 / 4;
-}
-    .brand-card {
-        aspect-ratio: 1 / 1;
-        padding: 20px 15px;
-    }
-
-    .brand-card img {
-        width: 90px;
-        margin-bottom: 10px;
-    }
-
-    .brand-card h3 {
-        font-size: 18px;
-        margin: 8px 0 4px;
-    }
-
-    .brand-card p {
-        font-size: 12px;
-    }
-}/* Mobile styles (480px and below) */
-@media (max-width: 480px) {
-    .dark-header-container {
-        padding: 12px 15px;
-    }
-
-    .logo {
-        gap: 10px;
-    }
-
-    .logo-text {
-        font-size: 14px;
-        letter-spacing: 0.8px;
-        line-height: 1.2;
-    }
-
-    .tagline {
-        font-size: 10px;
-    }
-
-    .logo-image img {
-        height: 35px;
-    }
-
-    .main-nav-wrapper {
-        margin: -15px 15px 0 15px;
-        border-radius: 25px;
-    }
-
-    .navbar-container {
-        padding: 0 15px;
-        min-height: 50px;
-    }
-
-    .navbar-menu {
-        top: 105px;
-        width: calc(100% - 30px);
-        margin: 0 15px;
-    }
-
-    .social-circle {
-        width: 32px;
-        height: 32px;
-        font-size: 12px;
-    }
-
-    .slider {
-        height: 60vh;
-        min-height: 350px;
-    }
-
-    .slide {
-        padding: 0 15px;
-    }
-
-    .content-box {
-        padding: 20px 18px;
-        max-width: 90%;
-    }
-
-    .content-box h1 {
-        font-size: 20px;
-    }
-
-    .content-box h2 {
-        font-size: 16px;
-        margin-bottom: 12px;
-    }
-
-    .content-box p {
-        font-size: 13px;
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-
-    .slider-nav {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-
-    .slider-nav.prev { left: 8px; }
-    .slider-nav.next { right: 8px; }
-
-    .slider-dots {
-        bottom: 15px;
-        gap: 6px;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-    }
-
-    .dot.active {
-        width: 24px;
-    }
-
-    .services-section {
-        padding: 40px 15px 15px 15px;
-    }
-
-    .services-subtitle {
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
-
-    .services-title {
-        font-size: 22px;
-    }
-
-    .brand-section {
-        padding: 15px 0 35px 0;
-    }
-
-    .brand-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        width: 92%;
-    }
-
-    .brand-card:nth-child(1),
-    .brand-card:nth-child(2),
-    .brand-card:nth-child(3),
-    .brand-card:nth-child(4),
-    .brand-card:nth-child(5) {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-    .brand-card {
-        aspect-ratio: 1 / 1;
-        padding: 20px 15px;
-    }
-
-    .brand-card img {
-        width: 90px;
-        margin-bottom: 10px;
-    }
-
-    .brand-card h3 {
-        font-size: 18px;
-        margin: 8px 0 4px;
-    }
-
-    .brand-card p {
-        font-size: 12px;
-    }
-}
-    </style>
-</head>
-<body>
-
-     <header class="dark-header-container">
-        <div class="header-left">
-            <div class="logo">
-                <div class="logo-image">
-                  <a href="index.html">
-    <img src="images/LOGO.png" alt="Rexon Logo">
-               </a>
-              </div>
-                <div class="logo-text-group">
-                    <span class="logo-text"> WELDS AND TOOLS</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="main-nav-wrapper">
-        <nav class="navbar-container">
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <div class="navbar-menu" id="navbarMenu">
-    <a href="index.html" class="menu-item active">HOME <i class="fas fa-chevron-down"></i></a>
-    <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
-    
-    <!-- Products Dropdown -->
-    <div class="dropdown">
-        <a href="#" class="menu-item" onclick="toggleDropdown(event)">PRODUCTS <i class="fas fa-chevron-down"></i></a>
-        <div class="dropdown-menu">
-           <a href="products-kpt.html" class="dropdown-item">KPT</a>
-                        <a href="products-dewalt.html" class="dropdown-item">Dewalt</a>
-                        <a href="products-bosch.html" class="dropdown-item">Bosch</a>
-                        <a href="products-aps.html" class="dropdown-item">APS</a>
-                        <a href="products-forte.html" class="dropdown-item">Forte</a>
-                        <a href="products-lasercuttingcnc.html" class="dropdown-item">Laser Cutting CNC</a>
-                         <a href="products-laserwelding.html" class="dropdown-item">Laser Welding</a>
-                        <a href="products-weldingconsumables.html" class="dropdown-item">Welding Consumables</a>
-        </div>
-    </div>
-    
-    <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
-</div>
-<script>
-    function toggleDropdown(event) {
-        if (window.innerWidth <= 768) {
-            event.preventDefault();
-            const dropdown = event.target.closest('.dropdown');
-            dropdown.classList.toggle('active');
-        }
-    }
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
-            if (!dropdown.contains(event.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-    });
-</script>
-<style>
-    /* Dropdown Styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    min-width: 280px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    border-top: 3px solid #dc143c;
-}
-
-.dropdown:hover .dropdown-menu,
-.dropdown.active .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-item {
-    display: block;
-    padding: 14px 20px;
-    color: #333;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.dropdown-item:last-child {
-    border-bottom: none;
-}
-
-.dropdown-item:hover {
-    background-color: #561823;
-    color: #fff;
-    padding-left: 25px;
-}
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block;
-        order: -1;
-    }
-
-    .navbar-menu {
-        position: fixed;
-        top: 130px;
-        left: -100%;
-        width: calc(100% - 50px);
-        margin: 0 25px;
-        background: white;
-        flex-direction: column;
-        gap: 0;
-        padding: 20px 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        transition: left 0.3s ease;
-        border-radius: 20px;
-    }
-
-    .navbar-menu.active {
-        left: 0;
-    }
-
-    .menu-item {
-        padding: 15px 25px;
-        width: 100%;
-        text-align: left;
-        font-size: 14px;
-    }
-
-    .menu-item.active::after {
-        bottom: 10px;
-    }
-
-    /* DROPDOWN MOBILE FIX */
-    .dropdown {
-        width: 100%;
-    }
-
-    .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        background-color: #f5f5f5;
-        display: none;
-        border-top: none;
-        min-width: 100%;
-    }
-
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
-
-    .dropdown-item {
-        color: #1a1a1a;
-        padding: 12px 25px 12px 45px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1.2px;
-        border-bottom: 1px solid #e5e5e5;
-    }
-
-    .dropdown-item:last-child {
-        border-bottom: none;
-    }
-
-    .dropdown-item:hover {
-        background-color: #561823;
-        color: #fff;
-        padding-left: 50px;
-    }
-</style>
-            <div class="navbar-icons-group">
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle"><i class="fab fa-linkedin"></i></a>         
-                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </nav>
-    </div>
-</body>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPT KPT7DHN - 7 Kg Demolition Hammer | Professional Power Tool</title>
-    
-    <!-- Open Graph Meta Tags for WhatsApp Preview -->
-    <meta property="og:title" content="KPT 7 Kg Demolition Hammer - KPT7DHN">
-    <meta property="og:description" content="Professional Demolition Hammer - 1400W Power, 18J Impact Energy, 3800 ipm. Includes Point & Flat Chisel. Contact for price and availability.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=KPT+KPT7DHN+Demolition+Hammer">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://yourwebsite.com/products/kpt7dhn">
-    <meta property="og:type" content="product">
-    <meta property="og:site_name" content="Rexon Welds and Tools">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="KPT 7 Kg Demolition Hammer - KPT7DHN">
-    <meta name="twitter:description" content="Professional Demolition Hammer - 1400W Power, 18J Impact Energy, 3800 ipm">
-    <meta name="twitter:image" content="https://via.placeholder.com/1200x630?text=KPT+KPT7DHN+Demolition+Hammer">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #1a1a1a;
-        }
-        
+        /* === PRODUCT SECTION === */
         .product-section {
             max-width: 1000px;
             margin: 20px auto;
@@ -1204,7 +524,7 @@
             padding: 30px;
         }
         
-        h1 {
+        .product-content h1 {
             color: #b60000;
             font-size: 28px;
             margin-bottom: 10px;
@@ -1326,155 +646,19 @@
             background: #1da851;
             transform: translateY(-2px);
         }
-        
+
+        .btn-email {
+            background: #ffffff;
+            color: #b60000;
+            border: 2px solid #ffffff;
+        }
+
         .btn-email:hover {
             background: #f0f0f0;
             transform: translateY(-2px);
         }
-        
-        @media (max-width: 768px) {
-            .product-section {
-                margin: 10px;
-            }
-            
-            .product-content {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            .features {
-                gap: 10px;
-            }
-            
-            .feature-tag {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        .btn-email {
-    background: #ffffff;     /* visible box */
-    color: #b60000;          /* text color */
-    border: 2px solid #ffffff;
-}
 
-.btn-email:hover {
-    background: #f0f0f0;     /* hover effect */
-    transform: translateY(-2px);
-}
-
-    </style>
-</head>
-<body>
-    <div class="product-section">
-        <div class="image-container">
-            <img src="../images/KPT/KPT7DHN.png" alt="KPT KPT7DHN Demolition Hammer" class="product-image">
-        </div>
-        <div class="product-content">
-            <h1>KPT 7 Kg Demolition Hammer</h1>
-            <p class="model">Model: KPT7DHN | Professional Power Tool</p>
-            
-            <div class="features">
-                <span class="feature-tag">1400W Power Input</span>
-                <span class="feature-tag">18J Impact Energy</span>
-                <span class="feature-tag">35mm Cylinder</span>
-            </div>
-            
-            <table class="specs-table">
-                <thead>
-                    <tr>
-                        <th>Specification</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Power Input</td>
-                        <td>1400 W</td>
-                    </tr>
-                    <tr>
-                        <td>Voltage / Frequency</td>
-                        <td>230 V / 50 Hz</td>
-                    </tr>
-                    <tr>
-                        <td>Impact Per Minute</td>
-                        <td>3800 ipm</td>
-                    </tr>
-                    <tr>
-                        <td>Impact Energy Per Stroke</td>
-                        <td>18 J</td>
-                    </tr>
-                    <tr>
-                        <td>Weight</td>
-                        <td>6.5 Kg</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="accessories">
-                <h3>Included Accessories</h3>
-                <ul>
-                    <li>1pc 17x260mm Point Chisel</li>
-                    <li>1pc 17x260mm Flat Chisel</li>
-                </ul>
-            </div>
-            
-            <div class="cta-section">
-                <h3>Request Product Information</h3>
-                <div class="btn-group">
-                    <a id="whatsappBtn" href="#" target="_blank" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
-                    </a>
-                    <a href="mailto:sales@rexonweldsandtools.in?subject=Inquiry for KPT Product: KPT7DHN&body=I am interested in learning more about the KPT 7 Kg Demolition Hammer (Model: KPT7DHN). d availability." class="btn btn-email">
-                        <i class="fas fa-envelope"></i> Email Inquiry
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const whatsappNumber = "917378852955";
-        const productName = "KPT 7 Kg Demolition Hammer (Model: KPT7DHN)";
-        const pageUrl = window.location.href;
-        
-        // WhatsApp Inquiry with product info and URL
-        const whatsappMessage = encodeURIComponent(
-            `Hello, I am interested in this product:\n\n` +
-            `${productName}\n\n` +
-            `Specifications:\n` +
-            `• Power: 1400W\n` +
-            `• Impact Energy: 18J\n` +
-            `• Impact Rate: 3800 ipm\n` +
-            `• Weight: 6.5 Kg\n\n` +
-            `Product Link: ${pageUrl}\n\n` 
-        );
-        
-        document.getElementById('whatsappBtn').href = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-    </script>
- <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f5f5;
-        }
-
+        /* === FOOTER STYLES === */
         .footer-container {
             display: flex;
             width: 100%;
@@ -1482,7 +666,6 @@
             position: relative;
         }
 
-        /* Left Section - Dark Content Panel */
         .footer-left {
             width: 40%;
             background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
@@ -1495,6 +678,11 @@
 
         .brand-logo {
             margin-bottom: 50px;
+        }
+
+        .brand-logo img {
+            max-width: 250px;
+            height: auto;
         }
 
         .brand-logo h2 {
@@ -1554,7 +742,6 @@
             stroke-width: 2;
         }
 
-        /* Newsletter Section */
         .newsletter-section {
             margin-top: 35px;
             padding-top: 35px;
@@ -1639,7 +826,6 @@
             color: #fff;
         }
 
-        /* Social Media */
         .social-media {
             display: flex;
             gap: 16px;
@@ -1664,7 +850,6 @@
             color: #fff;
         }
 
-        /* Right Section - Image Area */
         .footer-right {
             width: 60%;
             position: relative;
@@ -1733,22 +918,202 @@
             mix-blend-mode: overlay;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .footer-left {
-                padding: 60px 70px;
+        /* === RESPONSIVE STYLES === */
+        @media (max-width: 768px) {
+            .dark-header-container {
+                padding: 18px 25px;
             }
 
-            .footer-content {
-                gap: 70px;
+            .logo {
+                gap: 15px;
             }
 
-            .brand-logo h2 {
+            .logo-text {
+                font-size: 20px;
+                letter-spacing: 1.5px;
+                line-height: 1.2;
+            }
+
+            .tagline {
+                font-size: 12px;
+            }
+
+            .logo-image img {
+                height: 50px;
+            }
+
+            .main-nav-wrapper {
+                margin: -25px 25px 0 25px;
+                border-radius: 40px;
+            }
+
+            .navbar-container {
+                padding: 0 25px;
+                min-height: 60px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                order: -1;
+            }
+
+            .navbar-menu {
+                position: fixed;
+                top: 130px;
+                left: -100%;
+                width: calc(100% - 50px);
+                margin: 0 25px;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px 0;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+                transition: left 0.3s ease;
+                border-radius: 20px;
+            }
+
+            .navbar-menu.active {
+                left: 0;
+            }
+
+            .menu-item {
+                padding: 15px 25px;
+                width: 100%;
+                text-align: left;
+                font-size: 14px;
+            }
+
+            .menu-item.active::after {
+                bottom: 10px;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: #f5f5f5;
+                display: none;
+                border-top: none;
+                min-width: 100%;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-item {
+                color: #1a1a1a;
+                padding: 12px 25px 12px 45px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: 1.2px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .dropdown-item:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-item:hover {
+                background-color: #561823;
+                color: #fff;
+                padding-left: 50px;
+            }
+
+            .navbar-icons-group {
+                margin-left: auto;
+            }
+
+            .social-icons {
+                gap: 10px;
+            }
+
+            .social-circle {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            .slide {
+                padding: 0 30px;
+                justify-content: center;
+            }
+
+            .content-box {
+                padding: 35px 25px;
+                max-width: 100%;
+            }
+
+            .content-box h1 {
                 font-size: 28px;
             }
-        }
 
-        @media (max-width: 968px) {
+            .content-box h2 {
+                font-size: 20px;
+            }
+
+            .content-box p {
+                font-size: 15px;
+            }
+
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .slider-nav.prev { left: 15px; }
+            .slider-nav.next { right: 15px; }
+
+            .services-section {
+                padding: 60px 30px 20px 30px;
+            }
+
+            .services-title {
+                font-size: 32px;
+            }
+
+            .brand-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                width: 95%;
+            }
+
+            .brand-card:nth-child(1),
+            .brand-card:nth-child(2),
+            .brand-card:nth-child(3),
+            .brand-card:nth-child(4),
+            .brand-card:nth-child(5) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .brand-card {
+                padding: 30px 20px;
+            }
+
+            .brand-card img {
+                width: 100px;
+            }
+
+            .product-section {
+                margin: 10px;
+            }
+            
+            .product-content {
+                padding: 20px;
+            }
+            
+            .product-content h1 {
+                font-size: 24px;
+            }
+
             .footer-container {
                 flex-direction: column;
                 min-height: auto;
@@ -1792,7 +1157,195 @@
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 480px) {
+          @media (max-width: 480px) {
+    .dark-header-container {
+        padding: 12px 15px;
+    }
+
+    .logo {
+        gap: 10px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+        letter-spacing: 0.7px;
+        line-height: 1.1;
+    }
+
+    .tagline {
+        font-size: 8px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+
+    .logo-image img {
+        height: 34px;
+        margin-bottom: 21px;
+    }
+
+    .main-nav-wrapper {
+        margin: -15px 15px 0 15px;
+        border-radius: 25px;
+    }
+
+    .navbar-container {
+        padding: 0 15px;
+        min-height: 50px;
+    }
+
+    .navbar-menu {
+        top: 105px;
+        width: calc(100% - 30px);
+        margin: 0 15px;
+    }
+            .social-circle {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+
+            .slider {
+                height: 60vh;
+                min-height: 350px;
+            }
+
+            .slide {
+                padding: 0 15px;
+            }
+
+            .content-box {
+                padding: 20px 18px;
+                max-width: 90%;
+            }
+
+            .content-box h1 {
+                font-size: 20px;
+            }
+
+            .content-box h2 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .content-box p {
+                font-size: 13px;
+                margin-bottom: 15px;
+                line-height: 1.4;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .slider-nav {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+
+            .slider-nav.prev { left: 8px; }
+            .slider-nav.next { right: 8px; }
+
+            .slider-dots {
+                bottom: 15px;
+                gap: 6px;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .dot.active {
+                width: 24px;
+            }
+
+            .services-section {
+                padding: 40px 15px 15px 15px;
+            }
+
+            .services-subtitle {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .services-title {
+                font-size: 22px;
+            }
+
+            .brand-section {
+                padding: 15px 0 35px 0;
+            }
+
+            .brand-container {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                width: 92%;
+            }
+
+            .brand-card:nth-child(1) {
+                grid-column: 1 / 3;
+            }
+
+            .brand-card:nth-child(2) {
+                grid-column: 3 / 5;
+            }
+
+            .brand-card:nth-child(3) {
+                grid-column: 1 / 3;
+            }
+
+            .brand-card:nth-child(4) {
+                grid-column: 3 / 5;
+            }
+
+            .brand-card:nth-child(5) {
+                grid-column: 2 / 4;
+            }
+
+            .brand-card {
+                aspect-ratio: 1 / 1;
+                padding: 20px 15px;
+            }
+
+            .brand-card img {
+                width: 90px;
+                margin-bottom: 10px;
+            }
+
+            .brand-card h3 {
+                font-size: 18px;
+                margin: 8px 0 4px;
+            }
+
+            .brand-card p {
+                font-size: 12px;
+            }
+
+            .product-content h1 {
+                font-size: 20px;
+            }
+
+            .feature-tag {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
             .footer-container {
                 min-height: auto;
             }
@@ -1892,110 +1445,143 @@
                 height: 11px;
             }
         }
-
-        @media (max-width: 480px) {
-            .footer-left {
-                padding: 28px 20px;
-            }
-
-            .brand-logo {
-                margin-bottom: 28px;
-            }
-
-            .brand-logo h2 {
-                font-size: 19px;
-            }
-
-            .footer-content {
-                gap: 26px;
-            }
-
-            .footer-column h3 {
-                font-size: 12px;
-                margin-bottom: 14px;
-            }
-
-            .footer-column ul li {
-                margin-bottom: 10px;
-            }
-
-            .footer-column ul li a {
-                font-size: 12px;
-            }
-
-            .newsletter-section {
-                margin-top: 26px;
-                padding-top: 26px;
-            }
-
-            .newsletter-section h3 {
-                font-size: 15px;
-                margin-bottom: 8px;
-            }
-
-            .newsletter-section p {
-                font-size: 11px;
-                margin-bottom: 16px;
-            }
-
-            .checkbox-label {
-                font-size: 11px;
-            }
-
-            .checkbox-label input[type="checkbox"] {
-                width: 15px;
-                height: 15px;
-            }
-
-            .email-input-group input {
-                padding: 11px 14px;
-                font-size: 12px;
-            }
-
-            .subscribe-btn {
-                font-size: 12px;
-                padding: 11px;
-            }
-
-            .social-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 13px;
-            }
-
-            .footer-right {
-                min-height: 28vh;
-            }
-
-            .external-icon {
-                width: 10px;
-                height: 10px;
-            }
-        }
     </style>
 </head>
 <body>
-   <footer class="footer-container">
+    <header class="dark-header-container">
+        <div class="header-left">
+            <div class="logo">
+                <div class="logo-image">
+                    <a href="index.html">
+                        <img src="images/LOGO.png" alt="Rexon Logo">
+                    </a>
+                </div>
+                <div class="logo-text-group">
+                    <span class="logo-text">WELDS AND TOOLS</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-nav-wrapper">
+        <nav class="navbar-container">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-menu" id="navbarMenu">
+                <a href="index.html" class="menu-item active">HOME <i class="fas fa-chevron-down"></i></a>
+                <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
+                
+                <div class="dropdown">
+                    <a href="#" class="menu-item" onclick="toggleDropdown(event)">PRODUCTS <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="products-kpt.html" class="dropdown-item">KPT</a>
+                        <a href="products-dewalt.html" class="dropdown-item">Dewalt</a>
+                        <a href="products-bosch.html" class="dropdown-item">Bosch</a>
+                        <a href="products-aps.html" class="dropdown-item">APS</a>
+                        <a href="products-forte.html" class="dropdown-item">Forte</a>
+                        <a href="products-lasercuttingcnc.html" class="dropdown-item">Laser Cutting CNC</a>
+                        <a href="products-laserwelding.html" class="dropdown-item">Laser Welding</a>
+                        <a href="products-weldingconsumables.html" class="dropdown-item">Welding Consumables</a>
+                    </div>
+                </div>
+                
+                <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
+            </div>
+
+            <div class="navbar-icons-group">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle"><i class="fab fa-linkedin"></i></a>         
+                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="product-section">
+        <div class="image-container">
+            <img src="../images/KPT/KPT7DHN.png" alt="KPT KPT7DHN Demolition Hammer" class="product-image">
+        </div>
+        <div class="product-content">
+            <h1>KPT 7 Kg Demolition Hammer</h1>
+            <p class="model">Model: KPT7DHN | Professional Power Tool</p>
+            
+            <div class="features">
+                <span class="feature-tag">1400W Power Input</span>
+                <span class="feature-tag">18J Impact Energy</span>
+                <span class="feature-tag">35mm Cylinder</span>
+            </div>
+            
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Power Input</td>
+                        <td>1400 W</td>
+                    </tr>
+                    <tr>
+                        <td>Voltage / Frequency</td>
+                        <td>230 V / 50 Hz</td>
+                    </tr>
+                    <tr>
+                        <td>Impact Per Minute</td>
+                        <td>3800 ipm</td>
+                    </tr>
+                    <tr>
+                        <td>Impact Energy Per Stroke</td>
+                        <td>18 J</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>6.5 Kg</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="accessories">
+                <h3>Included Accessories</h3>
+                <ul>
+                    <li>1pc 17x260mm Point Chisel</li>
+                    <li>1pc 17x260mm Flat Chisel</li>
+                </ul>
+            </div>
+            
+            <div class="cta-section">
+                <h3>Request Product Information</h3>
+                <div class="btn-group">
+           <a id="whatsappBtn" href="#" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                    </a>
+                    <a href="mailto:sales@rexonweldsandtools.in?subject=Inquiry for KPT Product: KPT7DHN&body=I am interested in learning more about the KPT 7 Kg Demolition Hammer (Model: KPT7DHN). Please provide price and availability." class="btn btn-email">
+                        <i class="fas fa-envelope"></i> Email Inquiry
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-container">
         <div class="footer-left">
             <div class="brand-logo">
                 <a href="index.html">
                     <img src="images/LOGO.png" alt="Rexon Logo">
                 </a>
-<style>.brand-logo img {
-    max-width: 250px;
-    height: auto;
-}
-</style>
             </div>
 
-             <div class="footer-content">
-              
-  <div class="footer-column">
+            <div class="footer-content">
+                <div class="footer-column">
                     <h3>Who we are</h3>
                     <ul>
-                         <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                           <li><a href="about.html">About US</a></li>
+                        <li><a href="about.html">About US</a></li>
                     </ul>
                 </div> 
 
@@ -2005,25 +1591,23 @@
                         <li><a href="Terms&Conditions.html">Terms & Conditions</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
                         <li><a href="Exchange&ShippingPolicy.html">Exchange & Shipping Policy</a></li>
-
                     </ul>
                 </div>
             </div>
 
-
             <div class="newsletter-section">
                 <h3>Stay up to date</h3>
                 <p>Subscribe to our social-media handle and receive the latest news and updates about our products and services.</p>
-             </div>
-  <div class="navbar-icons-group">
+            </div>
+
+            <div class="navbar-icons-group">
                 <div class="social-icons">
-                  <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle"><i class="fab fa-linkedin"></i></a>         
                     <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
 
         <div class="footer-right">
             <div class="footer-image">
@@ -2033,10 +1617,124 @@
         </div>
     </footer>
 
-    <script>
-        // Zoom animation when footer comes into view
-        const footer = document.querySelector('.footer-container');
+   <script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('navbarMenu');
+        menu.classList.toggle('active');
+    }
+
+    function toggleDropdown(event) {
+        if (window.innerWidth <= 768) {
+            event.preventDefault();
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('navbarMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
         
+        if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    });
+
+    // FULLY AUTOMATIC WhatsApp & Email Script (NO DUPLICATION)
+    document.addEventListener('DOMContentLoaded', () => {
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        
+        if (whatsappBtn) {
+            const productSection = document.querySelector('.product-content');
+            
+            if (productSection) {
+                // Auto-extract product name from <h1> ONLY
+                const productNameElement = productSection.querySelector('h1');
+                const productName = productNameElement ? productNameElement.textContent.trim() : 'Product';
+                
+                // Auto-extract ALL specifications from table (single line format)
+                let specifications = '';
+                const specsTable = productSection.querySelector('.specs-table tbody');
+                if (specsTable) {
+                    const specs = [];
+                    specsTable.querySelectorAll('tr').forEach(row => {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length === 2) {
+                            const specName = cells[0].textContent.trim();
+                            const specValue = cells[1].textContent.trim();
+                            specs.push(`${specName}: ${specValue}`);
+                        }
+                    });
+                    specifications = specs.join(' • ');
+                }
+                
+                // Auto-extract category (if available)
+                let category = '';
+                const categoryElement = productSection.querySelector('.product-category');
+                if (categoryElement) {
+                    category = categoryElement.textContent.trim();
+                }
+                
+                // Auto-get current page URL
+                const pageUrl = window.location.href;
+                
+                // Build WhatsApp message (CLEAN - NO DUPLICATION)
+                let whatsappMessage = `Hello, I am interested in this product:\n${productName}`;
+                
+                if (specifications) {
+                    whatsappMessage += `\n\nSpecifications:\n${specifications}`;
+                }
+                
+                if (category) {
+                    whatsappMessage += `\n\nCategory: ${category}`;
+                }
+                
+                whatsappMessage += `\n\nProduct Link: ${pageUrl}\n\nPlease provide pricing and availability details.`;
+                
+                // Update WhatsApp button
+                whatsappBtn.href = `https://wa.me/917378852955?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                console.log('WhatsApp Message:', whatsappMessage);
+            }
+        }
+        
+        // Auto-update Email button
+        const emailBtn = document.querySelector('.btn-email');
+        if (emailBtn) {
+            const productSection = document.querySelector('.product-content');
+            if (productSection) {
+                const productName = productSection.querySelector('h1')?.textContent.trim() || 'Product';
+                const pageUrl = window.location.href;
+                
+                // Extract specifications for email (multi-line format)
+                let emailSpecs = '';
+                const specsTable = productSection.querySelector('.specs-table tbody');
+                if (specsTable) {
+                    specsTable.querySelectorAll('tr').forEach(row => {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length === 2) {
+                            emailSpecs += `${cells[0].textContent.trim()}: ${cells[1].textContent.trim()}\n`;
+                        }
+                    });
+                }
+                
+                const emailSubject = `Inquiry for Product: ${productName}`;
+                const emailBody = `I am interested in this product:\n\n${productName}\n\nSpecifications:\n${emailSpecs}\nProduct Link: ${pageUrl}\n\nPlease provide price and availability.`;
+                emailBtn.href = `mailto:sales@rexonweldsandtools.in?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            }
+        }
+    });
+
+    // Footer animation
+    const footer = document.querySelector('.footer-container');
+    if (footer) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2046,8 +1744,6 @@
         }, {
             threshold: 0.2
         });
-        
         observer.observe(footer);
-    </script>
-</body>
-</html>
+    }
+</script>
