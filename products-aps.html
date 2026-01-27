@@ -1940,7 +1940,9 @@
         </div>
     </div>
     
+    
 <script>
+
     // --- MOBILE MENU TOGGLE ---
     function toggleMobileMenu() {
         const menu = document.getElementById('navbarMenu');
@@ -2186,6 +2188,43 @@ document.addEventListener('DOMContentLoaded', () => {
     filterProducts();
 });
     </script>
+    <script>
+function filterProducts() {
+    const input = document.getElementById("productSearch").value.toLowerCase();
+    const products = document.querySelectorAll(".product-card");
+
+    products.forEach(product => {
+        const title = product.dataset.title.toLowerCase();
+        const category = product.dataset.category.toLowerCase();
+        const description = product.dataset.description
+            ? product.dataset.description.toLowerCase()
+            : "";
+
+        if (
+            title.includes(input) ||
+            category.includes(input) ||
+            description.includes(input)
+        ) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+    const visibleProducts = [...products].filter(
+    p => p.style.display !== "none"
+);
+
+if (input.length > 2 && visibleProducts.length === 1) {
+    const link = visibleProducts[0].querySelector(".btn-outline");
+    if (link) {
+        link.click();
+    }
+}
+
+}
+</script>
+
+
 </body>
 <!DOCTYPE html>
 <html lang="en">
