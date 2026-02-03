@@ -1,0 +1,14 @@
+<header class="dark-header-container">
+        <div class="header-left">
+            <div class="logo">
+                <div class="logo-image">
+             <a href="index.html">
+    <img src="images/LOGO.png" alt="Rexon Logo">
+               </a>
+              </div>
+                <div class="logo-text-group">
+                    <span class="logo-text"> WELDS & TOOL CO</span>
+                </div>
+            </div>
+        </div>
+    </header>
