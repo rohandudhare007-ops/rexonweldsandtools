@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rexon Welds And Tools - Contact</title>
+
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/favicon.png">
     
@@ -581,7 +581,6 @@
             }
         }
 
-
         /* ============================= */
         /* MAP SECTION */
         /* ============================= */
@@ -940,7 +939,51 @@
             mix-blend-mode: overlay;
         }
 
-     
+        /* ============================= */
+        /* FOOTER CREDIT STYLES */
+        /* ============================= */
+        .footer-credit {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: transparent;
+            padding: 20px 40px;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .footer-container.in-view .footer-credit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-credit p {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .footer-credit .designer-name {
+            color: #ff4444;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-credit .break-mobile {
+            display: none;
+        }
+
         /* ============================= */
         /* RESPONSIVE STYLES */
         /* ============================= */
@@ -991,12 +1034,6 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 45px;
-            }
-
-            .footer-credit {
-                position: relative;
-                background: #f5f5f5;
-                padding: 25px 40px;
             }
         }
 
@@ -1171,14 +1208,6 @@
                 font-size: 14px;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .office-detail span {
-                font-size: 16px;
-            }
-
             .footer-credit {
                 padding: 20px 25px;
             }
@@ -1230,12 +1259,6 @@
                 line-height: 1.5;
             }
 
-            .social-icon {
-                width: 38px;
-                height: 38px;
-                font-size: 14px;
-            }
-
             .footer-right {
                 min-height: 32vh;
             }
@@ -1265,17 +1288,11 @@
             }
 
             .tagline {
-                font-size: 8px;
-                display: block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 200px;
+                font-size: 10px;
             }
 
             .logo-image img {
-                height: 34px;
-                margin-bottom: 21px;
+                height: 40px;
             }
 
             .main-nav-wrapper {
@@ -1401,130 +1418,14 @@
 
             .footer-credit p {
                 font-size: 11px;
-            }
-        }
-
-        /* ============================= */
-        /* FOOTER CREDIT STYLES */
-        /* ============================= */
-        .footer-credit {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background: transparent;
-            padding: 20px 40px;
-            text-align: center;
-            z-index: 10;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .footer-container.in-view .footer-credit {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .footer-credit p {
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-            color: #ffffff;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        .footer-credit .designer-name {
-            color: #822727;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Add line break for mobile */
-        .footer-credit .break-mobile {
-            display: none;
-        }
-
-        /* Responsive Styles for Footer Credit */
-        @media (max-width: 968px) {
-            /* KEEP IT ABSOLUTE - DON'T CHANGE TO RELATIVE */
-            .footer-credit {
-                position: absolute;
-                background: transparent;
-                padding: 20px 25px;
-            }
-            
-            /* Make text white for better contrast on image */
-            .footer-credit p {
-                color: #ffffff;
-                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-            }
-            
-            .footer-credit .designer-name {
-                color: #ff4444;
-                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-credit {
-                padding: 18px 20px;
-            }
-
-            .footer-credit p {
-                font-size: 13px;
-                line-height: 1.8;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .footer-credit {
-                padding: 16px 18px;
-            }
-
-            .footer-credit p {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-credit {
-                padding: 14px 15px;
-            }
-
-            .footer-credit p {
-                font-size: 11px;
                 line-height: 2;
             }
             
-            /* Show line break on small screens */
             .footer-credit .break-mobile {
                 display: block;
             }
         }
-    
-
-/* Footer credit layout override: keep it relative and visible for consistent layout */
-.footer-credit {
-    position: relative !important;
-    opacity: 1 !important;
-    transform: none !important;
-    background: transparent; /* keep original transparent where desired */
-    padding: 20px 40px !important;
-    text-align: center;
-    color: #ffffff !important;
-}
-
-@media (max-width: 968px) {
-    .footer-credit {
-        position: relative !important;
-    }
-}
-</style>
+    </style>
 </head>
 <body>
     <!-- HEADER -->
@@ -1546,7 +1447,7 @@
     <!-- NAVIGATION -->
     <div class="main-nav-wrapper">
         <nav class="navbar-container">
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu(event)">
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
                 <i class="fas fa-bars"></i>
             </button>
             
@@ -1555,7 +1456,7 @@
                 <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
                 
                 <div class="dropdown">
-                    <a href="#" class="menu-item" onclick="toggleDropdown(event)">PRODUCTS <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="menu-item">PRODUCTS <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="products-kpt.html" class="dropdown-item">KPT</a>
                         <a href="products-dewalt.html" class="dropdown-item">Dewalt</a>
@@ -1573,9 +1474,9 @@
 
             <div class="navbar-icons-group">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>         
-                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>         
+                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </nav>
@@ -1617,7 +1518,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Phone Number</h3>
-                            <p>+917378852955</p>
+                            <p><a href="tel:+917378852955" style="color: inherit; text-decoration: none;">+917378852955</a></p>
                         </div>
                     </div>
 
@@ -1627,7 +1528,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Email Address</h3>
-                            <p>sales@rexonweldsandtools.in</p>
+                            <p><a href="mailto:sales@rexonweldsandtools.in" style="color: inherit; text-decoration: none;">sales@rexonweldsandtools.in</a></p>
                         </div>
                     </div>
 
@@ -1636,8 +1537,8 @@
                             <i class="fas fa-globe"></i>
                         </div>
                         <div class="info-details">
-                            <h3>Social Media</h3>
-                            <p>www.rexonweldsandtool.in</p>
+                            <h3>Website</h3>
+                            <p>www.rexonweldsandtools.in</p>
                         </div>
                     </div>
 
@@ -1648,7 +1549,7 @@
                         <div class="info-details">
                             <h3>Address</h3>
                             <p>Pesh Industrial Premises, Near Century Enka Company, Bhosari Pune - 411026.</p>
-                            <p>Velu Near Anant Petroleum (Bharat Petroleum) - 412205</p>
+                            <p style="margin-top: 8px;">Velu Near Anant Petroleum (Bharat Petroleum) - 412205</p>
                         </div>
                     </div>
                 </div>
@@ -1716,8 +1617,6 @@
                         <i class="fab fa-whatsapp"></i>
                         Send on WhatsApp
                     </button>
-
-
                 </form>
             </div>
         </div>
@@ -1787,15 +1686,15 @@
                         <h4>Connect for Updates</h4>
                         <p class="subtitle">Social Media</p>
                         <div class="office-detail">    
-                            <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                             <span style="font-size:24px; font-weight:700;">Facebook</span>
                         </div>
                         <div class="office-detail">
-                            <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a> 
+                            <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a> 
                             <span style="font-size:24px; font-weight:700;">LinkedIn</span>
                         </div>
                         <div class="office-detail">
-                            <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                             <span style="font-size:24px; font-weight:700;">Instagram</span>
                         </div>
                     </div>
@@ -1844,9 +1743,9 @@
 
             <div class="navbar-icons-group">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>         
-                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>         
+                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -1857,7 +1756,7 @@
                 <div class="image-overlay"></div>
             </div>
             
-            <!-- FOOTER CREDIT - PLACED INSIDE footer-right -->
+            <!-- FOOTER CREDIT -->
             <div class="footer-credit">
                 <p>All Rights Reserved | <span class="break-mobile"></span>Designed & Developed By <span class="designer-name">Rohan Dudhare</span></p>
             </div>
@@ -1870,7 +1769,19 @@
         function toggleMobileMenu(event) {
             event.stopPropagation();
             const menu = document.getElementById('navbarMenu');
+            const toggle = event.currentTarget;
+            const icon = toggle.querySelector('i');
+            
             menu.classList.toggle('active');
+            
+            // Toggle icon between bars and times
+            if (menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         }
 
         // Dropdown Toggle for Mobile
@@ -1893,6 +1804,11 @@
             if (menu && toggle) {
                 if (!menu.contains(event.target) && !toggle.contains(event.target)) {
                     menu.classList.remove('active');
+                    const icon = toggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             }
 
@@ -1902,6 +1818,18 @@
                     dropdown.classList.remove('active');
                 }
             });
+        });
+
+        // Add event listener to mobile menu toggle button
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Add event listener to dropdown menu items
+        const dropdownLinks = document.querySelectorAll('.dropdown > .menu-item');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', toggleDropdown);
         });
 
         // Footer animation on scroll
@@ -1925,8 +1853,8 @@
         // INQUIRY FORM JAVASCRIPT
         // ============================= 
 
-        // WhatsApp Business Number (Change this to your actual WhatsApp number)
-        const WHATSAPP_NUMBER = '917378852955'; // Format: Country code + number (no + or spaces)
+        // WhatsApp Business Number
+        const WHATSAPP_NUMBER = '917378852955';
 
         // Form Elements
         const form = document.getElementById('inquiryForm');
@@ -1995,9 +1923,11 @@
 
             // Remove error on input
             [fullNameInput, phoneNumberInput, inquiryInput].forEach(input => {
-                input.addEventListener('input', function() {
-                    this.classList.remove('error');
-                });
+                if (input) {
+                    input.addEventListener('input', function() {
+                        this.classList.remove('error');
+                    });
+                }
             });
 
             // Send to WhatsApp Function
@@ -2021,7 +1951,9 @@ Sent via Rexon Welds & Tools Website`;
                 const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
                 // Show success message
-                successMessage.classList.add('show');
+                if (successMessage) {
+                    successMessage.classList.add('show');
+                }
 
                 // Redirect to WhatsApp after short delay
                 setTimeout(() => {
@@ -2032,25 +1964,28 @@ Sent via Rexon Welds & Tools Website`;
                     
                     // Hide success message after 3 seconds
                     setTimeout(() => {
-                        successMessage.classList.remove('show');
+                        if (successMessage) {
+                            successMessage.classList.remove('show');
+                        }
                     }, 3000);
                 }, 500);
             }
 
             // Phone number formatting (auto-add country code if missing)
-            phoneNumberInput.addEventListener('blur', function() {
-                let phone = this.value.trim();
-                if (phone && !phone.startsWith('+')) {
-                    // If number doesn't start with +, assume it's Indian number
-                    if (!phone.startsWith('91') && phone.length === 10) {
-                        this.value = '+91 ' + phone;
-                    } else if (phone.startsWith('91')) {
-                        this.value = '+' + phone;
+            if (phoneNumberInput) {
+                phoneNumberInput.addEventListener('blur', function() {
+                    let phone = this.value.trim();
+                    if (phone && !phone.startsWith('+')) {
+                        // If number doesn't start with +, assume it's Indian number
+                        if (!phone.startsWith('91') && phone.length === 10) {
+                            this.value = '+91 ' + phone;
+                        } else if (phone.startsWith('91')) {
+                            this.value = '+' + phone;
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     </script>
-    
 </body>
 </html>
