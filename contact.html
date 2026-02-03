@@ -785,9 +785,7 @@
             object-fit: cover;
         }
 
-        /* ============================= */
-        /* FOOTER SECTION */
-        /* ============================= */
+       /* === FOOTER STYLES === */
         .footer-container {
             display: flex;
             width: 100%;
@@ -980,34 +978,15 @@
             color: #ff4444;
             font-weight: 600;
             letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
+        /* Add line break for mobile */
         .footer-credit .break-mobile {
             display: none;
         }
 
-        /* ============================= */
-        /* RESPONSIVE STYLES */
-        /* ============================= */
-        @media (max-width: 1024px) {
-            .contact-container,
-            .offices-content {
-                grid-template-columns: 1fr;
-            }
-
-            .office-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .inquiry-form-wrapper {
-                padding: 45px;
-            }
-        }
-
+/* === RESPONSIVE STYLES === */
         @media (max-width: 968px) {
             .footer-container {
                 flex-direction: column;
@@ -1036,6 +1015,22 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 45px;
+            }
+
+            .footer-credit {
+                position: relative;
+                background: #f5f5f5;
+                padding: 25px 40px;
+            }
+            
+            .footer-credit p {
+                color: #1a1a1a;
+                text-shadow: none;
+            }
+            
+            .footer-credit .designer-name {
+                color: #8b0000;
+                text-shadow: none;
             }
         }
 
@@ -1160,54 +1155,16 @@
                 font-size: 14px;
             }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .product-section {
+                margin: 10px;
             }
-
-            .section-title {
-                font-size: 2rem;
+            
+            .product-content {
+                padding: 20px;
             }
-
-            .inquiry-form-wrapper {
-                padding: 35px 25px;
-            }
-
-            .form-input,
-            .form-textarea {
-                padding: 13px 15px;
-                font-size: 0.9rem;
-            }
-
-            .whatsapp-submit-btn {
-                padding: 14px 28px;
-                font-size: 0.95rem;
-            }
-
-            .map-section {
-                padding: 60px 20px;
-            }
-
-            .map-title {
-                font-size: 2rem;
-            }
-
-            .map-description {
-                font-size: 1rem;
-            }
-
-            .map-iframe {
-                height: 400px;
-            }
-
-            .button-container {
-                flex-direction: column;
-                gap: 12px;
-                bottom: 20px;
-            }
-
-            .view-location-btn {
-                padding: 12px 25px;
-                font-size: 14px;
+            
+            .product-content h1 {
+                font-size: 24px;
             }
 
             .footer-credit {
@@ -1216,6 +1173,7 @@
 
             .footer-credit p {
                 font-size: 13px;
+                line-height: 1.8;
             }
         }
 
@@ -1290,11 +1248,17 @@
             }
 
             .tagline {
-                font-size: 10px;
+                font-size: 8px;
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 200px;
             }
 
             .logo-image img {
-                height: 40px;
+                height: 34px;
+                margin-bottom: 21px;
             }
 
             .main-nav-wrapper {
@@ -1319,55 +1283,22 @@
                 font-size: 12px;
             }
 
-            .inquiry-form-wrapper {
-                padding: 30px 20px;
+            .product-content h1 {
+                font-size: 20px;
             }
 
-            .form-label {
-                font-size: 0.9rem;
+            .feature-tag {
+                font-size: 12px;
+                padding: 6px 12px;
             }
 
-            .whatsapp-submit-btn {
-                padding: 13px 24px;
-                font-size: 0.9rem;
+            .btn-group {
+                flex-direction: column;
             }
 
-            .whatsapp-submit-btn i {
-                font-size: 1.1rem;
-            }
-
-            .map-section {
-                padding: 40px 15px;
-            }
-
-            .map-title {
-                font-size: 1.6rem;
-            }
-
-            .map-label {
-                font-size: 0.75rem;
-            }
-
-            .map-description {
-                font-size: 0.9rem;
-            }
-
-            .map-iframe {
-                height: 350px;
-            }
-
-            .button-container {
-                bottom: 15px;
-                gap: 10px;
-            }
-
-            .view-location-btn {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-
-            .view-location-btn i {
-                font-size: 14px;
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .footer-left {
@@ -1423,6 +1354,7 @@
                 line-height: 2;
             }
             
+            /* Show line break on small screens */
             .footer-credit .break-mobile {
                 display: block;
             }
@@ -1758,7 +1690,7 @@
                 <div class="image-overlay"></div>
             </div>
             
-            <!-- FOOTER CREDIT -->
+            <!-- FOOTER CREDIT - PLACED INSIDE footer-right -->
             <div class="footer-credit">
                 <p>All Rights Reserved | <span class="break-mobile"></span>Designed & Developed By <span class="designer-name">Rohan Dudhare</span></p>
             </div>
