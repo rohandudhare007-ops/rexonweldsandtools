@@ -7,15 +7,13 @@
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/favicon.png">
-    
-    <!-- Fonts -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <style>
         /* === RESET & BASE === */
         * {
@@ -28,42 +26,6 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f5f7fa;
             overflow-x: hidden;
-        }
-
-       /* === HEADER STYLES === */
-
-
-
-
-
-
-
-       
-         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f7fa;
-            overflow-x: hidden;
-        }
-
-        /* === HEADER STYLES === */
-        .dark-header-container {
-            background: linear-gradient(to bottom, #5a1a1a 0%, #3d0f0f 100%);
-            padding: 25px 60px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .header-left {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
         }
 
         /* === HEADER STYLES === */
@@ -1390,8 +1352,8 @@
         </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="dark-header-container">
+
+     <header class="dark-header-container">
         <div class="header-left">
             <div class="logo">
                 <div class="logo-image">
@@ -1406,185 +1368,64 @@
         </div>
     </header>
 
-    <!-- NAVIGATION -->
     <div class="main-nav-wrapper">
         <nav class="navbar-container">
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
             
             <div class="navbar-menu" id="navbarMenu">
-                <a href="index.html" class="menu-item">HOME <i class="fas fa-chevron-down"></i></a>
-                <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
-                
-                <div class="dropdown">
-                    <a href="#" class="menu-item">PRODUCTS <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="products-kpt.html" class="dropdown-item">KPT</a>
+    <a href="index.html" class="menu-item active">HOME <i class="fas fa-chevron-down"></i></a>
+    <a href="about.html" class="menu-item">ABOUT <i class="fas fa-chevron-down"></i></a>
+    
+    <!-- Products Dropdown -->
+    <div class="dropdown">
+        <a href="#" class="menu-item" onclick="toggleDropdown(event)">PRODUCTS <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+            <a href="products-kpt.html" class="dropdown-item">KPT</a>
                         <a href="products-dewalt.html" class="dropdown-item">Dewalt</a>
                         <a href="products-bosch.html" class="dropdown-item">Bosch</a>
                         <a href="products-aps.html" class="dropdown-item">APS</a>
                         <a href="products-forte.html" class="dropdown-item">Forte</a>
                         <a href="products-lasercuttingcnc.html" class="dropdown-item">Laser Cutting CNC</a>
-                        <a href="products-laserwelding.html" class="dropdown-item">Laser Welding</a>
+                         <a href="products-laserwelding.html" class="dropdown-item">Laser Welding</a>
                         <a href="products-weldingconsumables.html" class="dropdown-item">Welding Consumables</a>
-                    </div>
-                </div>
-                
-                <a href="contact.html" class="menu-item active">CONTACT US <i class="fas fa-chevron-down"></i></a>
-            </div>
+        </div>
+    </div>
+    
+    <a href="contact.html" class="menu-item">CONTACT US <i class="fas fa-chevron-down"></i></a>
+</div>
+<script>
+    function toggleDropdown(event) {
+        if (window.innerWidth <= 768) {
+            event.preventDefault();
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    });
+</script>
 
             <div class="navbar-icons-group">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>         
-                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle"><i class="fab fa-linkedin"></i></a>         
+                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </nav>
     </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-pattern"></div>
-        <div class="hero-sparks">
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-            <div class="spark"></div>
-        </div>
-        <div class="hero-content">
-            <h1>Contact <span>Us</span></h1>
-            <div class="breadcrumb">
-                <a href="index.html">Home</a> / Contact Us
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION WITH INQUIRY FORM -->
-    <section class="contact-section">
-        <div class="contact-container">
-            <!-- Contact Info (Left Side) -->
-            <div class="contact-info">
-                <p class="section-label">CONTACT US</p>
-                <h2 class="section-title">Get In <span>Touch</span></h2>
-                <p class="info-text">We're here to help with all your welding equipment and industrial tool needs. Reach out to us for inquiries, quotes, or technical support.</p>
-                
-                <div class="info-items">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Phone Number</h3>
-                            <p><a href="tel:+917378852955" style="color: inherit; text-decoration: none;">+917378852955</a></p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Email Address</h3>
-                            <p><a href="mailto:sales@rexonweldsandtools.in" style="color: inherit; text-decoration: none;">sales@rexonweldsandtools.in</a></p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Website</h3>
-                            <p>www.rexonweldsandtools.in</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Address</h3>
-                            <p>Pesh Industrial Premises, Near Century Enka Company, Bhosari Pune - 411026.</p>
-                            <p style="margin-top: 8px;">Velu Near Anant Petroleum (Bharat Petroleum) - 412205</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Inquiry Form (Right Side) -->
-            <div class="inquiry-form-wrapper">
-                <p class="section-label">SEND INQUIRY</p>
-                <h2 class="section-title">Quick <span>Inquiry</span></h2>
-                <p class="info-text">Fill out the form below and we'll get back to you via WhatsApp within 24 hours.</p>
-
-                <div class="success-message" id="successMessage">
-                    <i class="fas fa-check-circle"></i> Redirecting to WhatsApp...
-                </div>
-
-                <form class="inquiry-form" id="inquiryForm" novalidate>
-                    <div class="form-group">
-                        <label class="form-label" for="fullName">
-                            <i class="fas fa-user"></i>
-                            Full Name <span class="required">*</span>
-                        </label>
-                        <input 
-                            type="text" 
-                            id="fullName" 
-                            name="fullName" 
-                            class="form-input" 
-                            placeholder="Enter your full name"
-                            required
-                            autocomplete="name"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="phoneNumber">
-                            <i class="fas fa-phone"></i>
-                            Phone Number <span class="required">*</span>
-                        </label>
-                        <input 
-                            type="tel" 
-                            id="phoneNumber" 
-                            name="phoneNumber" 
-                            class="form-input" 
-                            placeholder="+91 XXXXXXXXXX"
-                            required
-                            autocomplete="tel"
-                            pattern="[0-9+\s\-()]+"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="inquiry">
-                            <i class="fas fa-comment-dots"></i>
-                            Reason for Inquiry <span class="required">*</span>
-                        </label>
-                        <textarea 
-                            id="inquiry" 
-                            name="inquiry" 
-                            class="form-textarea" 
-                            placeholder="Tell us about your requirements, product inquiries, or any questions..."
-                            required
-                        ></textarea>
-                    </div>
-
-                    <button type="submit" class="whatsapp-submit-btn">
-                        <i class="fab fa-whatsapp"></i>
-                        Send on WhatsApp
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAP SECTION -->
+<!-- MAP SECTION -->
     <section class="map-section">
         <div class="map-container">
             <div class="map-header">
@@ -1618,59 +1459,7 @@
         </div>
     </section>
 
-    <!-- OFFICES SECTION -->
-    <section class="offices-section">
-        <div class="offices-content">
-            <div class="offices-text">
-                <h3>OUR OFFICES</h3>
-                <h2>Our Offices <span>Located</span> at these locations</h2>
-                <p>We ensure quick service and support for all your industrial equipment needs. Visit our office or contact us for assistance.</p>
-                
-                <div class="office-cards">
-                    <div class="office-card">
-                        <h4>Head Office</h4>
-                        <p class="subtitle">Main Branch</p>
-                        <div class="office-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Pesh Industrial Premises, Near Century Enka Company, Bhosari Pune - 411026.</span>
-                        </div>
-                        <div class="office-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+917378852955</span>
-                        </div>
-                        <div class="office-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>sales@rexonweldsandtools.in</span>
-                        </div>
-                    </div>
-
-                    <div class="office-card">
-                        <h4>Connect for Updates</h4>
-                        <p class="subtitle">Social Media</p>
-                        <div class="office-detail">    
-                            <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <span style="font-size:24px; font-weight:700;">Facebook</span>
-                        </div>
-                        <div class="office-detail">
-                            <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a> 
-                            <span style="font-size:24px; font-weight:700;">LinkedIn</span>
-                        </div>
-                        <div class="office-detail">
-                            <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <span style="font-size:24px; font-weight:700;">Instagram</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offices-image">
-                <img src="images/contactimage.jpeg" alt="Industrial Workers">
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer-container">
+        <footer class="footer-container">
         <div class="footer-left">
             <div class="brand-logo">
                 <a href="index.html">
@@ -1725,76 +1514,10 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    
+
     <script>
-        // Mobile Menu Toggle
-        function toggleMobileMenu(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('navbarMenu');
-            const toggle = event.currentTarget;
-            const icon = toggle.querySelector('i');
-            
-            menu.classList.toggle('active');
-            
-            // Toggle icon between bars and times
-            if (menu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-
-        // Dropdown Toggle for Mobile
-        function toggleDropdown(event) {
-            if (window.innerWidth <= 768) {
-                event.preventDefault();
-                event.stopPropagation();
-                const dropdown = event.target.closest('.dropdown');
-                dropdown.classList.toggle('active');
-            }
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navbarMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            const dropdowns = document.querySelectorAll('.dropdown');
-            
-            // Close mobile menu if clicking outside
-            if (menu && toggle) {
-                if (!menu.contains(event.target) && !toggle.contains(event.target)) {
-                    menu.classList.remove('active');
-                    const icon = toggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            }
-
-            // Close dropdowns if clicking outside
-            dropdowns.forEach(dropdown => {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.classList.remove('active');
-                }
-            });
-        });
-
-        // Add event listener to mobile menu toggle button
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', toggleMobileMenu);
-        }
-
-        // Add event listener to dropdown menu items
-        const dropdownLinks = document.querySelectorAll('.dropdown > .menu-item');
-        dropdownLinks.forEach(link => {
-            link.addEventListener('click', toggleDropdown);
-        });
-
-        // Footer animation on scroll
+        // Zoom animation when footer comes into view
         const footer = document.querySelector('.footer-container');
         
         const observer = new IntersectionObserver((entries) => {
@@ -1807,147 +1530,8 @@
             threshold: 0.2
         });
         
-        if (footer) {
-            observer.observe(footer);
-        }
-
-        // ============================= 
-        // INQUIRY FORM JAVASCRIPT
-        // ============================= 
-
-        // WhatsApp Business Number
-        const WHATSAPP_NUMBER = '917378852955';
-
-        // Form Elements
-        const form = document.getElementById('inquiryForm');
-        const fullNameInput = document.getElementById('fullName');
-        const phoneNumberInput = document.getElementById('phoneNumber');
-        const inquiryInput = document.getElementById('inquiry');
-        const successMessage = document.getElementById('successMessage');
-
-        // Check if form exists before adding event listeners
-        if (form) {
-            // Form Submission Handler
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                // Reset previous errors
-                removeErrors();
-
-                // Get form values
-                const fullName = fullNameInput.value.trim();
-                const phoneNumber = phoneNumberInput.value.trim();
-                const inquiry = inquiryInput.value.trim();
-
-                // Validation
-                let isValid = true;
-
-                if (fullName === '') {
-                    showError(fullNameInput);
-                    isValid = false;
-                }
-
-                if (phoneNumber === '') {
-                    showError(phoneNumberInput);
-                    isValid = false;
-                } else if (!isValidPhone(phoneNumber)) {
-                    showError(phoneNumberInput);
-                    isValid = false;
-                }
-
-                if (inquiry === '') {
-                    showError(inquiryInput);
-                    isValid = false;
-                }
-
-                // If form is valid, send to WhatsApp
-                if (isValid) {
-                    sendToWhatsApp(fullName, phoneNumber, inquiry);
-                }
-            });
-
-            // Validation Functions
-            function isValidPhone(phone) {
-                // Basic phone validation (allows +, -, (), spaces, and digits)
-                const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-                return phoneRegex.test(phone) && phone.replace(/\D/g, '').length >= 10;
-            }
-
-            function showError(input) {
-                input.classList.add('error');
-                input.focus();
-            }
-
-            function removeErrors() {
-                const inputs = document.querySelectorAll('.form-input, .form-textarea');
-                inputs.forEach(input => input.classList.remove('error'));
-            }
-
-            // Remove error on input
-            [fullNameInput, phoneNumberInput, inquiryInput].forEach(input => {
-                if (input) {
-                    input.addEventListener('input', function() {
-                        this.classList.remove('error');
-                    });
-                }
-            });
-
-            // Send to WhatsApp Function
-            function sendToWhatsApp(name, phone, inquiry) {
-                // Format the message
-                const message = `*New Inquiry from Website*
-
-👤 *Name:* ${name}
-📱 *Phone:* ${phone}
-
-📝 *Inquiry:*
-${inquiry}
-
----
-Sent via Rexon Welds & Tools Website`;
-
-                // Encode message for URL
-                const encodedMessage = encodeURIComponent(message);
-
-                // Create WhatsApp URL
-                const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-                // Show success message
-                if (successMessage) {
-                    successMessage.classList.add('show');
-                }
-
-                // Redirect to WhatsApp after short delay
-                setTimeout(() => {
-                    window.open(whatsappURL, '_blank');
-                    
-                    // Reset form after successful submission
-                    form.reset();
-                    
-                    // Hide success message after 3 seconds
-                    setTimeout(() => {
-                        if (successMessage) {
-                            successMessage.classList.remove('show');
-                        }
-                    }, 3000);
-                }, 500);
-            }
-
-            // Phone number formatting (auto-add country code if missing)
-            if (phoneNumberInput) {
-                phoneNumberInput.addEventListener('blur', function() {
-                    let phone = this.value.trim();
-                    if (phone && !phone.startsWith('+')) {
-                        // If number doesn't start with +, assume it's Indian number
-                        if (!phone.startsWith('91') && phone.length === 10) {
-                            this.value = '+91 ' + phone;
-                        } else if (phone.startsWith('91')) {
-                            this.value = '+' + phone;
-                        }
-                    }
-                });
-            }
-        }
+        observer.observe(footer);
     </script>
+    
 </body>
 </html>
