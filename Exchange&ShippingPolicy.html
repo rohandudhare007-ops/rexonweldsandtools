@@ -321,7 +321,6 @@
             position: relative;
         }
 
-        /* Left Section - Dark Content Panel */
         .footer-left {
             width: 40%;
             background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
@@ -341,20 +340,6 @@
             height: auto;
         }
 
-        .brand-logo h2 {
-            color: #fff;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            border: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .brand-logo span {
-            color: #ff6b2c;
-        }
-
         .footer-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -369,8 +354,6 @@
             margin-bottom: 22px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            border: none;
-            padding: 0;
         }
 
         .footer-column ul {
@@ -396,14 +379,6 @@
             color: #fff;
         }
 
-        .external-icon {
-            width: 13px;
-            height: 13px;
-            opacity: 0.6;
-            stroke-width: 2;
-        }
-
-        /* Newsletter Section */
         .newsletter-section {
             margin-top: 35px;
             padding-top: 35px;
@@ -415,8 +390,6 @@
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 10px;
-            border: none;
-            padding: 0;
         }
 
         .newsletter-section p {
@@ -426,32 +399,6 @@
             line-height: 1.5;
         }
 
-        /* Social Media */
-        .social-media {
-            display: flex;
-            gap: 16px;
-            margin-top: 35px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1f1f1f;
-            color: #b8b8b8;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: #ff6b2c;
-            color: #fff;
-        }
-
-        /* Right Section - Image Area */
         .footer-right {
             width: 60%;
             position: relative;
@@ -520,9 +467,101 @@
             mix-blend-mode: overlay;
         }
 
-        /* === RESPONSIVE STYLES === */
-        
-        /* Tablet styles (768px and below) */
+        /* ============================= */
+        /* FOOTER CREDIT STYLES */
+        /* ============================= */
+        .footer-credit {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: transparent;
+            padding: 20px 40px;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .footer-container.in-view .footer-credit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-credit p {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .footer-credit .designer-name {
+            color: #ff4444;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Add line break for mobile */
+        .footer-credit .break-mobile {
+            display: none;
+        }
+
+/* === RESPONSIVE STYLES === */
+        @media (max-width: 968px) {
+            .footer-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .footer-left,
+            .footer-right {
+                width: 100%;
+            }
+
+            .footer-left {
+                padding: 50px 40px;
+            }
+
+            .footer-right {
+                min-height: 55vh;
+            }
+
+            .footer-image::before {
+                width: 100%;
+                height: 150px;
+                background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.5) 100%);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .footer-credit {
+                position: relative;
+                background: #f5f5f5;
+                padding: 25px 40px;
+            }
+            
+            .footer-credit p {
+                color: #1a1a1a;
+                text-shadow: none;
+            }
+            
+            .footer-credit .designer-name {
+                color: #8b0000;
+                text-shadow: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .dark-header-container {
                 padding: 18px 25px;
@@ -644,62 +683,83 @@
                 font-size: 14px;
             }
 
-            h1 {
-                font-size: 1.8em;
+            .product-section {
+                margin: 10px;
+            }
+            
+            .product-content {
+                padding: 20px;
+            }
+            
+            .product-content h1 {
+                font-size: 24px;
             }
 
-            h2 {
-                font-size: 1.4em;
+            .footer-credit {
+                padding: 20px 25px;
             }
 
-            .container {
-                padding: 20px 15px;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                min-height: auto;
-            }
-
-            .footer-left,
-            .footer-right {
-                width: 100%;
-            }
-
-            .footer-left {
-                padding: 50px 40px;
-            }
-
-            .footer-right {
-                min-height: 55vh;
-            }
-
-            .footer-image::before {
-                width: 100%;
-                height: 150px;
-                background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.5) 100%);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 45px;
-            }
-
-            .brand-logo {
-                margin-bottom: 50px;
-            }
-
-            .brand-logo h2 {
-                font-size: 26px;
-            }
-
-            .newsletter-section {
-                margin-top: 45px;
-                padding-top: 45px;
+            .footer-credit p {
+                font-size: 13px;
+                line-height: 1.8;
             }
         }
 
-        /* Mobile styles (480px and below) */
+        @media (max-width: 640px) {
+            .footer-left {
+                padding: 32px 22px;
+            }
+
+            .brand-logo {
+                margin-bottom: 32px;
+            }
+
+            .footer-content {
+                gap: 30px;
+            }
+
+            .footer-column h3 {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            .footer-column ul li {
+                margin-bottom: 11px;
+            }
+
+            .footer-column ul li a {
+                font-size: 13px;
+            }
+
+            .newsletter-section {
+                margin-top: 30px;
+                padding-top: 30px;
+            }
+
+            .newsletter-section h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-section p {
+                font-size: 12px;
+                margin-bottom: 18px;
+                line-height: 1.5;
+            }
+
+            .footer-right {
+                min-height: 32vh;
+            }
+
+            .footer-credit {
+                padding: 18px 20px;
+            }
+
+            .footer-credit p {
+                font-size: 12px;
+            }
+        }
+
         @media (max-width: 480px) {
             .dark-header-container {
                 padding: 12px 15px;
@@ -730,13 +790,13 @@
             }
 
             .main-nav-wrapper {
-                margin: -12px 12px 0 12px;
+                margin: -15px 15px 0 15px;
                 border-radius: 25px;
             }
 
             .navbar-container {
-                padding: 0 12px;
-                min-height: 45px;
+                padding: 0 15px;
+                min-height: 50px;
             }
 
             .navbar-menu {
@@ -751,16 +811,22 @@
                 font-size: 12px;
             }
 
-            h1 {
-                font-size: 1.5em;
+            .product-content h1 {
+                font-size: 20px;
             }
 
-            h2 {
-                font-size: 1.2em;
+            .feature-tag {
+                font-size: 12px;
+                padding: 6px 12px;
             }
 
-            .container {
-                padding: 20px 15px;
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .footer-left {
@@ -769,10 +835,6 @@
 
             .brand-logo {
                 margin-bottom: 28px;
-            }
-
-            .brand-logo h2 {
-                font-size: 19px;
             }
 
             .footer-content {
@@ -807,22 +869,25 @@
                 margin-bottom: 16px;
             }
 
-            .social-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 13px;
-            }
-
             .footer-right {
                 min-height: 28vh;
             }
 
-            .external-icon {
-                width: 10px;
-                height: 10px;
+            .footer-credit {
+                padding: 16px 15px;
+            }
+
+            .footer-credit p {
+                font-size: 11px;
+                line-height: 2;
+            }
+            
+            /* Show line break on small screens */
+            .footer-credit .break-mobile {
+                display: block;
             }
         }
-    </style>
+        </style>
 </head>
 <body>
 
@@ -1260,21 +1325,15 @@
                 <a href="index.html">
                     <img src="images/LOGO.png" alt="Rexon Logo">
                 </a>
-<style>.brand-logo img {
-    max-width: 250px;
-    height: auto;
-}
-</style>
             </div>
 
-             <div class="footer-content">
-              
+            <div class="footer-content">
                 <div class="footer-column">
                     <h3>Who we are</h3>
                     <ul>
-                         <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                           <li><a href="about.html">About US</a></li>
+                        <li><a href="about.html">About Us</a></li>
                     </ul>
                 </div> 
 
@@ -1284,33 +1343,38 @@
                         <li><a href="Terms&Conditions.html">Terms & Conditions</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
                         <li><a href="Exchange&ShippingPolicy.html">Exchange & Shipping Policy</a></li>
-
                     </ul>
                 </div>
             </div>
 
-
             <div class="newsletter-section">
                 <h3>Stay up to date</h3>
-                <p>Subscribe to our social-media handle and receive the latest news and updates about our products and services.</p>
-             </div>
-  <div class="navbar-icons-group">
+                <p>Subscribe to our social media handle and receive the latest news and updates about our products and services.</p>
+            </div>
+
+            <div class="navbar-icons-group">
                 <div class="social-icons">
-                  <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle"><i class="fab fa-linkedin"></i></a>         
-                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585558623324" class="social-circle" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/posts/rexon-welds-tools_rexon-welds-tools-linkedin-activity-7403001067233484800-0ANX?utm_source=share&utm_medium=member_android&rcm=ACoAADYHv-sBX9ual4KGkwBFwmQ1mEvxUpIAb0A" class="social-circle" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>         
+                    <a href="https://www.instagram.com/rexonweldandtools?igsh=dDhsMmkzazZyZnJn" class="social-circle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
 
         <div class="footer-right">
             <div class="footer-image">
                 <img src="images/FOOTER.jpg" alt="Industrial Welding Worker">
                 <div class="image-overlay"></div>
             </div>
+            
+            <!-- FOOTER CREDIT - PLACED INSIDE footer-right -->
+            <div class="footer-credit">
+                <p>All Rights Reserved | <span class="break-mobile"></span>Designed & Developed By <span class="designer-name">Rohan Dudhare</span></p>
+            </div>
         </div>
     </footer>
+
+    
 
     <script>
         // Zoom animation when footer comes into view

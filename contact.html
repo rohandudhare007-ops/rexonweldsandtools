@@ -938,108 +938,7 @@
             mix-blend-mode: overlay;
         }
 
-        /* ============================= */
-/* FOOTER CREDIT STYLES */
-/* ============================= */
-.footer-credit {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: transparent;
-    padding: 20px 40px;
-    text-align: center;
-    z-index: 10;
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.footer-container.in-view .footer-credit {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.footer-credit p {
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.3px;
-    color: #ffffff;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-}
-
-.footer-credit .designer-name {
-    color: #822727;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-/* Add line break for mobile */
-.footer-credit .break-mobile {
-    display: none;
-}
-
-/* Responsive Styles for Footer Credit */
-@media (max-width: 968px) {
-    /* KEEP IT ABSOLUTE - DON'T CHANGE TO RELATIVE */
-    .footer-credit {
-        position: absolute;
-        background: transparent;
-        padding: 20px 25px;
-    }
-    
-    /* Make text white for better contrast on image */
-    .footer-credit p {
-        color: #ffffff;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    }
-    
-    .footer-credit .designer-name {
-        color: #ff4444;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-credit {
-        padding: 18px 20px;
-    }
-
-    .footer-credit p {
-        font-size: 13px;
-        line-height: 1.8;
-    }
-}
-
-@media (max-width: 640px) {
-    .footer-credit {
-        padding: 16px 18px;
-    }
-
-    .footer-credit p {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-credit {
-        padding: 14px 15px;
-    }
-
-    .footer-credit p {
-        font-size: 11px;
-        line-height: 2;
-    }
-    
-    /* Show line break on small screens */
-    .footer-credit .break-mobile {
-        display: block;
-    }
-}
+     
         /* ============================= */
         /* RESPONSIVE STYLES */
         /* ============================= */
@@ -1502,7 +1401,128 @@
                 font-size: 11px;
             }
         }
-    </style>
+
+        /* ============================= */
+        /* FOOTER CREDIT STYLES */
+        /* ============================= */
+        .footer-credit {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: transparent;
+            padding: 20px 40px;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .footer-container.in-view .footer-credit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-credit p {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .footer-credit .designer-name {
+            color: #822727;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Add line break for mobile */
+        .footer-credit .break-mobile {
+            display: none;
+        }
+
+        /* Responsive Styles for Footer Credit */
+        @media (max-width: 968px) {
+            /* KEEP IT ABSOLUTE - DON'T CHANGE TO RELATIVE */
+            .footer-credit {
+                position: absolute;
+                background: transparent;
+                padding: 20px 25px;
+            }
+            
+            /* Make text white for better contrast on image */
+            .footer-credit p {
+                color: #ffffff;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            }
+            
+            .footer-credit .designer-name {
+                color: #ff4444;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-credit {
+                padding: 18px 20px;
+            }
+
+            .footer-credit p {
+                font-size: 13px;
+                line-height: 1.8;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .footer-credit {
+                padding: 16px 18px;
+            }
+
+            .footer-credit p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-credit {
+                padding: 14px 15px;
+            }
+
+            .footer-credit p {
+                font-size: 11px;
+                line-height: 2;
+            }
+            
+            /* Show line break on small screens */
+            .footer-credit .break-mobile {
+                display: block;
+            }
+        }
+    
+
+/* Footer credit layout override: keep it relative and visible for consistent layout */
+.footer-credit {
+    position: relative !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: transparent; /* keep original transparent where desired */
+    padding: 20px 40px !important;
+    text-align: center;
+    color: #ffffff !important;
+}
+
+@media (max-width: 968px) {
+    .footer-credit {
+        position: relative !important;
+    }
+}
+</style>
 </head>
 <body>
     <!-- HEADER -->
@@ -1834,11 +1854,11 @@
                 <img src="images/FOOTER.jpg" alt="Industrial Welding Worker">
                 <div class="image-overlay"></div>
             </div>
-        </div>
-
-        <!-- FOOTER CREDIT -->
-        <div class="footer-credit">
-            <p>All Rights Reserved | Designed & Developed By <span class="designer-name">Rohan Dudhare</span></p>
+            
+            <!-- FOOTER CREDIT - PLACED INSIDE footer-right -->
+            <div class="footer-credit">
+                <p>All Rights Reserved | <span class="break-mobile"></span>Designed & Developed By <span class="designer-name">Rohan Dudhare</span></p>
+            </div>
         </div>
     </footer>
 
